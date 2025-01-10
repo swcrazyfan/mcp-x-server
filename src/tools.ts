@@ -269,4 +269,86 @@ export const TOOLS = {
             required: ['username'],
         },
     },
+    createList: {
+        description: 'Create a new Twitter list',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                name: { type: 'string', description: 'The name of the list' },
+                description: { type: 'string', description: 'A description of the list' },
+                private: { type: 'boolean', description: 'Whether the list should be private' }
+            },
+            required: ['name'],
+        },
+    },
+    addUserToList: {
+        description: 'Add a user to a Twitter list',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                listId: { type: 'string', description: 'The ID of the list' },
+                username: { type: 'string', description: 'The username of the user to add' }
+            },
+            required: ['listId', 'username'],
+        },
+    },
+    removeUserFromList: {
+        description: 'Remove a user from a Twitter list',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                listId: { type: 'string', description: 'The ID of the list' },
+                username: { type: 'string', description: 'The username of the user to remove' }
+            },
+            required: ['listId', 'username'],
+        },
+    },
+    getListMembers: {
+        description: 'Get members of a Twitter list',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                listId: { type: 'string', description: 'The ID of the list' },
+                maxResults: { 
+                    type: 'number', 
+                    description: 'The maximum number of results to return (default: 100, max: 100)',
+                    minimum: 1,
+                    maximum: 100
+                },
+                userFields: { 
+                    type: 'array', 
+                    items: { 
+                        type: 'string',
+                        enum: ['description', 'profile_image_url', 'public_metrics', 'verified', 'location', 'url']
+                    },
+                    description: 'Additional user fields to include in the response'
+                },
+            },
+            required: ['listId'],
+        },
+    },
+    getUserLists: {
+        description: 'Get lists owned by a user',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                username: { type: 'string', description: 'The username of the user whose lists to fetch' },
+                maxResults: { 
+                    type: 'number', 
+                    description: 'The maximum number of results to return (default: 100, max: 100)',
+                    minimum: 1,
+                    maximum: 100
+                },
+                listFields: { 
+                    type: 'array', 
+                    items: { 
+                        type: 'string',
+                        enum: ['created_at', 'follower_count', 'member_count', 'private', 'description']
+                    },
+                    description: 'Additional list fields to include in the response'
+                },
+            },
+            required: ['username'],
+        },
+    },
 }; 

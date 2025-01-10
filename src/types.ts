@@ -86,6 +86,34 @@ export interface GetFollowingArgs {
     userFields?: string[];
 }
 
+export interface CreateListArgs {
+    name: string;
+    description?: string;
+    private?: boolean;
+}
+
+export interface AddUserToListArgs {
+    listId: string;
+    username: string;
+}
+
+export interface RemoveUserFromListArgs {
+    listId: string;
+    username: string;
+}
+
+export interface GetListMembersArgs {
+    listId: string;
+    maxResults?: number;
+    userFields?: string[];
+}
+
+export interface GetUserListsArgs {
+    username: string;
+    maxResults?: number;
+    listFields?: string[];
+}
+
 export function assertPostTweetArgs(args: unknown): asserts args is PostTweetArgs {
     if (typeof args !== 'object' || args === null) {
         throw new Error('Invalid arguments: expected object');
@@ -360,6 +388,95 @@ export function assertGetFollowingArgs(args: unknown): asserts args is GetFollow
         for (const field of (args as any).userFields) {
             if (typeof field !== 'string') {
                 throw new Error('Invalid arguments: expected userFields to be an array of strings');
+            }
+        }
+    }
+}
+
+export function assertCreateListArgs(args: unknown): asserts args is CreateListArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('name' in args) || typeof (args as any).name !== 'string') {
+        throw new Error('Invalid arguments: expected name string');
+    }
+    if ('description' in args && typeof (args as any).description !== 'string') {
+        throw new Error('Invalid arguments: expected description string');
+    }
+    if ('private' in args && typeof (args as any).private !== 'boolean') {
+        throw new Error('Invalid arguments: expected private boolean');
+    }
+}
+
+export function assertAddUserToListArgs(args: unknown): asserts args is AddUserToListArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('listId' in args) || typeof (args as any).listId !== 'string') {
+        throw new Error('Invalid arguments: expected listId string');
+    }
+    if (!('username' in args) || typeof (args as any).username !== 'string') {
+        throw new Error('Invalid arguments: expected username string');
+    }
+}
+
+export function assertRemoveUserFromListArgs(args: unknown): asserts args is RemoveUserFromListArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('listId' in args) || typeof (args as any).listId !== 'string') {
+        throw new Error('Invalid arguments: expected listId string');
+    }
+    if (!('username' in args) || typeof (args as any).username !== 'string') {
+        throw new Error('Invalid arguments: expected username string');
+    }
+}
+
+export function assertGetListMembersArgs(args: unknown): asserts args is GetListMembersArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('listId' in args) || typeof (args as any).listId !== 'string') {
+        throw new Error('Invalid arguments: expected listId string');
+    }
+    if ('maxResults' in args) {
+        const maxResults = (args as any).maxResults;
+        if (typeof maxResults !== 'number' || maxResults < 1 || maxResults > 100) {
+            throw new Error('Invalid arguments: maxResults must be a number between 1 and 100');
+        }
+    }
+    if ('userFields' in args) {
+        if (!Array.isArray((args as any).userFields)) {
+            throw new Error('Invalid arguments: expected userFields to be an array');
+        }
+        for (const field of (args as any).userFields) {
+            if (typeof field !== 'string') {
+                throw new Error('Invalid arguments: expected userFields to be an array of strings');
+            }
+        }
+    }
+}
+
+export function assertGetUserListsArgs(args: unknown): asserts args is GetUserListsArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('username' in args) || typeof (args as any).username !== 'string') {
+        throw new Error('Invalid arguments: expected username string');
+    }
+    if ('maxResults' in args) {
+        const maxResults = (args as any).maxResults;
+        if (typeof maxResults !== 'number' || maxResults < 1 || maxResults > 100) {
+            throw new Error('Invalid arguments: maxResults must be a number between 1 and 100');
+        }
+    }
+    if ('listFields' in args) {
+        if (!Array.isArray((args as any).listFields)) {
+            throw new Error('Invalid arguments: expected listFields to be an array');
+        }
+        for (const field of (args as any).listFields) {
+            if (typeof field !== 'string') {
+                throw new Error('Invalid arguments: expected listFields to be an array of strings');
             }
         }
     }
