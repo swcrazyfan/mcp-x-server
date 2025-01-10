@@ -23,14 +23,21 @@
     "twitter",
     "llm",
     "ai",
-    "model-context-protocol"
+    "model-context-protocol",
+    "claude",
+    "anthropic",
+    "x"
   ],
   "author": "Dennison Bertram",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dennisonbertram/mcp-twitter-server.git"
+    "url": "https://github.com/crazyrabbitLTC/mcp-twitter-server.git"
   },
+  "bugs": {
+    "url": "https://github.com/crazyrabbitLTC/mcp-twitter-server/issues"
+  },
+  "homepage": "https://github.com/crazyrabbitLTC/mcp-twitter-server#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
     "twitter-api-v2": "^1.15.1",
