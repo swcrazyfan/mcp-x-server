@@ -1,5 +1,5 @@
 {
-  "name": "mcp-twitter-server",
+  "name": "@crazyrabbitltc/mcp-twitter-server",
   "version": "0.0.1",
   "description": "A Model Context Protocol server for Twitter integration",
   "main": "dist/index.js",
@@ -50,5 +50,8 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 } 
