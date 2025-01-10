@@ -1,6 +1,33 @@
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+import { ListToolsRequestSchema, CallToolRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+import { getTwitterClient } from './twitterClient.js';
+
+interface PostTweetArgs {
+    text: string;
+}
+
+interface SearchTweetsArgs {
+    query: string;
+}
+
+function assertPostTweetArgs(args: unknown): asserts args is PostTweetArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('text' in args) || typeof (args as any).text !== 'string') {
+        throw new Error('Invalid arguments: expected text string');
+    }
+}
+
+function assertSearchTweetsArgs(args: unknown): asserts args is SearchTweetsArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('query' in args) || typeof (args as any).query !== 'string') {
+        throw new Error('Invalid arguments: expected query string');
+    }
+}
 
 async function startServer(): Promise<void> {
     const server = new Server({
@@ -39,6 +66,31 @@ async function startServer(): Promise<void> {
                 },
             ],
         };
+    });
+
+    server.setRequestHandler(CallToolRequestSchema, async (request) => {
+        const client = getTwitterClient();
+
+        if (request.params.name === 'postTweet') {
+            assertPostTweetArgs(request.params.arguments);
+            const tweet = await client.v2.tweet(request.params.arguments.text);
+            return {
+                content: [{ type: 'text', text: `Tweet posted with id: ${tweet.data.id}` }],
+            };
+        }
+
+        if (request.params.name === 'searchTweets') {
+            assertSearchTweetsArgs(request.params.arguments);
+            const tweets = await client.v2.search(request.params.arguments.query);
+            return {
+                content: [{ 
+                    type: 'text', 
+                    text: `Search results: ${JSON.stringify(tweets.data, null, 2)}` 
+                }],
+            };
+        }
+
+        throw new Error(`Tool not found: ${request.params.name}`);
     });
 
     const transport = new StdioServerTransport();
