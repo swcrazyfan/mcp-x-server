@@ -23,6 +23,13 @@ export interface ReplyToTweetArgs {
 
 export interface GetUserTimelineArgs {
     username: string;
+    maxResults?: number;
+    paginationToken?: string;
+    excludeReplies?: boolean;
+    excludeRetweets?: boolean;
+    startTime?: string;
+    endTime?: string;
+    tweetFields?: string[];
 }
 
 export interface GetTweetByIdArgs {
@@ -188,6 +195,37 @@ export function assertGetUserTimelineArgs(args: unknown): asserts args is GetUse
     }
     if (!('username' in args) || typeof (args as any).username !== 'string') {
         throw new Error('Invalid arguments: expected username string');
+    }
+    if ('maxResults' in args) {
+        const maxResults = (args as any).maxResults;
+        if (typeof maxResults !== 'number' || maxResults < 1 || maxResults > 100) {
+            throw new Error('Invalid arguments: maxResults must be a number between 1 and 100');
+        }
+    }
+    if ('paginationToken' in args && typeof (args as any).paginationToken !== 'string') {
+        throw new Error('Invalid arguments: expected paginationToken string');
+    }
+    if ('excludeReplies' in args && typeof (args as any).excludeReplies !== 'boolean') {
+        throw new Error('Invalid arguments: expected excludeReplies boolean');
+    }
+    if ('excludeRetweets' in args && typeof (args as any).excludeRetweets !== 'boolean') {
+        throw new Error('Invalid arguments: expected excludeRetweets boolean');
+    }
+    if ('startTime' in args && typeof (args as any).startTime !== 'string') {
+        throw new Error('Invalid arguments: expected startTime to be an ISO 8601 date string');
+    }
+    if ('endTime' in args && typeof (args as any).endTime !== 'string') {
+        throw new Error('Invalid arguments: expected endTime to be an ISO 8601 date string');
+    }
+    if ('tweetFields' in args) {
+        if (!Array.isArray((args as any).tweetFields)) {
+            throw new Error('Invalid arguments: expected tweetFields to be an array');
+        }
+        for (const field of (args as any).tweetFields) {
+            if (typeof field !== 'string') {
+                throw new Error('Invalid arguments: expected tweetFields to be an array of strings');
+            }
+        }
     }
 }
 

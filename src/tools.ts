@@ -105,11 +105,59 @@ export const TOOLS = {
         },
     },
     getUserTimeline: {
-        description: 'Get recent tweets from a user timeline',
+        description: 'Get recent tweets from a user timeline with advanced filtering',
         inputSchema: {
             type: 'object',
             properties: {
                 username: { type: 'string', description: 'The username of the user' },
+                maxResults: { 
+                    type: 'number', 
+                    description: 'The maximum number of results to return (default: 100, max: 100)',
+                    minimum: 1,
+                    maximum: 100
+                },
+                paginationToken: { 
+                    type: 'string', 
+                    description: 'Token for fetching the next page of results'
+                },
+                excludeReplies: { 
+                    type: 'boolean', 
+                    description: 'Whether to exclude replies from the timeline'
+                },
+                excludeRetweets: { 
+                    type: 'boolean', 
+                    description: 'Whether to exclude retweets from the timeline'
+                },
+                startTime: { 
+                    type: 'string', 
+                    description: 'Start time for fetching tweets (ISO 8601 format)'
+                },
+                endTime: { 
+                    type: 'string', 
+                    description: 'End time for fetching tweets (ISO 8601 format)'
+                },
+                tweetFields: { 
+                    type: 'array', 
+                    items: { 
+                        type: 'string',
+                        enum: [
+                            'created_at',
+                            'author_id',
+                            'conversation_id',
+                            'in_reply_to_user_id',
+                            'referenced_tweets',
+                            'attachments',
+                            'geo',
+                            'context_annotations',
+                            'entities',
+                            'public_metrics',
+                            'possibly_sensitive',
+                            'source',
+                            'withheld'
+                        ]
+                    },
+                    description: 'Additional tweet fields to include in the response'
+                },
             },
             required: ['username'],
         },

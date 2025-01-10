@@ -2,6 +2,7 @@ import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { ListToolsRequestSchema, CallToolRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { getTwitterClient } from './twitterClient.js';
+import { TweetV2, ReferencedTweetV2 } from 'twitter-api-v2';
 import { 
     assertPostTweetArgs, 
     assertSearchTweetsArgs, 
@@ -125,17 +126,77 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     if (request.params.name === 'getUserTimeline') {
         assertGetUserTimelineArgs(request.params.arguments);
-        const userResponse = await client.v2.userByUsername(request.params.arguments.username);
-        if (!userResponse.data) {
-            throw new Error(`User not found: ${request.params.arguments.username}`);
+        try {
+            const { 
+                username, 
+                maxResults, 
+                paginationToken, 
+                excludeReplies, 
+                excludeRetweets,
+                startTime,
+                endTime,
+                tweetFields 
+            } = request.params.arguments;
+
+            const userResponse = await client.v2.userByUsername(username);
+            if (!userResponse.data) {
+                throw new Error(`User not found: ${username}`);
+            }
+
+            const options: any = {
+                max_results: maxResults || 100
+            };
+
+            if (paginationToken) {
+                options.pagination_token = paginationToken;
+            }
+
+            if (startTime) {
+                options.start_time = startTime;
+            }
+
+            if (endTime) {
+                options.end_time = endTime;
+            }
+
+            if (tweetFields && tweetFields.length > 0) {
+                options['tweet.fields'] = tweetFields.join(',');
+            }
+
+            // Get tweets with all specified options
+            const timeline = await client.v2.userTimeline(userResponse.data.id, options);
+            
+            // Process tweets data
+            const tweets = timeline.tweets || [];
+            const processedTweets = excludeReplies || excludeRetweets
+                ? tweets.filter((tweet: TweetV2) => {
+                    if (excludeReplies && tweet.in_reply_to_user_id) {
+                        return false;
+                    }
+                    if (excludeRetweets && tweet.referenced_tweets?.some((ref: ReferencedTweetV2) => ref.type === 'retweeted')) {
+                        return false;
+                    }
+                    return true;
+                })
+                : tweets;
+
+            const response = {
+                tweets: processedTweets,
+                ...(timeline.meta?.next_token && { next_token: timeline.meta.next_token })
+            };
+
+            return {
+                content: [{ 
+                    type: 'text', 
+                    text: JSON.stringify(response, null, 2)
+                }],
+            };
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Failed to get user timeline: ${error.message}`);
+            }
+            throw error;
         }
-        const tweets = await client.v2.userTimeline(userResponse.data.id);
-        return {
-            content: [{ 
-                type: 'text', 
-                text: `User timeline: ${JSON.stringify(tweets.data, null, 2)}` 
-            }],
-        };
     }
 
     if (request.params.name === 'getTweetById') {
