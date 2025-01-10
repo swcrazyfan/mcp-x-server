@@ -1,6 +1,6 @@
 {
   "name": "mcp-twitter-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Model Context Protocol server for Twitter integration",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
