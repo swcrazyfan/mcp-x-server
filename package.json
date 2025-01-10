@@ -25,11 +25,11 @@
     "ai",
     "model-context-protocol"
   ],
-  "author": "Your Name",
+  "author": "Dennison Bertram",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/mcp-twitter-server.git"
+    "url": "https://github.com/dennisonbertram/mcp-twitter-server.git"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
