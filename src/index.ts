@@ -13,7 +13,10 @@ import {
     assertPostTweetWithMediaArgs,
     assertLikeTweetArgs,
     assertUnlikeTweetArgs,
-    assertGetLikedTweetsArgs
+    assertGetLikedTweetsArgs,
+    assertRetweetArgs,
+    assertUndoRetweetArgs,
+    assertGetRetweetsArgs
 } from './types.js';
 import { TOOLS } from './tools.js';
 import { promises as fs } from 'fs';
@@ -241,6 +244,72 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         } catch (error) {
             if (error instanceof Error) {
                 throw new Error(`Failed to get liked tweets: ${error.message}`);
+            }
+            throw error;
+        }
+    }
+
+    if (request.params.name === 'retweet') {
+        assertRetweetArgs(request.params.arguments);
+        try {
+            const userId = await client.v2.me().then(response => response.data.id);
+            await client.v2.retweet(userId, request.params.arguments.tweetId);
+            return {
+                content: [{ type: 'text', text: `Successfully retweeted tweet: ${request.params.arguments.tweetId}` }],
+            };
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Failed to retweet: ${error.message}`);
+            }
+            throw error;
+        }
+    }
+
+    if (request.params.name === 'undoRetweet') {
+        assertUndoRetweetArgs(request.params.arguments);
+        try {
+            const userId = await client.v2.me().then(response => response.data.id);
+            await client.v2.unretweet(userId, request.params.arguments.tweetId);
+            return {
+                content: [{ type: 'text', text: `Successfully undid retweet: ${request.params.arguments.tweetId}` }],
+            };
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Failed to undo retweet: ${error.message}`);
+            }
+            throw error;
+        }
+    }
+
+    if (request.params.name === 'getRetweets') {
+        assertGetRetweetsArgs(request.params.arguments);
+        try {
+            const { tweetId, maxResults, userFields } = request.params.arguments;
+            
+            const options: any = {
+                max_results: maxResults || 100
+            };
+            
+            if (userFields && userFields.length > 0) {
+                options['user.fields'] = userFields.join(',');
+            }
+
+            const retweets = await client.v2.tweetRetweetedBy(tweetId, options);
+            if (!retweets.data) {
+                return {
+                    content: [{ type: 'text', text: 'No retweets found' }],
+                };
+            }
+
+            return {
+                content: [{ 
+                    type: 'text', 
+                    text: `Users who retweeted: ${JSON.stringify(retweets.data, null, 2)}` 
+                }],
+            };
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Failed to get retweets: ${error.message}`);
             }
             throw error;
         }

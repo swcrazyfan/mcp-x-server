@@ -52,6 +52,20 @@ export interface GetLikedTweetsArgs {
     tweetFields?: string[];
 }
 
+export interface RetweetArgs {
+    tweetId: string;
+}
+
+export interface UndoRetweetArgs {
+    tweetId: string;
+}
+
+export interface GetRetweetsArgs {
+    tweetId: string;
+    maxResults?: number;
+    userFields?: string[];
+}
+
 export function assertPostTweetArgs(args: unknown): asserts args is PostTweetArgs {
     if (typeof args !== 'object' || args === null) {
         throw new Error('Invalid arguments: expected object');
@@ -215,6 +229,49 @@ export function assertGetLikedTweetsArgs(args: unknown): asserts args is GetLike
         for (const field of (args as any).tweetFields) {
             if (typeof field !== 'string') {
                 throw new Error('Invalid arguments: expected tweetFields to be an array of strings');
+            }
+        }
+    }
+}
+
+export function assertRetweetArgs(args: unknown): asserts args is RetweetArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('tweetId' in args) || typeof (args as any).tweetId !== 'string') {
+        throw new Error('Invalid arguments: expected tweetId string');
+    }
+}
+
+export function assertUndoRetweetArgs(args: unknown): asserts args is UndoRetweetArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('tweetId' in args) || typeof (args as any).tweetId !== 'string') {
+        throw new Error('Invalid arguments: expected tweetId string');
+    }
+}
+
+export function assertGetRetweetsArgs(args: unknown): asserts args is GetRetweetsArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('tweetId' in args) || typeof (args as any).tweetId !== 'string') {
+        throw new Error('Invalid arguments: expected tweetId string');
+    }
+    if ('maxResults' in args) {
+        const maxResults = (args as any).maxResults;
+        if (typeof maxResults !== 'number' || maxResults < 1 || maxResults > 100) {
+            throw new Error('Invalid arguments: maxResults must be a number between 1 and 100');
+        }
+    }
+    if ('userFields' in args) {
+        if (!Array.isArray((args as any).userFields)) {
+            throw new Error('Invalid arguments: expected userFields to be an array');
+        }
+        for (const field of (args as any).userFields) {
+            if (typeof field !== 'string') {
+                throw new Error('Invalid arguments: expected userFields to be an array of strings');
             }
         }
     }

@@ -157,4 +157,48 @@ export const TOOLS = {
             required: ['tweetIds'],
         },
     },
+    retweet: {
+        description: 'Retweet a tweet by its ID',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                tweetId: { type: 'string', description: 'The ID of the tweet to retweet' }
+            },
+            required: ['tweetId'],
+        },
+    },
+    undoRetweet: {
+        description: 'Undo a retweet by its ID',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                tweetId: { type: 'string', description: 'The ID of the tweet to un-retweet' }
+            },
+            required: ['tweetId'],
+        },
+    },
+    getRetweets: {
+        description: 'Get a list of retweets of a tweet',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                tweetId: { type: 'string', description: 'The ID of the tweet to get retweets for' },
+                maxResults: { 
+                    type: 'number', 
+                    description: 'The maximum number of results to return (default: 100, max: 100)',
+                    minimum: 1,
+                    maximum: 100
+                },
+                userFields: { 
+                    type: 'array', 
+                    items: { 
+                        type: 'string',
+                        enum: ['description', 'profile_image_url', 'public_metrics', 'verified']
+                    },
+                    description: 'Additional user fields to include in the response'
+                },
+            },
+            required: ['tweetId'],
+        },
+    },
 }; 
