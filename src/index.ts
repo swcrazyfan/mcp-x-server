@@ -2,7 +2,7 @@ import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { ListToolsRequestSchema, CallToolRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { getTwitterClient } from './twitterClient.js';
-import { assertPostTweetArgs, assertSearchTweetsArgs, assertReplyToTweetArgs, assertGetUserTimelineArgs } from './types.js';
+import { assertPostTweetArgs, assertSearchTweetsArgs, assertReplyToTweetArgs, assertGetUserTimelineArgs, assertGetTweetByIdArgs } from './types.js';
 import { TOOLS } from './tools.js';
 
 const server = new Server({
@@ -67,6 +67,20 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             content: [{ 
                 type: 'text', 
                 text: `User timeline: ${JSON.stringify(tweets.data, null, 2)}` 
+            }],
+        };
+    }
+
+    if (request.params.name === 'getTweetById') {
+        assertGetTweetByIdArgs(request.params.arguments);
+        const tweet = await client.v2.singleTweet(request.params.arguments.tweetId);
+        if (!tweet.data) {
+            throw new Error(`Tweet not found: ${request.params.arguments.tweetId}`);
+        }
+        return {
+            content: [{ 
+                type: 'text', 
+                text: `Tweet: ${JSON.stringify(tweet.data, null, 2)}` 
             }],
         };
     }

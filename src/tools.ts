@@ -40,4 +40,14 @@ export const TOOLS = {
             required: ['username'],
         },
     },
+    getTweetById: {
+        description: 'Get a tweet by its ID',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                tweetId: { type: 'string', description: 'The ID of the tweet' },
+            },
+            required: ['tweetId'],
+        },
+    },
 }; 
