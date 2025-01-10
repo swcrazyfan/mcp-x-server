@@ -66,6 +66,26 @@ export interface GetRetweetsArgs {
     userFields?: string[];
 }
 
+export interface FollowUserArgs {
+    username: string;
+}
+
+export interface UnfollowUserArgs {
+    username: string;
+}
+
+export interface GetFollowersArgs {
+    username: string;
+    maxResults?: number;
+    userFields?: string[];
+}
+
+export interface GetFollowingArgs {
+    username: string;
+    maxResults?: number;
+    userFields?: string[];
+}
+
 export function assertPostTweetArgs(args: unknown): asserts args is PostTweetArgs {
     if (typeof args !== 'object' || args === null) {
         throw new Error('Invalid arguments: expected object');
@@ -263,6 +283,74 @@ export function assertGetRetweetsArgs(args: unknown): asserts args is GetRetweet
         const maxResults = (args as any).maxResults;
         if (typeof maxResults !== 'number' || maxResults < 1 || maxResults > 100) {
             throw new Error('Invalid arguments: maxResults must be a number between 1 and 100');
+        }
+    }
+    if ('userFields' in args) {
+        if (!Array.isArray((args as any).userFields)) {
+            throw new Error('Invalid arguments: expected userFields to be an array');
+        }
+        for (const field of (args as any).userFields) {
+            if (typeof field !== 'string') {
+                throw new Error('Invalid arguments: expected userFields to be an array of strings');
+            }
+        }
+    }
+}
+
+export function assertFollowUserArgs(args: unknown): asserts args is FollowUserArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('username' in args) || typeof (args as any).username !== 'string') {
+        throw new Error('Invalid arguments: expected username string');
+    }
+}
+
+export function assertUnfollowUserArgs(args: unknown): asserts args is UnfollowUserArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('username' in args) || typeof (args as any).username !== 'string') {
+        throw new Error('Invalid arguments: expected username string');
+    }
+}
+
+export function assertGetFollowersArgs(args: unknown): asserts args is GetFollowersArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('username' in args) || typeof (args as any).username !== 'string') {
+        throw new Error('Invalid arguments: expected username string');
+    }
+    if ('maxResults' in args) {
+        const maxResults = (args as any).maxResults;
+        if (typeof maxResults !== 'number' || maxResults < 1 || maxResults > 1000) {
+            throw new Error('Invalid arguments: maxResults must be a number between 1 and 1000');
+        }
+    }
+    if ('userFields' in args) {
+        if (!Array.isArray((args as any).userFields)) {
+            throw new Error('Invalid arguments: expected userFields to be an array');
+        }
+        for (const field of (args as any).userFields) {
+            if (typeof field !== 'string') {
+                throw new Error('Invalid arguments: expected userFields to be an array of strings');
+            }
+        }
+    }
+}
+
+export function assertGetFollowingArgs(args: unknown): asserts args is GetFollowingArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('username' in args) || typeof (args as any).username !== 'string') {
+        throw new Error('Invalid arguments: expected username string');
+    }
+    if ('maxResults' in args) {
+        const maxResults = (args as any).maxResults;
+        if (typeof maxResults !== 'number' || maxResults < 1 || maxResults > 1000) {
+            throw new Error('Invalid arguments: maxResults must be a number between 1 and 1000');
         }
     }
     if ('userFields' in args) {

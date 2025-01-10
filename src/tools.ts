@@ -201,4 +201,72 @@ export const TOOLS = {
             required: ['tweetId'],
         },
     },
+    followUser: {
+        description: 'Follow a user by their username',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                username: { type: 'string', description: 'The username of the user to follow' }
+            },
+            required: ['username'],
+        },
+    },
+    unfollowUser: {
+        description: 'Unfollow a user by their username',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                username: { type: 'string', description: 'The username of the user to unfollow' }
+            },
+            required: ['username'],
+        },
+    },
+    getFollowers: {
+        description: 'Get a list of followers for a user',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                username: { type: 'string', description: 'The username of the user whose followers to fetch' },
+                maxResults: { 
+                    type: 'number', 
+                    description: 'The maximum number of results to return (default: 100, max: 1000)',
+                    minimum: 1,
+                    maximum: 1000
+                },
+                userFields: { 
+                    type: 'array', 
+                    items: { 
+                        type: 'string',
+                        enum: ['description', 'profile_image_url', 'public_metrics', 'verified', 'location', 'url']
+                    },
+                    description: 'Additional user fields to include in the response'
+                },
+            },
+            required: ['username'],
+        },
+    },
+    getFollowing: {
+        description: 'Get a list of users that a user is following',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                username: { type: 'string', description: 'The username of the user whose following list to fetch' },
+                maxResults: { 
+                    type: 'number', 
+                    description: 'The maximum number of results to return (default: 100, max: 1000)',
+                    minimum: 1,
+                    maximum: 1000
+                },
+                userFields: { 
+                    type: 'array', 
+                    items: { 
+                        type: 'string',
+                        enum: ['description', 'profile_image_url', 'public_metrics', 'verified', 'location', 'url']
+                    },
+                    description: 'Additional user fields to include in the response'
+                },
+            },
+            required: ['username'],
+        },
+    },
 }; 

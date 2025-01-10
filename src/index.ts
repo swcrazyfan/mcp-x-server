@@ -16,7 +16,11 @@ import {
     assertGetLikedTweetsArgs,
     assertRetweetArgs,
     assertUndoRetweetArgs,
-    assertGetRetweetsArgs
+    assertGetRetweetsArgs,
+    assertFollowUserArgs,
+    assertUnfollowUserArgs,
+    assertGetFollowersArgs,
+    assertGetFollowingArgs
 } from './types.js';
 import { TOOLS } from './tools.js';
 import { promises as fs } from 'fs';
@@ -310,6 +314,124 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         } catch (error) {
             if (error instanceof Error) {
                 throw new Error(`Failed to get retweets: ${error.message}`);
+            }
+            throw error;
+        }
+    }
+
+    if (request.params.name === 'followUser') {
+        assertFollowUserArgs(request.params.arguments);
+        try {
+            const userId = await client.v2.me().then(response => response.data.id);
+            const targetUser = await client.v2.userByUsername(request.params.arguments.username);
+            if (!targetUser.data) {
+                throw new Error(`User not found: ${request.params.arguments.username}`);
+            }
+            await client.v2.follow(userId, targetUser.data.id);
+            return {
+                content: [{ type: 'text', text: `Successfully followed user: ${request.params.arguments.username}` }],
+            };
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Failed to follow user: ${error.message}`);
+            }
+            throw error;
+        }
+    }
+
+    if (request.params.name === 'unfollowUser') {
+        assertUnfollowUserArgs(request.params.arguments);
+        try {
+            const userId = await client.v2.me().then(response => response.data.id);
+            const targetUser = await client.v2.userByUsername(request.params.arguments.username);
+            if (!targetUser.data) {
+                throw new Error(`User not found: ${request.params.arguments.username}`);
+            }
+            await client.v2.unfollow(userId, targetUser.data.id);
+            return {
+                content: [{ type: 'text', text: `Successfully unfollowed user: ${request.params.arguments.username}` }],
+            };
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Failed to unfollow user: ${error.message}`);
+            }
+            throw error;
+        }
+    }
+
+    if (request.params.name === 'getFollowers') {
+        assertGetFollowersArgs(request.params.arguments);
+        try {
+            const { username, maxResults, userFields } = request.params.arguments;
+            
+            const targetUser = await client.v2.userByUsername(username);
+            if (!targetUser.data) {
+                throw new Error(`User not found: ${username}`);
+            }
+
+            const options: any = {
+                max_results: maxResults || 100
+            };
+            
+            if (userFields && userFields.length > 0) {
+                options['user.fields'] = userFields.join(',');
+            }
+
+            const followers = await client.v2.followers(targetUser.data.id, options);
+            if (!followers.data) {
+                return {
+                    content: [{ type: 'text', text: 'No followers found' }],
+                };
+            }
+
+            return {
+                content: [{ 
+                    type: 'text', 
+                    text: `Followers: ${JSON.stringify(followers.data, null, 2)}` 
+                }],
+            };
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Failed to get followers: ${error.message}`);
+            }
+            throw error;
+        }
+    }
+
+    if (request.params.name === 'getFollowing') {
+        assertGetFollowingArgs(request.params.arguments);
+        try {
+            const { username, maxResults, userFields } = request.params.arguments;
+            
+            const targetUser = await client.v2.userByUsername(username);
+            if (!targetUser.data) {
+                throw new Error(`User not found: ${username}`);
+            }
+
+            const options: any = {
+                max_results: maxResults || 100
+            };
+            
+            if (userFields && userFields.length > 0) {
+                options['user.fields'] = userFields.join(',');
+            }
+
+            const following = await client.v2.following(targetUser.data.id, options);
+            if (!following.data) {
+                return {
+                    content: [{ type: 'text', text: 'No following users found' }],
+                };
+            }
+
+            return {
+                content: [{ 
+                    type: 'text', 
+                    text: `Following: ${JSON.stringify(following.data, null, 2)}` 
+                }],
+            };
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Failed to get following users: ${error.message}`);
             }
             throw error;
         }
