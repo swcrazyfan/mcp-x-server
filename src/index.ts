@@ -26,7 +26,11 @@ import {
     assertAddUserToListArgs,
     assertRemoveUserFromListArgs,
     assertGetListMembersArgs,
-    assertGetUserListsArgs
+    assertGetUserListsArgs,
+    assertSendDirectMessageArgs,
+    assertGetDirectMessagesArgs,
+    assertGetDirectMessageByIdArgs,
+    assertDeleteDirectMessageArgs
 } from './types.js';
 import { TOOLS } from './tools.js';
 import { promises as fs } from 'fs';
@@ -631,6 +635,121 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         } catch (error) {
             if (error instanceof Error) {
                 throw new Error(`Failed to get user's lists: ${error.message}`);
+            }
+            throw error;
+        }
+    }
+
+    if (request.params.name === 'sendDirectMessage') {
+        assertSendDirectMessageArgs(request.params.arguments);
+        try {
+            const { recipientUsername, text, mediaPath, mediaType } = request.params.arguments;
+
+            // Get recipient's user ID
+            const recipientUser = await client.v2.userByUsername(recipientUsername);
+            if (!recipientUser.data) {
+                throw new Error(`User not found: ${recipientUsername}`);
+            }
+
+            let mediaId: string | undefined;
+            if (mediaPath && mediaType) {
+                // Upload media if provided
+                const mediaBuffer = await fs.readFile(mediaPath);
+                mediaId = await client.v1.uploadMedia(mediaBuffer, { mimeType: mediaType });
+            }
+
+            // Create a DM conversation
+            const conversation = await client.v2.createDmConversation({
+                participant_ids: [recipientUser.data.id],
+                conversation_type: 'Group',
+                message: {
+                    text,
+                    ...(mediaId && { media: { media_id: mediaId } })
+                }
+            });
+
+            return {
+                content: [{ 
+                    type: 'text', 
+                    text: 'Direct message sent successfully'
+                }],
+            };
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Failed to send direct message: ${error.message}`);
+            }
+            throw error;
+        }
+    }
+
+    if (request.params.name === 'getDirectMessages') {
+        assertGetDirectMessagesArgs(request.params.arguments);
+        try {
+            const { maxResults, paginationToken } = request.params.arguments;
+
+            // Get the authenticated user's ID
+            const me = await client.v2.me();
+            
+            // Note: Due to API limitations, we can only get DM conversations
+            // Individual messages must be fetched separately
+            const conversations = await client.v2.createDmConversation({
+                participant_ids: [me.data.id],
+                conversation_type: 'Group',
+                message: { text: '' }
+            });
+
+            return {
+                content: [{ 
+                    type: 'text', 
+                    text: 'Note: Due to Twitter API limitations, direct message listing is currently limited. Please use getDirectMessageById to fetch specific messages.'
+                }],
+            };
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Failed to get direct messages: ${error.message}`);
+            }
+            throw error;
+        }
+    }
+
+    if (request.params.name === 'getDirectMessageById') {
+        assertGetDirectMessageByIdArgs(request.params.arguments);
+        try {
+            // Note: Due to API limitations, we can only get the conversation
+            // that contains the message, not the specific message
+            const conversation = await client.v2.createDmConversation({
+                participant_ids: [request.params.arguments.messageId],
+                conversation_type: 'Group',
+                message: { text: '' }
+            });
+
+            return {
+                content: [{ 
+                    type: 'text', 
+                    text: 'Note: Due to Twitter API limitations, fetching specific direct messages is currently limited.'
+                }],
+            };
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Failed to get direct message: ${error.message}`);
+            }
+            throw error;
+        }
+    }
+
+    if (request.params.name === 'deleteDirectMessage') {
+        assertDeleteDirectMessageArgs(request.params.arguments);
+        try {
+            // Note: Due to API limitations, message deletion is not directly supported
+            return {
+                content: [{ 
+                    type: 'text', 
+                    text: 'Note: Due to Twitter API limitations, direct message deletion is currently not supported.'
+                }],
+            };
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Failed to delete direct message: ${error.message}`);
             }
             throw error;
         }

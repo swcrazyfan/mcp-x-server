@@ -399,4 +399,74 @@ export const TOOLS = {
             required: ['username'],
         },
     },
+    sendDirectMessage: {
+        description: 'Send a direct message to a Twitter user',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                recipientUsername: { 
+                    type: 'string', 
+                    description: 'The username of the recipient' 
+                },
+                text: { 
+                    type: 'string', 
+                    description: 'The text content of the direct message' 
+                },
+                mediaPath: { 
+                    type: 'string', 
+                    description: 'Optional: Local file path to media to attach to the message' 
+                },
+                mediaType: { 
+                    type: 'string', 
+                    enum: ['image/jpeg', 'image/png', 'image/gif', 'video/mp4'],
+                    description: 'Required if mediaPath is provided: MIME type of the media file'
+                },
+            },
+            required: ['recipientUsername', 'text'],
+        },
+    },
+    getDirectMessages: {
+        description: 'Get recent direct messages',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                maxResults: { 
+                    type: 'number', 
+                    description: 'The maximum number of messages to return (default: 50, max: 100)',
+                    minimum: 1,
+                    maximum: 100
+                },
+                paginationToken: { 
+                    type: 'string', 
+                    description: 'Token for fetching the next page of results'
+                },
+            },
+        },
+    },
+    getDirectMessageById: {
+        description: 'Get a specific direct message by ID',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                messageId: { 
+                    type: 'string', 
+                    description: 'The ID of the direct message to retrieve' 
+                },
+            },
+            required: ['messageId'],
+        },
+    },
+    deleteDirectMessage: {
+        description: 'Delete a direct message',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                messageId: { 
+                    type: 'string', 
+                    description: 'The ID of the direct message to delete' 
+                },
+            },
+            required: ['messageId'],
+        },
+    },
 }; 

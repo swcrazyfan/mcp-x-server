@@ -121,6 +121,26 @@ export interface GetUserListsArgs {
     listFields?: string[];
 }
 
+export interface SendDirectMessageArgs {
+    recipientUsername: string;
+    text: string;
+    mediaPath?: string;
+    mediaType?: 'image/jpeg' | 'image/png' | 'image/gif' | 'video/mp4';
+}
+
+export interface GetDirectMessagesArgs {
+    maxResults?: number;
+    paginationToken?: string;
+}
+
+export interface GetDirectMessageByIdArgs {
+    messageId: string;
+}
+
+export interface DeleteDirectMessageArgs {
+    messageId: string;
+}
+
 export function assertPostTweetArgs(args: unknown): asserts args is PostTweetArgs {
     if (typeof args !== 'object' || args === null) {
         throw new Error('Invalid arguments: expected object');
@@ -517,5 +537,62 @@ export function assertGetUserListsArgs(args: unknown): asserts args is GetUserLi
                 throw new Error('Invalid arguments: expected listFields to be an array of strings');
             }
         }
+    }
+}
+
+export function assertSendDirectMessageArgs(args: unknown): asserts args is SendDirectMessageArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('recipientUsername' in args) || typeof (args as any).recipientUsername !== 'string') {
+        throw new Error('Invalid arguments: expected recipientUsername string');
+    }
+    if (!('text' in args) || typeof (args as any).text !== 'string') {
+        throw new Error('Invalid arguments: expected text string');
+    }
+    if ('mediaPath' in args) {
+        if (typeof (args as any).mediaPath !== 'string') {
+            throw new Error('Invalid arguments: expected mediaPath string');
+        }
+        if (!('mediaType' in args) || typeof (args as any).mediaType !== 'string') {
+            throw new Error('Invalid arguments: mediaType is required when mediaPath is provided');
+        }
+        const validMediaTypes = ['image/jpeg', 'image/png', 'image/gif', 'video/mp4'];
+        if (!validMediaTypes.includes((args as any).mediaType)) {
+            throw new Error(`Invalid arguments: mediaType must be one of: ${validMediaTypes.join(', ')}`);
+        }
+    }
+}
+
+export function assertGetDirectMessagesArgs(args: unknown): asserts args is GetDirectMessagesArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if ('maxResults' in args) {
+        const maxResults = (args as any).maxResults;
+        if (typeof maxResults !== 'number' || maxResults < 1 || maxResults > 100) {
+            throw new Error('Invalid arguments: maxResults must be a number between 1 and 100');
+        }
+    }
+    if ('paginationToken' in args && typeof (args as any).paginationToken !== 'string') {
+        throw new Error('Invalid arguments: expected paginationToken string');
+    }
+}
+
+export function assertGetDirectMessageByIdArgs(args: unknown): asserts args is GetDirectMessageByIdArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('messageId' in args) || typeof (args as any).messageId !== 'string') {
+        throw new Error('Invalid arguments: expected messageId string');
+    }
+}
+
+export function assertDeleteDirectMessageArgs(args: unknown): asserts args is DeleteDirectMessageArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('messageId' in args) || typeof (args as any).messageId !== 'string') {
+        throw new Error('Invalid arguments: expected messageId string');
     }
 } 
