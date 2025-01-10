@@ -107,6 +107,46 @@ Replies to an existing tweet.
 }
 ```
 
+## Current Status
+
+Based on extensive testing, here is the current status of all Twitter API tools:
+
+### Working as Expected (17 tools):
+1. getUserInfo - Get user profile information
+2. getUserTimeline - Retrieve user's tweets
+3. postTweet - Post new tweets
+4. getTweetById - Fetch specific tweet
+5. likeTweet - Like a tweet
+6. replyToTweet - Reply to tweets
+7. searchTweets - Search for tweets
+8. unlikeTweet - Remove like from tweet
+9. retweet - Retweet content
+10. undoRetweet - Remove retweet
+11. followUser - Follow a user
+12. unfollowUser - Unfollow a user
+13. createList - Create new lists
+14. addUserToList - Add members to lists
+15. removeUserFromList - Remove list members
+16. getListMembers - View list membership
+17. getUserLists - Get user's lists
+
+### Working Differently Than Expected (2 tools):
+1. getLikedTweets - Returns empty results even when likes exist
+2. getRetweets - Returns empty results even for known retweets
+
+### Not Working (4 tools):
+1. getFollowers - Returns 403 error
+2. getFollowing - Returns 403 error
+3. getHashtagAnalytics - Returns 400 error
+4. postTweetWithMedia - Not implemented (requires media file upload capabilities)
+
+### Notable Observations:
+- List operations provide detailed information and work reliably
+- User management operations (follow/unfollow) function smoothly
+- Tweet interactions (like, unlike, retweet, unretweet) are consistent
+- Some endpoints may have rate limiting or authentication restrictions (403 errors)
+- Hashtag analytics feature requires additional implementation work
+
 ## Using the Tools
 
 Once connected, you can use the tools by prompting Claude. For example:
