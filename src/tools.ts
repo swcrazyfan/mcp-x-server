@@ -469,4 +469,82 @@ export const TOOLS = {
             required: ['messageId'],
         },
     },
+    getTweetAnalytics: {
+        description: 'Get detailed analytics for a specific tweet',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                tweetId: { 
+                    type: 'string', 
+                    description: 'The ID of the tweet to analyze' 
+                },
+                includeNonPublicMetrics: {
+                    type: 'boolean',
+                    description: 'Whether to include non-public metrics (requires user to be tweet author)'
+                },
+                includeOrganicMetrics: {
+                    type: 'boolean',
+                    description: 'Whether to include organic metrics (requires user to be tweet author)'
+                },
+                includePromotedMetrics: {
+                    type: 'boolean',
+                    description: 'Whether to include promoted metrics (requires user to be tweet author)'
+                }
+            },
+            required: ['tweetId'],
+        },
+    },
+    getUserAnalytics: {
+        description: 'Get analytics for a user profile',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                username: { 
+                    type: 'string', 
+                    description: 'The username of the user to analyze' 
+                },
+                startTime: { 
+                    type: 'string', 
+                    description: 'Start time for analysis (ISO 8601 format)' 
+                },
+                endTime: { 
+                    type: 'string', 
+                    description: 'End time for analysis (ISO 8601 format)' 
+                },
+                granularity: {
+                    type: 'string',
+                    enum: ['day', 'hour'],
+                    description: 'The granularity of the analytics data'
+                }
+            },
+            required: ['username'],
+        },
+    },
+    getHashtagAnalytics: {
+        description: 'Get analytics for a hashtag',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                hashtag: { 
+                    type: 'string', 
+                    description: 'The hashtag to analyze (without #)' 
+                },
+                startTime: { 
+                    type: 'string', 
+                    description: 'Start time for analysis (ISO 8601 format)' 
+                },
+                endTime: { 
+                    type: 'string', 
+                    description: 'End time for analysis (ISO 8601 format)' 
+                },
+                maxResults: { 
+                    type: 'number', 
+                    description: 'The maximum number of related tweets to return',
+                    minimum: 10,
+                    maximum: 100
+                }
+            },
+            required: ['hashtag'],
+        },
+    },
 }; 

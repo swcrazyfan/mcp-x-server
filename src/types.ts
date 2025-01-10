@@ -141,6 +141,27 @@ export interface DeleteDirectMessageArgs {
     messageId: string;
 }
 
+export interface GetTweetAnalyticsArgs {
+    tweetId: string;
+    includeNonPublicMetrics?: boolean;
+    includeOrganicMetrics?: boolean;
+    includePromotedMetrics?: boolean;
+}
+
+export interface GetUserAnalyticsArgs {
+    username: string;
+    startTime?: string;
+    endTime?: string;
+    granularity?: 'day' | 'hour';
+}
+
+export interface GetHashtagAnalyticsArgs {
+    hashtag: string;
+    startTime?: string;
+    endTime?: string;
+    maxResults?: number;
+}
+
 export function assertPostTweetArgs(args: unknown): asserts args is PostTweetArgs {
     if (typeof args !== 'object' || args === null) {
         throw new Error('Invalid arguments: expected object');
@@ -594,5 +615,65 @@ export function assertDeleteDirectMessageArgs(args: unknown): asserts args is De
     }
     if (!('messageId' in args) || typeof (args as any).messageId !== 'string') {
         throw new Error('Invalid arguments: expected messageId string');
+    }
+}
+
+export function assertGetTweetAnalyticsArgs(args: unknown): asserts args is GetTweetAnalyticsArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('tweetId' in args) || typeof (args as any).tweetId !== 'string') {
+        throw new Error('Invalid arguments: expected tweetId string');
+    }
+    if ('includeNonPublicMetrics' in args && typeof (args as any).includeNonPublicMetrics !== 'boolean') {
+        throw new Error('Invalid arguments: expected includeNonPublicMetrics boolean');
+    }
+    if ('includeOrganicMetrics' in args && typeof (args as any).includeOrganicMetrics !== 'boolean') {
+        throw new Error('Invalid arguments: expected includeOrganicMetrics boolean');
+    }
+    if ('includePromotedMetrics' in args && typeof (args as any).includePromotedMetrics !== 'boolean') {
+        throw new Error('Invalid arguments: expected includePromotedMetrics boolean');
+    }
+}
+
+export function assertGetUserAnalyticsArgs(args: unknown): asserts args is GetUserAnalyticsArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('username' in args) || typeof (args as any).username !== 'string') {
+        throw new Error('Invalid arguments: expected username string');
+    }
+    if ('startTime' in args && typeof (args as any).startTime !== 'string') {
+        throw new Error('Invalid arguments: expected startTime to be an ISO 8601 date string');
+    }
+    if ('endTime' in args && typeof (args as any).endTime !== 'string') {
+        throw new Error('Invalid arguments: expected endTime to be an ISO 8601 date string');
+    }
+    if ('granularity' in args) {
+        const granularity = (args as any).granularity;
+        if (typeof granularity !== 'string' || !['day', 'hour'].includes(granularity)) {
+            throw new Error('Invalid arguments: granularity must be either "day" or "hour"');
+        }
+    }
+}
+
+export function assertGetHashtagAnalyticsArgs(args: unknown): asserts args is GetHashtagAnalyticsArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('hashtag' in args) || typeof (args as any).hashtag !== 'string') {
+        throw new Error('Invalid arguments: expected hashtag string');
+    }
+    if ('startTime' in args && typeof (args as any).startTime !== 'string') {
+        throw new Error('Invalid arguments: expected startTime to be an ISO 8601 date string');
+    }
+    if ('endTime' in args && typeof (args as any).endTime !== 'string') {
+        throw new Error('Invalid arguments: expected endTime to be an ISO 8601 date string');
+    }
+    if ('maxResults' in args) {
+        const maxResults = (args as any).maxResults;
+        if (typeof maxResults !== 'number' || maxResults < 10 || maxResults > 100) {
+            throw new Error('Invalid arguments: maxResults must be a number between 10 and 100');
+        }
     }
 } 

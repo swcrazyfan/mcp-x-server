@@ -30,7 +30,10 @@ import {
     assertSendDirectMessageArgs,
     assertGetDirectMessagesArgs,
     assertGetDirectMessageByIdArgs,
-    assertDeleteDirectMessageArgs
+    assertDeleteDirectMessageArgs,
+    assertGetTweetAnalyticsArgs,
+    assertGetUserAnalyticsArgs,
+    assertGetHashtagAnalyticsArgs
 } from './types.js';
 import { TOOLS } from './tools.js';
 import { promises as fs } from 'fs';
@@ -750,6 +753,178 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         } catch (error) {
             if (error instanceof Error) {
                 throw new Error(`Failed to delete direct message: ${error.message}`);
+            }
+            throw error;
+        }
+    }
+
+    if (request.params.name === 'getTweetAnalytics') {
+        assertGetTweetAnalyticsArgs(request.params.arguments);
+        try {
+            const { 
+                tweetId, 
+                includeNonPublicMetrics, 
+                includeOrganicMetrics, 
+                includePromotedMetrics 
+            } = request.params.arguments;
+
+            const options: any = {
+                'tweet.fields': [
+                    'public_metrics',
+                    'created_at',
+                    'author_id',
+                    ...(includeNonPublicMetrics ? ['non_public_metrics'] : []),
+                    ...(includeOrganicMetrics ? ['organic_metrics'] : []),
+                    ...(includePromotedMetrics ? ['promoted_metrics'] : [])
+                ].join(',')
+            };
+
+            const tweet = await client.v2.singleTweet(tweetId, options);
+            if (!tweet.data) {
+                throw new Error(`Tweet not found: ${tweetId}`);
+            }
+
+            // Get engagement details
+            const [retweetedBy, likedBy] = await Promise.all([
+                client.v2.tweetRetweetedBy(tweetId),
+                client.v2.tweetLikedBy(tweetId)
+            ]);
+
+            const analytics = {
+                tweet: tweet.data,
+                engagement: {
+                    retweetedBy: retweetedBy.data || [],
+                    likedBy: likedBy.data || []
+                }
+            };
+
+            return {
+                content: [{ 
+                    type: 'text', 
+                    text: JSON.stringify(analytics, null, 2)
+                }],
+            };
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Failed to get tweet analytics: ${error.message}`);
+            }
+            throw error;
+        }
+    }
+
+    if (request.params.name === 'getUserAnalytics') {
+        assertGetUserAnalyticsArgs(request.params.arguments);
+        try {
+            const { username, startTime, endTime, granularity } = request.params.arguments;
+
+            // Get user details
+            const user = await client.v2.userByUsername(username, {
+                'user.fields': ['public_metrics', 'created_at', 'description', 'profile_image_url']
+            });
+            if (!user.data) {
+                throw new Error(`User not found: ${username}`);
+            }
+
+            // Get recent tweets for engagement analysis
+            const timeline = await client.v2.userTimeline(user.data.id, {
+                max_results: 100,
+                'tweet.fields': ['public_metrics', 'created_at'],
+                start_time: startTime,
+                end_time: endTime
+            });
+
+            // Calculate engagement metrics
+            const tweets = timeline.tweets || [];
+            const tweetMetrics = tweets.map((tweet: TweetV2) => ({
+                id: tweet.id,
+                created_at: tweet.created_at,
+                metrics: tweet.public_metrics
+            }));
+
+            const analytics = {
+                user: user.data,
+                tweets: {
+                    count: tweetMetrics.length,
+                    metrics: tweetMetrics
+                },
+                aggregated: {
+                    total_likes: tweetMetrics.reduce((sum: number, tweet: { metrics?: { like_count?: number } }) => 
+                        sum + (tweet.metrics?.like_count || 0), 0),
+                    total_retweets: tweetMetrics.reduce((sum: number, tweet: { metrics?: { retweet_count?: number } }) => 
+                        sum + (tweet.metrics?.retweet_count || 0), 0),
+                    total_replies: tweetMetrics.reduce((sum: number, tweet: { metrics?: { reply_count?: number } }) => 
+                        sum + (tweet.metrics?.reply_count || 0), 0),
+                    total_quotes: tweetMetrics.reduce((sum: number, tweet: { metrics?: { quote_count?: number } }) => 
+                        sum + (tweet.metrics?.quote_count || 0), 0)
+                }
+            };
+
+            return {
+                content: [{ 
+                    type: 'text', 
+                    text: JSON.stringify(analytics, null, 2)
+                }],
+            };
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Failed to get user analytics: ${error.message}`);
+            }
+            throw error;
+        }
+    }
+
+    if (request.params.name === 'getHashtagAnalytics') {
+        assertGetHashtagAnalyticsArgs(request.params.arguments);
+        try {
+            const { hashtag, startTime, endTime, maxResults } = request.params.arguments;
+
+            const query = `#${hashtag}`;
+            const options: any = {
+                max_results: maxResults || 100,
+                'tweet.fields': ['public_metrics', 'created_at', 'author_id'],
+                'user.fields': ['username', 'public_metrics']
+            };
+
+            if (startTime) options.start_time = startTime;
+            if (endTime) options.end_time = endTime;
+
+            // Search for tweets with the hashtag
+            const searchResult = await client.v2.search(query, options);
+            const tweets = Array.isArray(searchResult.data) ? searchResult.data : [];
+
+            // Analyze hashtag usage
+            const tweetAnalytics = tweets.map((tweet: TweetV2) => ({
+                id: tweet.id,
+                created_at: tweet.created_at,
+                metrics: tweet.public_metrics,
+                author_id: tweet.author_id
+            }));
+
+            const analytics = {
+                hashtag: hashtag,
+                tweet_count: tweetAnalytics.length,
+                tweets: tweetAnalytics,
+                aggregated: {
+                    total_likes: tweetAnalytics.reduce((sum: number, tweet: { metrics?: { like_count?: number } }) => 
+                        sum + (tweet.metrics?.like_count || 0), 0),
+                    total_retweets: tweetAnalytics.reduce((sum: number, tweet: { metrics?: { retweet_count?: number } }) => 
+                        sum + (tweet.metrics?.retweet_count || 0), 0),
+                    total_replies: tweetAnalytics.reduce((sum: number, tweet: { metrics?: { reply_count?: number } }) => 
+                        sum + (tweet.metrics?.reply_count || 0), 0),
+                    total_quotes: tweetAnalytics.reduce((sum: number, tweet: { metrics?: { quote_count?: number } }) => 
+                        sum + (tweet.metrics?.quote_count || 0), 0)
+                }
+            };
+
+            return {
+                content: [{ 
+                    type: 'text', 
+                    text: JSON.stringify(analytics, null, 2)
+                }],
+            };
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Failed to get hashtag analytics: ${error.message}`);
             }
             throw error;
         }
