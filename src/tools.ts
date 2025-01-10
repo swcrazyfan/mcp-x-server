@@ -30,4 +30,14 @@ export const TOOLS = {
             required: ['tweetId', 'text'],
         },
     },
+    getUserTimeline: {
+        description: 'Get recent tweets from a user timeline',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                username: { type: 'string', description: 'The username of the user' },
+            },
+            required: ['username'],
+        },
+    },
 }; 

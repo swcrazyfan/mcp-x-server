@@ -11,6 +11,10 @@ export interface ReplyToTweetArgs {
     text: string;
 }
 
+export interface GetUserTimelineArgs {
+    username: string;
+}
+
 export function assertPostTweetArgs(args: unknown): asserts args is PostTweetArgs {
     if (typeof args !== 'object' || args === null) {
         throw new Error('Invalid arguments: expected object');
@@ -38,5 +42,14 @@ export function assertReplyToTweetArgs(args: unknown): asserts args is ReplyToTw
     }
     if (!('text' in args) || typeof (args as any).text !== 'string') {
         throw new Error('Invalid arguments: expected text string');
+    }
+}
+
+export function assertGetUserTimelineArgs(args: unknown): asserts args is GetUserTimelineArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('username' in args) || typeof (args as any).username !== 'string') {
+        throw new Error('Invalid arguments: expected username string');
     }
 } 

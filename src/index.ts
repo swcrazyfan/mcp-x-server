@@ -2,7 +2,7 @@ import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { ListToolsRequestSchema, CallToolRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { getTwitterClient } from './twitterClient.js';
-import { assertPostTweetArgs, assertSearchTweetsArgs, assertReplyToTweetArgs } from './types.js';
+import { assertPostTweetArgs, assertSearchTweetsArgs, assertReplyToTweetArgs, assertGetUserTimelineArgs } from './types.js';
 import { TOOLS } from './tools.js';
 
 const server = new Server({
@@ -53,6 +53,21 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         });
         return {
             content: [{ type: 'text', text: `Replied to tweet ${request.params.arguments.tweetId} with id: ${reply.data.id}` }],
+        };
+    }
+
+    if (request.params.name === 'getUserTimeline') {
+        assertGetUserTimelineArgs(request.params.arguments);
+        const userResponse = await client.v2.userByUsername(request.params.arguments.username);
+        if (!userResponse.data) {
+            throw new Error(`User not found: ${request.params.arguments.username}`);
+        }
+        const tweets = await client.v2.userTimeline(userResponse.data.id);
+        return {
+            content: [{ 
+                type: 'text', 
+                text: `User timeline: ${JSON.stringify(tweets.data, null, 2)}` 
+            }],
         };
     }
 
