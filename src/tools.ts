@@ -9,6 +9,26 @@ export const TOOLS = {
             required: ['text'],
         },
     },
+    postTweetWithMedia: {
+        description: 'Post a tweet with media attachment to Twitter',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                text: { type: 'string', description: 'The text of the tweet' },
+                mediaPath: { type: 'string', description: 'Local file path to the media to upload' },
+                mediaType: { 
+                    type: 'string', 
+                    enum: ['image/jpeg', 'image/png', 'image/gif', 'video/mp4'],
+                    description: 'MIME type of the media file'
+                },
+                altText: { 
+                    type: 'string', 
+                    description: 'Alternative text for the media (accessibility)'
+                }
+            },
+            required: ['text', 'mediaPath', 'mediaType'],
+        },
+    },
     searchTweets: {
         description: 'Search for tweets on Twitter with advanced options',
         inputSchema: {

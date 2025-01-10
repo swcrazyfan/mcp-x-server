@@ -2,6 +2,13 @@ export interface PostTweetArgs {
     text: string;
 }
 
+export interface PostTweetWithMediaArgs {
+    text: string;
+    mediaPath: string;
+    mediaType: 'image/jpeg' | 'image/png' | 'image/gif' | 'video/mp4';
+    altText?: string;
+}
+
 export interface SearchTweetsArgs {
     query: string;
     since?: string;
@@ -37,6 +44,28 @@ export function assertPostTweetArgs(args: unknown): asserts args is PostTweetArg
     }
     if (!('text' in args) || typeof (args as any).text !== 'string') {
         throw new Error('Invalid arguments: expected text string');
+    }
+}
+
+export function assertPostTweetWithMediaArgs(args: unknown): asserts args is PostTweetWithMediaArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('text' in args) || typeof (args as any).text !== 'string') {
+        throw new Error('Invalid arguments: expected text string');
+    }
+    if (!('mediaPath' in args) || typeof (args as any).mediaPath !== 'string') {
+        throw new Error('Invalid arguments: expected mediaPath string');
+    }
+    if (!('mediaType' in args) || typeof (args as any).mediaType !== 'string') {
+        throw new Error('Invalid arguments: expected mediaType string');
+    }
+    const validMediaTypes = ['image/jpeg', 'image/png', 'image/gif', 'video/mp4'];
+    if (!validMediaTypes.includes((args as any).mediaType)) {
+        throw new Error(`Invalid arguments: mediaType must be one of: ${validMediaTypes.join(', ')}`);
+    }
+    if ('altText' in args && typeof (args as any).altText !== 'string') {
+        throw new Error('Invalid arguments: expected altText to be a string');
     }
 }
 

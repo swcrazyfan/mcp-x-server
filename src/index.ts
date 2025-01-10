@@ -2,8 +2,9 @@ import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { ListToolsRequestSchema, CallToolRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { getTwitterClient } from './twitterClient.js';
-import { assertPostTweetArgs, assertSearchTweetsArgs, assertReplyToTweetArgs, assertGetUserTimelineArgs, assertGetTweetByIdArgs, assertGetUserInfoArgs, assertGetTweetsByIdsArgs } from './types.js';
+import { assertPostTweetArgs, assertSearchTweetsArgs, assertReplyToTweetArgs, assertGetUserTimelineArgs, assertGetTweetByIdArgs, assertGetUserInfoArgs, assertGetTweetsByIdsArgs, assertPostTweetWithMediaArgs } from './types.js';
 import { TOOLS } from './tools.js';
+import { promises as fs } from 'fs';
 
 const server = new Server({
     name: 'twitter-mcp-server',
@@ -26,10 +27,43 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     if (request.params.name === 'postTweet') {
         assertPostTweetArgs(request.params.arguments);
-        const tweet = await client.v2.tweet(request.params.arguments.text);
+        const tweet = await client.v2.tweet({ text: request.params.arguments.text });
         return {
             content: [{ type: 'text', text: `Tweet posted with id: ${tweet.data.id}` }],
         };
+    }
+
+    if (request.params.name === 'postTweetWithMedia') {
+        assertPostTweetWithMediaArgs(request.params.arguments);
+        const { text, mediaPath, mediaType, altText } = request.params.arguments;
+
+        try {
+            // Read the media file
+            const mediaBuffer = await fs.readFile(mediaPath);
+
+            // Upload the media
+            const mediaId = await client.v1.uploadMedia(mediaBuffer, { mimeType: mediaType });
+
+            // Set alt text if provided
+            if (altText) {
+                await client.v1.createMediaMetadata(mediaId, { alt_text: { text: altText } });
+            }
+
+            // Post the tweet with media
+            const tweet = await client.v2.tweet({
+                text,
+                media: { media_ids: [mediaId] }
+            });
+
+            return {
+                content: [{ type: 'text', text: `Tweet posted with media, id: ${tweet.data.id}` }],
+            };
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Failed to post tweet with media: ${error.message}`);
+            }
+            throw error;
+        }
     }
 
     if (request.params.name === 'searchTweets') {
