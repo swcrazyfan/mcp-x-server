@@ -2,7 +2,6 @@ import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { ListToolsRequestSchema, CallToolRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { getTwitterClient } from './twitterClient.js';
-import { TweetV2, ReferencedTweetV2 } from 'twitter-api-v2';
 import { 
     assertPostTweetArgs, 
     assertSearchTweetsArgs, 
@@ -27,12 +26,6 @@ import {
     assertRemoveUserFromListArgs,
     assertGetListMembersArgs,
     assertGetUserListsArgs,
-    assertSendDirectMessageArgs,
-    assertGetDirectMessagesArgs,
-    assertGetDirectMessageByIdArgs,
-    assertDeleteDirectMessageArgs,
-    assertGetTweetAnalyticsArgs,
-    assertGetUserAnalyticsArgs,
     assertGetHashtagAnalyticsArgs
 } from './types.js';
 import { TOOLS } from './tools.js';
@@ -133,77 +126,17 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     if (request.params.name === 'getUserTimeline') {
         assertGetUserTimelineArgs(request.params.arguments);
-        try {
-            const { 
-                username, 
-                maxResults, 
-                paginationToken, 
-                excludeReplies, 
-                excludeRetweets,
-                startTime,
-                endTime,
-                tweetFields 
-            } = request.params.arguments;
-
-            const userResponse = await client.v2.userByUsername(username);
-            if (!userResponse.data) {
-                throw new Error(`User not found: ${username}`);
-            }
-
-            const options: any = {
-                max_results: maxResults || 100
-            };
-
-            if (paginationToken) {
-                options.pagination_token = paginationToken;
-            }
-
-            if (startTime) {
-                options.start_time = startTime;
-            }
-
-            if (endTime) {
-                options.end_time = endTime;
-            }
-
-            if (tweetFields && tweetFields.length > 0) {
-                options['tweet.fields'] = tweetFields.join(',');
-            }
-
-            // Get tweets with all specified options
-            const timeline = await client.v2.userTimeline(userResponse.data.id, options);
-            
-            // Process tweets data
-            const tweets = timeline.tweets || [];
-            const processedTweets = excludeReplies || excludeRetweets
-                ? tweets.filter((tweet: TweetV2) => {
-                    if (excludeReplies && tweet.in_reply_to_user_id) {
-                        return false;
-                    }
-                    if (excludeRetweets && tweet.referenced_tweets?.some((ref: ReferencedTweetV2) => ref.type === 'retweeted')) {
-                        return false;
-                    }
-                    return true;
-                })
-                : tweets;
-
-            const response = {
-                tweets: processedTweets,
-                ...(timeline.meta?.next_token && { next_token: timeline.meta.next_token })
-            };
-
-            return {
-                content: [{ 
-                    type: 'text', 
-                    text: JSON.stringify(response, null, 2)
-                }],
-            };
-        } catch (error) {
-            if (error instanceof Error) {
-                throw new Error(`Failed to get user timeline: ${error.message}`);
-            }
-            throw error;
+        const userResponse = await client.v2.userByUsername(request.params.arguments.username);
+        if (!userResponse.data) {
+            throw new Error(`User not found: ${request.params.arguments.username}`);
         }
+        const tweets = await client.v2.userTimeline(userResponse.data.id);
+        return {
+            content: [{ 
+                type: 'text', 
+                text: `User timeline: ${JSON.stringify(tweets.data, null, 2)}` 
+            }],
+        };
     }
 
     if (request.params.name === 'getTweetById') {
@@ -643,277 +576,70 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }
     }
 
-    if (request.params.name === 'sendDirectMessage') {
-        assertSendDirectMessageArgs(request.params.arguments);
+    if (request.params.name === 'getHashtagAnalytics') {
+        assertGetHashtagAnalyticsArgs(request.params.arguments);
         try {
-            const { recipientUsername, text, mediaPath, mediaType } = request.params.arguments;
+            const { hashtag, maxResults, tweetFields } = request.params.arguments;
 
-            // Get recipient's user ID
-            const recipientUser = await client.v2.userByUsername(recipientUsername);
-            if (!recipientUser.data) {
-                throw new Error(`User not found: ${recipientUsername}`);
-            }
-
-            let mediaId: string | undefined;
-            if (mediaPath && mediaType) {
-                // Upload media if provided
-                const mediaBuffer = await fs.readFile(mediaPath);
-                mediaId = await client.v1.uploadMedia(mediaBuffer, { mimeType: mediaType });
-            }
-
-            // Create a DM conversation
-            const conversation = await client.v2.createDmConversation({
-                participant_ids: [recipientUser.data.id],
-                conversation_type: 'Group',
-                message: {
-                    text,
-                    ...(mediaId && { media: { media_id: mediaId } })
-                }
-            });
-
-            return {
-                content: [{ 
-                    type: 'text', 
-                    text: 'Direct message sent successfully'
-                }],
-            };
-        } catch (error) {
-            if (error instanceof Error) {
-                throw new Error(`Failed to send direct message: ${error.message}`);
-            }
-            throw error;
-        }
-    }
-
-    if (request.params.name === 'getDirectMessages') {
-        assertGetDirectMessagesArgs(request.params.arguments);
-        try {
-            const { maxResults, paginationToken } = request.params.arguments;
-
-            // Get the authenticated user's ID
-            const me = await client.v2.me();
-            
-            // Note: Due to API limitations, we can only get DM conversations
-            // Individual messages must be fetched separately
-            const conversations = await client.v2.createDmConversation({
-                participant_ids: [me.data.id],
-                conversation_type: 'Group',
-                message: { text: '' }
-            });
-
-            return {
-                content: [{ 
-                    type: 'text', 
-                    text: 'Note: Due to Twitter API limitations, direct message listing is currently limited. Please use getDirectMessageById to fetch specific messages.'
-                }],
-            };
-        } catch (error) {
-            if (error instanceof Error) {
-                throw new Error(`Failed to get direct messages: ${error.message}`);
-            }
-            throw error;
-        }
-    }
-
-    if (request.params.name === 'getDirectMessageById') {
-        assertGetDirectMessageByIdArgs(request.params.arguments);
-        try {
-            // Note: Due to API limitations, we can only get the conversation
-            // that contains the message, not the specific message
-            const conversation = await client.v2.createDmConversation({
-                participant_ids: [request.params.arguments.messageId],
-                conversation_type: 'Group',
-                message: { text: '' }
-            });
-
-            return {
-                content: [{ 
-                    type: 'text', 
-                    text: 'Note: Due to Twitter API limitations, fetching specific direct messages is currently limited.'
-                }],
-            };
-        } catch (error) {
-            if (error instanceof Error) {
-                throw new Error(`Failed to get direct message: ${error.message}`);
-            }
-            throw error;
-        }
-    }
-
-    if (request.params.name === 'deleteDirectMessage') {
-        assertDeleteDirectMessageArgs(request.params.arguments);
-        try {
-            // Note: Due to API limitations, message deletion is not directly supported
-            return {
-                content: [{ 
-                    type: 'text', 
-                    text: 'Note: Due to Twitter API limitations, direct message deletion is currently not supported.'
-                }],
-            };
-        } catch (error) {
-            if (error instanceof Error) {
-                throw new Error(`Failed to delete direct message: ${error.message}`);
-            }
-            throw error;
-        }
-    }
-
-    if (request.params.name === 'getTweetAnalytics') {
-        assertGetTweetAnalyticsArgs(request.params.arguments);
-        try {
-            const { 
-                tweetId, 
-                includeNonPublicMetrics, 
-                includeOrganicMetrics, 
-                includePromotedMetrics 
-            } = request.params.arguments;
-
+            // Construct search query
+            const query = `#${hashtag}`;
             const options: any = {
+                max_results: maxResults || 100,
                 'tweet.fields': [
                     'public_metrics',
                     'created_at',
                     'author_id',
-                    ...(includeNonPublicMetrics ? ['non_public_metrics'] : []),
-                    ...(includeOrganicMetrics ? ['organic_metrics'] : []),
-                    ...(includePromotedMetrics ? ['promoted_metrics'] : [])
+                    ...(tweetFields || [])
                 ].join(',')
             };
-
-            const tweet = await client.v2.singleTweet(tweetId, options);
-            if (!tweet.data) {
-                throw new Error(`Tweet not found: ${tweetId}`);
-            }
-
-            // Get engagement details
-            const [retweetedBy, likedBy] = await Promise.all([
-                client.v2.tweetRetweetedBy(tweetId),
-                client.v2.tweetLikedBy(tweetId)
-            ]);
-
-            const analytics = {
-                tweet: tweet.data,
-                engagement: {
-                    retweetedBy: retweetedBy.data || [],
-                    likedBy: likedBy.data || []
-                }
-            };
-
-            return {
-                content: [{ 
-                    type: 'text', 
-                    text: JSON.stringify(analytics, null, 2)
-                }],
-            };
-        } catch (error) {
-            if (error instanceof Error) {
-                throw new Error(`Failed to get tweet analytics: ${error.message}`);
-            }
-            throw error;
-        }
-    }
-
-    if (request.params.name === 'getUserAnalytics') {
-        assertGetUserAnalyticsArgs(request.params.arguments);
-        try {
-            const { username, startTime, endTime, granularity } = request.params.arguments;
-
-            // Get user details
-            const user = await client.v2.userByUsername(username, {
-                'user.fields': ['public_metrics', 'created_at', 'description', 'profile_image_url']
-            });
-            if (!user.data) {
-                throw new Error(`User not found: ${username}`);
-            }
-
-            // Get recent tweets for engagement analysis
-            const timeline = await client.v2.userTimeline(user.data.id, {
-                max_results: 100,
-                'tweet.fields': ['public_metrics', 'created_at'],
-                start_time: startTime,
-                end_time: endTime
-            });
-
-            // Calculate engagement metrics
-            const tweets = timeline.tweets || [];
-            const tweetMetrics = tweets.map((tweet: TweetV2) => ({
-                id: tweet.id,
-                created_at: tweet.created_at,
-                metrics: tweet.public_metrics
-            }));
-
-            const analytics = {
-                user: user.data,
-                tweets: {
-                    count: tweetMetrics.length,
-                    metrics: tweetMetrics
-                },
-                aggregated: {
-                    total_likes: tweetMetrics.reduce((sum: number, tweet: { metrics?: { like_count?: number } }) => 
-                        sum + (tweet.metrics?.like_count || 0), 0),
-                    total_retweets: tweetMetrics.reduce((sum: number, tweet: { metrics?: { retweet_count?: number } }) => 
-                        sum + (tweet.metrics?.retweet_count || 0), 0),
-                    total_replies: tweetMetrics.reduce((sum: number, tweet: { metrics?: { reply_count?: number } }) => 
-                        sum + (tweet.metrics?.reply_count || 0), 0),
-                    total_quotes: tweetMetrics.reduce((sum: number, tweet: { metrics?: { quote_count?: number } }) => 
-                        sum + (tweet.metrics?.quote_count || 0), 0)
-                }
-            };
-
-            return {
-                content: [{ 
-                    type: 'text', 
-                    text: JSON.stringify(analytics, null, 2)
-                }],
-            };
-        } catch (error) {
-            if (error instanceof Error) {
-                throw new Error(`Failed to get user analytics: ${error.message}`);
-            }
-            throw error;
-        }
-    }
-
-    if (request.params.name === 'getHashtagAnalytics') {
-        assertGetHashtagAnalyticsArgs(request.params.arguments);
-        try {
-            const { hashtag, startTime, endTime, maxResults } = request.params.arguments;
-
-            const query = `#${hashtag}`;
-            const options: any = {
-                max_results: maxResults || 100,
-                'tweet.fields': ['public_metrics', 'created_at', 'author_id'],
-                'user.fields': ['username', 'public_metrics']
-            };
-
-            if (startTime) options.start_time = startTime;
-            if (endTime) options.end_time = endTime;
 
             // Search for tweets with the hashtag
             const searchResult = await client.v2.search(query, options);
             const tweets = Array.isArray(searchResult.data) ? searchResult.data : [];
 
-            // Analyze hashtag usage
-            const tweetAnalytics = tweets.map((tweet: TweetV2) => ({
-                id: tweet.id,
-                created_at: tweet.created_at,
-                metrics: tweet.public_metrics,
-                author_id: tweet.author_id
-            }));
+            // Calculate engagement metrics
+            type TweetMetrics = {
+                like_count?: number;
+                retweet_count?: number;
+                reply_count?: number;
+                quote_count?: number;
+            };
 
+            type EngagementMetrics = {
+                likes: number;
+                retweets: number;
+                replies: number;
+                quotes: number;
+            };
+
+            const totalEngagement = tweets.reduce((acc: EngagementMetrics, tweet: { public_metrics?: TweetMetrics }) => {
+                const metrics = tweet.public_metrics || {};
+                return {
+                    likes: acc.likes + (metrics.like_count || 0),
+                    retweets: acc.retweets + (metrics.retweet_count || 0),
+                    replies: acc.replies + (metrics.reply_count || 0),
+                    quotes: acc.quotes + (metrics.quote_count || 0)
+                };
+            }, { likes: 0, retweets: 0, replies: 0, quotes: 0 });
+
+            // Format the response
             const analytics = {
-                hashtag: hashtag,
-                tweet_count: tweetAnalytics.length,
-                tweets: tweetAnalytics,
-                aggregated: {
-                    total_likes: tweetAnalytics.reduce((sum: number, tweet: { metrics?: { like_count?: number } }) => 
-                        sum + (tweet.metrics?.like_count || 0), 0),
-                    total_retweets: tweetAnalytics.reduce((sum: number, tweet: { metrics?: { retweet_count?: number } }) => 
-                        sum + (tweet.metrics?.retweet_count || 0), 0),
-                    total_replies: tweetAnalytics.reduce((sum: number, tweet: { metrics?: { reply_count?: number } }) => 
-                        sum + (tweet.metrics?.reply_count || 0), 0),
-                    total_quotes: tweetAnalytics.reduce((sum: number, tweet: { metrics?: { quote_count?: number } }) => 
-                        sum + (tweet.metrics?.quote_count || 0), 0)
-                }
+                hashtag,
+                tweet_count: tweets.length,
+                total_engagement: totalEngagement,
+                engagement_rate: tweets.length > 0 ? {
+                    likes_per_tweet: totalEngagement.likes / tweets.length,
+                    retweets_per_tweet: totalEngagement.retweets / tweets.length,
+                    replies_per_tweet: totalEngagement.replies / tweets.length,
+                    quotes_per_tweet: totalEngagement.quotes / tweets.length
+                } : null,
+                recent_tweets: tweets.map(tweet => ({
+                    id: tweet.id,
+                    text: tweet.text,
+                    created_at: tweet.created_at,
+                    metrics: tweet.public_metrics,
+                    author_id: tweet.author_id
+                }))
             };
 
             return {

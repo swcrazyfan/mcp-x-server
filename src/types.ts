@@ -23,13 +23,6 @@ export interface ReplyToTweetArgs {
 
 export interface GetUserTimelineArgs {
     username: string;
-    maxResults?: number;
-    paginationToken?: string;
-    excludeReplies?: boolean;
-    excludeRetweets?: boolean;
-    startTime?: string;
-    endTime?: string;
-    tweetFields?: string[];
 }
 
 export interface GetTweetByIdArgs {
@@ -121,45 +114,10 @@ export interface GetUserListsArgs {
     listFields?: string[];
 }
 
-export interface SendDirectMessageArgs {
-    recipientUsername: string;
-    text: string;
-    mediaPath?: string;
-    mediaType?: 'image/jpeg' | 'image/png' | 'image/gif' | 'video/mp4';
-}
-
-export interface GetDirectMessagesArgs {
-    maxResults?: number;
-    paginationToken?: string;
-}
-
-export interface GetDirectMessageByIdArgs {
-    messageId: string;
-}
-
-export interface DeleteDirectMessageArgs {
-    messageId: string;
-}
-
-export interface GetTweetAnalyticsArgs {
-    tweetId: string;
-    includeNonPublicMetrics?: boolean;
-    includeOrganicMetrics?: boolean;
-    includePromotedMetrics?: boolean;
-}
-
-export interface GetUserAnalyticsArgs {
-    username: string;
-    startTime?: string;
-    endTime?: string;
-    granularity?: 'day' | 'hour';
-}
-
 export interface GetHashtagAnalyticsArgs {
     hashtag: string;
-    startTime?: string;
-    endTime?: string;
     maxResults?: number;
+    tweetFields?: string[];
 }
 
 export function assertPostTweetArgs(args: unknown): asserts args is PostTweetArgs {
@@ -236,37 +194,6 @@ export function assertGetUserTimelineArgs(args: unknown): asserts args is GetUse
     }
     if (!('username' in args) || typeof (args as any).username !== 'string') {
         throw new Error('Invalid arguments: expected username string');
-    }
-    if ('maxResults' in args) {
-        const maxResults = (args as any).maxResults;
-        if (typeof maxResults !== 'number' || maxResults < 1 || maxResults > 100) {
-            throw new Error('Invalid arguments: maxResults must be a number between 1 and 100');
-        }
-    }
-    if ('paginationToken' in args && typeof (args as any).paginationToken !== 'string') {
-        throw new Error('Invalid arguments: expected paginationToken string');
-    }
-    if ('excludeReplies' in args && typeof (args as any).excludeReplies !== 'boolean') {
-        throw new Error('Invalid arguments: expected excludeReplies boolean');
-    }
-    if ('excludeRetweets' in args && typeof (args as any).excludeRetweets !== 'boolean') {
-        throw new Error('Invalid arguments: expected excludeRetweets boolean');
-    }
-    if ('startTime' in args && typeof (args as any).startTime !== 'string') {
-        throw new Error('Invalid arguments: expected startTime to be an ISO 8601 date string');
-    }
-    if ('endTime' in args && typeof (args as any).endTime !== 'string') {
-        throw new Error('Invalid arguments: expected endTime to be an ISO 8601 date string');
-    }
-    if ('tweetFields' in args) {
-        if (!Array.isArray((args as any).tweetFields)) {
-            throw new Error('Invalid arguments: expected tweetFields to be an array');
-        }
-        for (const field of (args as any).tweetFields) {
-            if (typeof field !== 'string') {
-                throw new Error('Invalid arguments: expected tweetFields to be an array of strings');
-            }
-        }
     }
 }
 
@@ -561,102 +488,6 @@ export function assertGetUserListsArgs(args: unknown): asserts args is GetUserLi
     }
 }
 
-export function assertSendDirectMessageArgs(args: unknown): asserts args is SendDirectMessageArgs {
-    if (typeof args !== 'object' || args === null) {
-        throw new Error('Invalid arguments: expected object');
-    }
-    if (!('recipientUsername' in args) || typeof (args as any).recipientUsername !== 'string') {
-        throw new Error('Invalid arguments: expected recipientUsername string');
-    }
-    if (!('text' in args) || typeof (args as any).text !== 'string') {
-        throw new Error('Invalid arguments: expected text string');
-    }
-    if ('mediaPath' in args) {
-        if (typeof (args as any).mediaPath !== 'string') {
-            throw new Error('Invalid arguments: expected mediaPath string');
-        }
-        if (!('mediaType' in args) || typeof (args as any).mediaType !== 'string') {
-            throw new Error('Invalid arguments: mediaType is required when mediaPath is provided');
-        }
-        const validMediaTypes = ['image/jpeg', 'image/png', 'image/gif', 'video/mp4'];
-        if (!validMediaTypes.includes((args as any).mediaType)) {
-            throw new Error(`Invalid arguments: mediaType must be one of: ${validMediaTypes.join(', ')}`);
-        }
-    }
-}
-
-export function assertGetDirectMessagesArgs(args: unknown): asserts args is GetDirectMessagesArgs {
-    if (typeof args !== 'object' || args === null) {
-        throw new Error('Invalid arguments: expected object');
-    }
-    if ('maxResults' in args) {
-        const maxResults = (args as any).maxResults;
-        if (typeof maxResults !== 'number' || maxResults < 1 || maxResults > 100) {
-            throw new Error('Invalid arguments: maxResults must be a number between 1 and 100');
-        }
-    }
-    if ('paginationToken' in args && typeof (args as any).paginationToken !== 'string') {
-        throw new Error('Invalid arguments: expected paginationToken string');
-    }
-}
-
-export function assertGetDirectMessageByIdArgs(args: unknown): asserts args is GetDirectMessageByIdArgs {
-    if (typeof args !== 'object' || args === null) {
-        throw new Error('Invalid arguments: expected object');
-    }
-    if (!('messageId' in args) || typeof (args as any).messageId !== 'string') {
-        throw new Error('Invalid arguments: expected messageId string');
-    }
-}
-
-export function assertDeleteDirectMessageArgs(args: unknown): asserts args is DeleteDirectMessageArgs {
-    if (typeof args !== 'object' || args === null) {
-        throw new Error('Invalid arguments: expected object');
-    }
-    if (!('messageId' in args) || typeof (args as any).messageId !== 'string') {
-        throw new Error('Invalid arguments: expected messageId string');
-    }
-}
-
-export function assertGetTweetAnalyticsArgs(args: unknown): asserts args is GetTweetAnalyticsArgs {
-    if (typeof args !== 'object' || args === null) {
-        throw new Error('Invalid arguments: expected object');
-    }
-    if (!('tweetId' in args) || typeof (args as any).tweetId !== 'string') {
-        throw new Error('Invalid arguments: expected tweetId string');
-    }
-    if ('includeNonPublicMetrics' in args && typeof (args as any).includeNonPublicMetrics !== 'boolean') {
-        throw new Error('Invalid arguments: expected includeNonPublicMetrics boolean');
-    }
-    if ('includeOrganicMetrics' in args && typeof (args as any).includeOrganicMetrics !== 'boolean') {
-        throw new Error('Invalid arguments: expected includeOrganicMetrics boolean');
-    }
-    if ('includePromotedMetrics' in args && typeof (args as any).includePromotedMetrics !== 'boolean') {
-        throw new Error('Invalid arguments: expected includePromotedMetrics boolean');
-    }
-}
-
-export function assertGetUserAnalyticsArgs(args: unknown): asserts args is GetUserAnalyticsArgs {
-    if (typeof args !== 'object' || args === null) {
-        throw new Error('Invalid arguments: expected object');
-    }
-    if (!('username' in args) || typeof (args as any).username !== 'string') {
-        throw new Error('Invalid arguments: expected username string');
-    }
-    if ('startTime' in args && typeof (args as any).startTime !== 'string') {
-        throw new Error('Invalid arguments: expected startTime to be an ISO 8601 date string');
-    }
-    if ('endTime' in args && typeof (args as any).endTime !== 'string') {
-        throw new Error('Invalid arguments: expected endTime to be an ISO 8601 date string');
-    }
-    if ('granularity' in args) {
-        const granularity = (args as any).granularity;
-        if (typeof granularity !== 'string' || !['day', 'hour'].includes(granularity)) {
-            throw new Error('Invalid arguments: granularity must be either "day" or "hour"');
-        }
-    }
-}
-
 export function assertGetHashtagAnalyticsArgs(args: unknown): asserts args is GetHashtagAnalyticsArgs {
     if (typeof args !== 'object' || args === null) {
         throw new Error('Invalid arguments: expected object');
@@ -664,16 +495,20 @@ export function assertGetHashtagAnalyticsArgs(args: unknown): asserts args is Ge
     if (!('hashtag' in args) || typeof (args as any).hashtag !== 'string') {
         throw new Error('Invalid arguments: expected hashtag string');
     }
-    if ('startTime' in args && typeof (args as any).startTime !== 'string') {
-        throw new Error('Invalid arguments: expected startTime to be an ISO 8601 date string');
-    }
-    if ('endTime' in args && typeof (args as any).endTime !== 'string') {
-        throw new Error('Invalid arguments: expected endTime to be an ISO 8601 date string');
-    }
     if ('maxResults' in args) {
         const maxResults = (args as any).maxResults;
         if (typeof maxResults !== 'number' || maxResults < 10 || maxResults > 100) {
             throw new Error('Invalid arguments: maxResults must be a number between 10 and 100');
+        }
+    }
+    if ('tweetFields' in args) {
+        if (!Array.isArray((args as any).tweetFields)) {
+            throw new Error('Invalid arguments: expected tweetFields to be an array');
+        }
+        for (const field of (args as any).tweetFields) {
+            if (typeof field !== 'string') {
+                throw new Error('Invalid arguments: expected tweetFields to be an array of strings');
+            }
         }
     }
 } 

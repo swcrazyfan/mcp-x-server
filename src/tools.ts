@@ -105,59 +105,11 @@ export const TOOLS = {
         },
     },
     getUserTimeline: {
-        description: 'Get recent tweets from a user timeline with advanced filtering',
+        description: 'Get recent tweets from a user timeline',
         inputSchema: {
             type: 'object',
             properties: {
                 username: { type: 'string', description: 'The username of the user' },
-                maxResults: { 
-                    type: 'number', 
-                    description: 'The maximum number of results to return (default: 100, max: 100)',
-                    minimum: 1,
-                    maximum: 100
-                },
-                paginationToken: { 
-                    type: 'string', 
-                    description: 'Token for fetching the next page of results'
-                },
-                excludeReplies: { 
-                    type: 'boolean', 
-                    description: 'Whether to exclude replies from the timeline'
-                },
-                excludeRetweets: { 
-                    type: 'boolean', 
-                    description: 'Whether to exclude retweets from the timeline'
-                },
-                startTime: { 
-                    type: 'string', 
-                    description: 'Start time for fetching tweets (ISO 8601 format)'
-                },
-                endTime: { 
-                    type: 'string', 
-                    description: 'End time for fetching tweets (ISO 8601 format)'
-                },
-                tweetFields: { 
-                    type: 'array', 
-                    items: { 
-                        type: 'string',
-                        enum: [
-                            'created_at',
-                            'author_id',
-                            'conversation_id',
-                            'in_reply_to_user_id',
-                            'referenced_tweets',
-                            'attachments',
-                            'geo',
-                            'context_annotations',
-                            'entities',
-                            'public_metrics',
-                            'possibly_sensitive',
-                            'source',
-                            'withheld'
-                        ]
-                    },
-                    description: 'Additional tweet fields to include in the response'
-                },
             },
             required: ['username'],
         },
@@ -399,129 +351,8 @@ export const TOOLS = {
             required: ['username'],
         },
     },
-    sendDirectMessage: {
-        description: 'Send a direct message to a Twitter user',
-        inputSchema: {
-            type: 'object',
-            properties: {
-                recipientUsername: { 
-                    type: 'string', 
-                    description: 'The username of the recipient' 
-                },
-                text: { 
-                    type: 'string', 
-                    description: 'The text content of the direct message' 
-                },
-                mediaPath: { 
-                    type: 'string', 
-                    description: 'Optional: Local file path to media to attach to the message' 
-                },
-                mediaType: { 
-                    type: 'string', 
-                    enum: ['image/jpeg', 'image/png', 'image/gif', 'video/mp4'],
-                    description: 'Required if mediaPath is provided: MIME type of the media file'
-                },
-            },
-            required: ['recipientUsername', 'text'],
-        },
-    },
-    getDirectMessages: {
-        description: 'Get recent direct messages',
-        inputSchema: {
-            type: 'object',
-            properties: {
-                maxResults: { 
-                    type: 'number', 
-                    description: 'The maximum number of messages to return (default: 50, max: 100)',
-                    minimum: 1,
-                    maximum: 100
-                },
-                paginationToken: { 
-                    type: 'string', 
-                    description: 'Token for fetching the next page of results'
-                },
-            },
-        },
-    },
-    getDirectMessageById: {
-        description: 'Get a specific direct message by ID',
-        inputSchema: {
-            type: 'object',
-            properties: {
-                messageId: { 
-                    type: 'string', 
-                    description: 'The ID of the direct message to retrieve' 
-                },
-            },
-            required: ['messageId'],
-        },
-    },
-    deleteDirectMessage: {
-        description: 'Delete a direct message',
-        inputSchema: {
-            type: 'object',
-            properties: {
-                messageId: { 
-                    type: 'string', 
-                    description: 'The ID of the direct message to delete' 
-                },
-            },
-            required: ['messageId'],
-        },
-    },
-    getTweetAnalytics: {
-        description: 'Get detailed analytics for a specific tweet',
-        inputSchema: {
-            type: 'object',
-            properties: {
-                tweetId: { 
-                    type: 'string', 
-                    description: 'The ID of the tweet to analyze' 
-                },
-                includeNonPublicMetrics: {
-                    type: 'boolean',
-                    description: 'Whether to include non-public metrics (requires user to be tweet author)'
-                },
-                includeOrganicMetrics: {
-                    type: 'boolean',
-                    description: 'Whether to include organic metrics (requires user to be tweet author)'
-                },
-                includePromotedMetrics: {
-                    type: 'boolean',
-                    description: 'Whether to include promoted metrics (requires user to be tweet author)'
-                }
-            },
-            required: ['tweetId'],
-        },
-    },
-    getUserAnalytics: {
-        description: 'Get analytics for a user profile',
-        inputSchema: {
-            type: 'object',
-            properties: {
-                username: { 
-                    type: 'string', 
-                    description: 'The username of the user to analyze' 
-                },
-                startTime: { 
-                    type: 'string', 
-                    description: 'Start time for analysis (ISO 8601 format)' 
-                },
-                endTime: { 
-                    type: 'string', 
-                    description: 'End time for analysis (ISO 8601 format)' 
-                },
-                granularity: {
-                    type: 'string',
-                    enum: ['day', 'hour'],
-                    description: 'The granularity of the analytics data'
-                }
-            },
-            required: ['username'],
-        },
-    },
     getHashtagAnalytics: {
-        description: 'Get analytics for a hashtag',
+        description: 'Get analytics for a hashtag using Twitter search',
         inputSchema: {
             type: 'object',
             properties: {
@@ -529,19 +360,26 @@ export const TOOLS = {
                     type: 'string', 
                     description: 'The hashtag to analyze (without #)' 
                 },
-                startTime: { 
-                    type: 'string', 
-                    description: 'Start time for analysis (ISO 8601 format)' 
-                },
-                endTime: { 
-                    type: 'string', 
-                    description: 'End time for analysis (ISO 8601 format)' 
-                },
                 maxResults: { 
                     type: 'number', 
-                    description: 'The maximum number of related tweets to return',
+                    description: 'The maximum number of tweets to analyze (default: 100, max: 100)',
                     minimum: 10,
                     maximum: 100
+                },
+                tweetFields: { 
+                    type: 'array', 
+                    items: { 
+                        type: 'string',
+                        enum: [
+                            'created_at',
+                            'author_id',
+                            'conversation_id',
+                            'public_metrics',
+                            'entities',
+                            'context_annotations'
+                        ]
+                    },
+                    description: 'Additional tweet fields to include in the response'
                 }
             },
             required: ['hashtag'],
