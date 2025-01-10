@@ -34,7 +34,16 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     if (request.params.name === 'searchTweets') {
         assertSearchTweetsArgs(request.params.arguments);
-        const tweets = await client.v2.search(request.params.arguments.query);
+        const { query, since, until, tweetFields } = request.params.arguments;
+        
+        const searchOptions: any = {};
+        if (since) searchOptions.start_time = since;
+        if (until) searchOptions.end_time = until;
+        if (tweetFields && tweetFields.length > 0) {
+            searchOptions['tweet.fields'] = tweetFields.join(',');
+        }
+
+        const tweets = await client.v2.search(query, searchOptions);
         return {
             content: [{ 
                 type: 'text', 

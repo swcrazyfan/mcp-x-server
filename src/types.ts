@@ -4,6 +4,9 @@ export interface PostTweetArgs {
 
 export interface SearchTweetsArgs {
     query: string;
+    since?: string;
+    until?: string;
+    tweetFields?: string[];
 }
 
 export interface ReplyToTweetArgs {
@@ -38,6 +41,22 @@ export function assertSearchTweetsArgs(args: unknown): asserts args is SearchTwe
     }
     if (!('query' in args) || typeof (args as any).query !== 'string') {
         throw new Error('Invalid arguments: expected query string');
+    }
+    if ('since' in args && typeof (args as any).since !== 'string') {
+        throw new Error('Invalid arguments: expected since to be an ISO 8601 date string');
+    }
+    if ('until' in args && typeof (args as any).until !== 'string') {
+        throw new Error('Invalid arguments: expected until to be an ISO 8601 date string');
+    }
+    if ('tweetFields' in args) {
+        if (!Array.isArray((args as any).tweetFields)) {
+            throw new Error('Invalid arguments: expected tweetFields to be an array');
+        }
+        for (const field of (args as any).tweetFields) {
+            if (typeof field !== 'string') {
+                throw new Error('Invalid arguments: expected tweetFields to be an array of strings');
+            }
+        }
     }
 }
 
