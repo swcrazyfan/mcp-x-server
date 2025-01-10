@@ -38,6 +38,20 @@ export interface GetTweetsByIdsArgs {
     tweetFields?: string[];
 }
 
+export interface LikeTweetArgs {
+    tweetId: string;
+}
+
+export interface UnlikeTweetArgs {
+    tweetId: string;
+}
+
+export interface GetLikedTweetsArgs {
+    userId: string;
+    maxResults?: number;
+    tweetFields?: string[];
+}
+
 export function assertPostTweetArgs(args: unknown): asserts args is PostTweetArgs {
     if (typeof args !== 'object' || args === null) {
         throw new Error('Invalid arguments: expected object');
@@ -149,6 +163,49 @@ export function assertGetTweetsByIdsArgs(args: unknown): asserts args is GetTwee
     for (const id of (args as any).tweetIds) {
         if (typeof id !== 'string') {
             throw new Error('Invalid arguments: expected tweetIds to be an array of strings');
+        }
+    }
+    if ('tweetFields' in args) {
+        if (!Array.isArray((args as any).tweetFields)) {
+            throw new Error('Invalid arguments: expected tweetFields to be an array');
+        }
+        for (const field of (args as any).tweetFields) {
+            if (typeof field !== 'string') {
+                throw new Error('Invalid arguments: expected tweetFields to be an array of strings');
+            }
+        }
+    }
+}
+
+export function assertLikeTweetArgs(args: unknown): asserts args is LikeTweetArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('tweetId' in args) || typeof (args as any).tweetId !== 'string') {
+        throw new Error('Invalid arguments: expected tweetId string');
+    }
+}
+
+export function assertUnlikeTweetArgs(args: unknown): asserts args is UnlikeTweetArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('tweetId' in args) || typeof (args as any).tweetId !== 'string') {
+        throw new Error('Invalid arguments: expected tweetId string');
+    }
+}
+
+export function assertGetLikedTweetsArgs(args: unknown): asserts args is GetLikedTweetsArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('userId' in args) || typeof (args as any).userId !== 'string') {
+        throw new Error('Invalid arguments: expected userId string');
+    }
+    if ('maxResults' in args) {
+        const maxResults = (args as any).maxResults;
+        if (typeof maxResults !== 'number' || maxResults < 1 || maxResults > 100) {
+            throw new Error('Invalid arguments: maxResults must be a number between 1 and 100');
         }
     }
     if ('tweetFields' in args) {

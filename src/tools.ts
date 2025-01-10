@@ -29,6 +29,50 @@ export const TOOLS = {
             required: ['text', 'mediaPath', 'mediaType'],
         },
     },
+    likeTweet: {
+        description: 'Like a tweet by its ID',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                tweetId: { type: 'string', description: 'The ID of the tweet to like' }
+            },
+            required: ['tweetId'],
+        },
+    },
+    unlikeTweet: {
+        description: 'Unlike a previously liked tweet',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                tweetId: { type: 'string', description: 'The ID of the tweet to unlike' }
+            },
+            required: ['tweetId'],
+        },
+    },
+    getLikedTweets: {
+        description: 'Get a list of tweets liked by a user',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                userId: { type: 'string', description: 'The ID of the user whose likes to fetch' },
+                maxResults: { 
+                    type: 'number', 
+                    description: 'The maximum number of results to return (default: 100, max: 100)',
+                    minimum: 1,
+                    maximum: 100
+                },
+                tweetFields: { 
+                    type: 'array', 
+                    items: { 
+                        type: 'string',
+                        enum: ['created_at', 'author_id', 'conversation_id', 'public_metrics', 'entities', 'context_annotations']
+                    },
+                    description: 'Additional tweet fields to include in the response'
+                },
+            },
+            required: ['userId'],
+        },
+    },
     searchTweets: {
         description: 'Search for tweets on Twitter with advanced options',
         inputSchema: {

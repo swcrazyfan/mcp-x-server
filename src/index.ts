@@ -2,7 +2,19 @@ import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { ListToolsRequestSchema, CallToolRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { getTwitterClient } from './twitterClient.js';
-import { assertPostTweetArgs, assertSearchTweetsArgs, assertReplyToTweetArgs, assertGetUserTimelineArgs, assertGetTweetByIdArgs, assertGetUserInfoArgs, assertGetTweetsByIdsArgs, assertPostTweetWithMediaArgs } from './types.js';
+import { 
+    assertPostTweetArgs, 
+    assertSearchTweetsArgs, 
+    assertReplyToTweetArgs, 
+    assertGetUserTimelineArgs, 
+    assertGetTweetByIdArgs, 
+    assertGetUserInfoArgs, 
+    assertGetTweetsByIdsArgs, 
+    assertPostTweetWithMediaArgs,
+    assertLikeTweetArgs,
+    assertUnlikeTweetArgs,
+    assertGetLikedTweetsArgs
+} from './types.js';
 import { TOOLS } from './tools.js';
 import { promises as fs } from 'fs';
 
@@ -166,6 +178,72 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
                 text: `Tweets: ${JSON.stringify(tweets.data, null, 2)}` 
             }],
         };
+    }
+
+    if (request.params.name === 'likeTweet') {
+        assertLikeTweetArgs(request.params.arguments);
+        try {
+            const userId = await client.v2.me().then(response => response.data.id);
+            await client.v2.like(userId, request.params.arguments.tweetId);
+            return {
+                content: [{ type: 'text', text: `Successfully liked tweet: ${request.params.arguments.tweetId}` }],
+            };
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Failed to like tweet: ${error.message}`);
+            }
+            throw error;
+        }
+    }
+
+    if (request.params.name === 'unlikeTweet') {
+        assertUnlikeTweetArgs(request.params.arguments);
+        try {
+            const userId = await client.v2.me().then(response => response.data.id);
+            await client.v2.unlike(userId, request.params.arguments.tweetId);
+            return {
+                content: [{ type: 'text', text: `Successfully unliked tweet: ${request.params.arguments.tweetId}` }],
+            };
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Failed to unlike tweet: ${error.message}`);
+            }
+            throw error;
+        }
+    }
+
+    if (request.params.name === 'getLikedTweets') {
+        assertGetLikedTweetsArgs(request.params.arguments);
+        try {
+            const { userId, maxResults, tweetFields } = request.params.arguments;
+            
+            const options: any = {
+                max_results: maxResults || 100
+            };
+            
+            if (tweetFields && tweetFields.length > 0) {
+                options['tweet.fields'] = tweetFields.join(',');
+            }
+
+            const likedTweets = await client.v2.userLikedTweets(userId, options);
+            if (!likedTweets.data) {
+                return {
+                    content: [{ type: 'text', text: 'No liked tweets found' }],
+                };
+            }
+
+            return {
+                content: [{ 
+                    type: 'text', 
+                    text: `Liked tweets: ${JSON.stringify(likedTweets.data, null, 2)}` 
+                }],
+            };
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Failed to get liked tweets: ${error.message}`);
+            }
+            throw error;
+        }
     }
 
     throw new Error(`Tool not found: ${request.params.name}`);
