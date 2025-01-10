@@ -1,13 +1,35 @@
 {
   "name": "mcp-twitter-server",
   "version": "0.0.1",
-  "description": "A basic MCP server for interacting with Twitter",
+  "description": "A Model Context Protocol server for Twitter integration",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
+  "bin": {
+    "mcp-twitter-server": "./dist/index.js"
+  },
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "prepare": "npm run build"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "mcp",
+    "twitter",
+    "llm",
+    "ai",
+    "model-context-protocol"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/mcp-twitter-server.git"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",

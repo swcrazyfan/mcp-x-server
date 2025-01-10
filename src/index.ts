@@ -2,55 +2,8 @@ import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { ListToolsRequestSchema, CallToolRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { getTwitterClient } from './twitterClient.js';
-
-interface PostTweetArgs {
-    text: string;
-}
-
-interface SearchTweetsArgs {
-    query: string;
-}
-
-function assertPostTweetArgs(args: unknown): asserts args is PostTweetArgs {
-    if (typeof args !== 'object' || args === null) {
-        throw new Error('Invalid arguments: expected object');
-    }
-    if (!('text' in args) || typeof (args as any).text !== 'string') {
-        throw new Error('Invalid arguments: expected text string');
-    }
-}
-
-function assertSearchTweetsArgs(args: unknown): asserts args is SearchTweetsArgs {
-    if (typeof args !== 'object' || args === null) {
-        throw new Error('Invalid arguments: expected object');
-    }
-    if (!('query' in args) || typeof (args as any).query !== 'string') {
-        throw new Error('Invalid arguments: expected query string');
-    }
-}
-
-const TOOLS = {
-    postTweet: {
-        description: 'Post a tweet to Twitter',
-        inputSchema: {
-            type: 'object',
-            properties: {
-                text: { type: 'string', description: 'The text of the tweet' },
-            },
-            required: ['text'],
-        },
-    },
-    searchTweets: {
-        description: 'Search for tweets on Twitter',
-        inputSchema: {
-            type: 'object',
-            properties: {
-                query: { type: 'string', description: 'The query to search for' },
-            },
-            required: ['query'],
-        },
-    },
-};
+import { assertPostTweetArgs, assertSearchTweetsArgs, assertReplyToTweetArgs } from './types.js';
+import { TOOLS } from './tools.js';
 
 const server = new Server({
     name: 'twitter-mcp-server',
@@ -87,6 +40,19 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
                 type: 'text', 
                 text: `Search results: ${JSON.stringify(tweets.data, null, 2)}` 
             }],
+        };
+    }
+
+    if (request.params.name === 'replyToTweet') {
+        assertReplyToTweetArgs(request.params.arguments);
+        const reply = await client.v2.tweet({
+            text: request.params.arguments.text,
+            reply: {
+                in_reply_to_tweet_id: request.params.arguments.tweetId,
+            },
+        });
+        return {
+            content: [{ type: 'text', text: `Replied to tweet ${request.params.arguments.tweetId} with id: ${reply.data.id}` }],
         };
     }
 
