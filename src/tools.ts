@@ -70,4 +70,27 @@ export const TOOLS = {
             required: ['username'],
         },
     },
+    getTweetsByIds: {
+        description: 'Get multiple tweets by their IDs',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                tweetIds: { 
+                    type: 'array',
+                    items: { type: 'string' },
+                    description: 'Array of tweet IDs to fetch',
+                    maxItems: 100
+                },
+                tweetFields: { 
+                    type: 'array', 
+                    items: { 
+                        type: 'string',
+                        enum: ['created_at', 'author_id', 'conversation_id', 'public_metrics', 'entities', 'context_annotations']
+                    },
+                    description: 'Additional tweet fields to include in the response'
+                },
+            },
+            required: ['tweetIds'],
+        },
+    },
 }; 

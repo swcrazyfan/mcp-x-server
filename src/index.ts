@@ -2,7 +2,7 @@ import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { ListToolsRequestSchema, CallToolRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { getTwitterClient } from './twitterClient.js';
-import { assertPostTweetArgs, assertSearchTweetsArgs, assertReplyToTweetArgs, assertGetUserTimelineArgs, assertGetTweetByIdArgs, assertGetUserInfoArgs } from './types.js';
+import { assertPostTweetArgs, assertSearchTweetsArgs, assertReplyToTweetArgs, assertGetUserTimelineArgs, assertGetTweetByIdArgs, assertGetUserInfoArgs, assertGetTweetsByIdsArgs } from './types.js';
 import { TOOLS } from './tools.js';
 
 const server = new Server({
@@ -109,6 +109,27 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             content: [{ 
                 type: 'text', 
                 text: `User info: ${JSON.stringify(user.data, null, 2)}` 
+            }],
+        };
+    }
+
+    if (request.params.name === 'getTweetsByIds') {
+        assertGetTweetsByIdsArgs(request.params.arguments);
+        const { tweetIds, tweetFields } = request.params.arguments;
+        
+        const options: any = {};
+        if (tweetFields && tweetFields.length > 0) {
+            options['tweet.fields'] = tweetFields.join(',');
+        }
+
+        const tweets = await client.v2.tweets(tweetIds, options);
+        if (!tweets.data || tweets.data.length === 0) {
+            throw new Error('No tweets found for the provided IDs');
+        }
+        return {
+            content: [{ 
+                type: 'text', 
+                text: `Tweets: ${JSON.stringify(tweets.data, null, 2)}` 
             }],
         };
     }

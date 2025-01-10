@@ -26,6 +26,11 @@ export interface GetUserInfoArgs {
     username: string;
 }
 
+export interface GetTweetsByIdsArgs {
+    tweetIds: string[];
+    tweetFields?: string[];
+}
+
 export function assertPostTweetArgs(args: unknown): asserts args is PostTweetArgs {
     if (typeof args !== 'object' || args === null) {
         throw new Error('Invalid arguments: expected object');
@@ -96,5 +101,35 @@ export function assertGetUserInfoArgs(args: unknown): asserts args is GetUserInf
     }
     if (!('username' in args) || typeof (args as any).username !== 'string') {
         throw new Error('Invalid arguments: expected username string');
+    }
+}
+
+export function assertGetTweetsByIdsArgs(args: unknown): asserts args is GetTweetsByIdsArgs {
+    if (typeof args !== 'object' || args === null) {
+        throw new Error('Invalid arguments: expected object');
+    }
+    if (!('tweetIds' in args) || !Array.isArray((args as any).tweetIds)) {
+        throw new Error('Invalid arguments: expected tweetIds array');
+    }
+    if ((args as any).tweetIds.length === 0) {
+        throw new Error('Invalid arguments: tweetIds array cannot be empty');
+    }
+    if ((args as any).tweetIds.length > 100) {
+        throw new Error('Invalid arguments: cannot fetch more than 100 tweets at once');
+    }
+    for (const id of (args as any).tweetIds) {
+        if (typeof id !== 'string') {
+            throw new Error('Invalid arguments: expected tweetIds to be an array of strings');
+        }
+    }
+    if ('tweetFields' in args) {
+        if (!Array.isArray((args as any).tweetFields)) {
+            throw new Error('Invalid arguments: expected tweetFields to be an array');
+        }
+        for (const field of (args as any).tweetFields) {
+            if (typeof field !== 'string') {
+                throw new Error('Invalid arguments: expected tweetFields to be an array of strings');
+            }
+        }
     }
 } 
