@@ -50,4 +50,14 @@ export const TOOLS = {
             required: ['tweetId'],
         },
     },
+    getUserInfo: {
+        description: 'Get information about a Twitter user',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                username: { type: 'string', description: 'The username of the user' },
+            },
+            required: ['username'],
+        },
+    },
 }; 
