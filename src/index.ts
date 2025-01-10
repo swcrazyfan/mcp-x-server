@@ -29,89 +29,91 @@ function assertSearchTweetsArgs(args: unknown): asserts args is SearchTweetsArgs
     }
 }
 
-const TOOLS = {
-    postTweet: {
-        description: 'Post a tweet to Twitter',
-        inputSchema: {
-            type: 'object',
-            properties: {
-                text: { type: 'string', description: 'The text of the tweet' },
-            },
-            required: ['text'],
-        },
-    },
-    searchTweets: {
-        description: 'Search for tweets on Twitter',
-        inputSchema: {
-            type: 'object',
-            properties: {
-                query: { type: 'string', description: 'The query to search for' },
-            },
-            required: ['query'],
-        },
-    },
-};
-
 async function startServer(): Promise<void> {
-    try {
-        const server = new Server({
-            name: 'twitter-mcp-server',
-            version: '0.0.1',
-        }, {
-            capabilities: {
-                tools: TOOLS
+    const server = new Server({
+        name: 'twitter-mcp-server',
+        version: '0.0.1',
+    }, {
+        capabilities: {
+            tools: {
+                postTweet: {
+                    description: 'Post a tweet to Twitter',
+                    inputSchema: {
+                        type: 'object',
+                        properties: {
+                            text: { type: 'string', description: 'The text of the tweet' },
+                        },
+                        required: ['text'],
+                    },
+                },
+                searchTweets: {
+                    description: 'Search for tweets on Twitter',
+                    inputSchema: {
+                        type: 'object',
+                        properties: {
+                            query: { type: 'string', description: 'The query to search for' },
+                        },
+                        required: ['query'],
+                    },
+                },
             },
-        });
+        },
+    });
 
-        server.setRequestHandler(ListToolsRequestSchema, async () => {
-            console.log('Received ListTools request');
+    server.setRequestHandler(ListToolsRequestSchema, async () => ({
+        tools: [
+            {
+                name: 'postTweet',
+                description: 'Post a tweet to Twitter',
+                inputSchema: {
+                    type: 'object',
+                    properties: {
+                        text: { type: 'string', description: 'The text of the tweet' },
+                    },
+                    required: ['text'],
+                },
+            },
+            {
+                name: 'searchTweets',
+                description: 'Search for tweets on Twitter',
+                inputSchema: {
+                    type: 'object',
+                    properties: {
+                        query: { type: 'string', description: 'The query to search for' },
+                    },
+                    required: ['query'],
+                },
+            },
+        ],
+    }));
+
+    server.setRequestHandler(CallToolRequestSchema, async (request) => {
+        const client = getTwitterClient();
+
+        if (request.params.name === 'postTweet') {
+            assertPostTweetArgs(request.params.arguments);
+            const tweet = await client.v2.tweet(request.params.arguments.text);
             return {
-                tools: Object.entries(TOOLS).map(([name, tool]) => ({
-                    name,
-                    ...tool
-                })),
+                content: [{ type: 'text', text: `Tweet posted with id: ${tweet.data.id}` }],
             };
-        });
+        }
 
-        server.setRequestHandler(CallToolRequestSchema, async (request) => {
-            console.log(`Received CallTool request for: ${request.params.name}`);
-            const client = getTwitterClient();
+        if (request.params.name === 'searchTweets') {
+            assertSearchTweetsArgs(request.params.arguments);
+            const tweets = await client.v2.search(request.params.arguments.query);
+            return {
+                content: [{ 
+                    type: 'text', 
+                    text: `Search results: ${JSON.stringify(tweets.data, null, 2)}` 
+                }],
+            };
+        }
 
-            if (request.params.name === 'postTweet') {
-                assertPostTweetArgs(request.params.arguments);
-                const tweet = await client.v2.tweet(request.params.arguments.text);
-                return {
-                    content: [{ type: 'text', text: `Tweet posted with id: ${tweet.data.id}` }],
-                };
-            }
+        throw new Error(`Tool not found: ${request.params.name}`);
+    });
 
-            if (request.params.name === 'searchTweets') {
-                assertSearchTweetsArgs(request.params.arguments);
-                const tweets = await client.v2.search(request.params.arguments.query);
-                return {
-                    content: [{ 
-                        type: 'text', 
-                        text: `Search results: ${JSON.stringify(tweets.data, null, 2)}` 
-                    }],
-                };
-            }
-
-            throw new Error(`Tool not found: ${request.params.name}`);
-        });
-
-        const transport = new StdioServerTransport();
-        console.log('Connecting to transport...');
-        await server.connect(transport);
-        console.log('MCP server started and listening');
-    } catch (error) {
-        console.error('Server startup error:', error instanceof Error ? error.message : String(error));
-        // Don't throw the error, just log it
-        // This prevents the process from exiting on initial connection issues
-    }
+    const transport = new StdioServerTransport();
+    await server.connect(transport);
 }
 
-// Start server and handle any uncaught errors
-startServer().catch((error) => {
-    console.error('Uncaught server error:', error instanceof Error ? error.message : String(error));
-    // Don't exit on uncaught errors
-}); 
+startServer(); 
