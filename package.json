@@ -1,34 +1,24 @@
 {
   "name": "mcp-twitter-server",
-  "version": "0.0.2",
-  "description": "A Model Context Protocol server for Twitter integration",
+  "version": "0.1.0",
+  "description": "A Model Context Protocol server implementation for Twitter API integration",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "type": "module",
-  "bin": {
-    "mcp-twitter-server": "dist/index.js"
-  },
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
+    "dev": "tsc -w",
     "prepare": "npm run build"
   },
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
   "keywords": [
-    "mcp",
     "twitter",
+    "mcp",
+    "model-context-protocol",
     "llm",
     "ai",
-    "model-context-protocol",
-    "claude",
-    "anthropic",
-    "x"
+    "claude"
   ],
-  "author": "Dennison Bertram",
+  "author": "Dennis Reimann",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -39,18 +29,20 @@
   },
   "homepage": "https://github.com/crazyrabbitLTC/mcp-twitter-server#readme",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.0.0",
-    "twitter-api-v2": "^1.15.1",
-    "zod": "^3.0.0",
-    "dotenv": "^16.0.0"
+    "@modelcontextprotocol/sdk": "^0.0.2",
+    "dotenv": "^16.3.1",
+    "twitter-api-v2": "^1.15.2",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
-    "typescript": "^5.0.0"
+    "@types/node": "^20.10.5",
+    "typescript": "^5.3.3"
   },
-  "engines": {
-    "node": ">=18"
-  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "publishConfig": {
     "access": "public"
   }
