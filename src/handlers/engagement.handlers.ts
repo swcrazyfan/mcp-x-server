@@ -118,11 +118,12 @@ export const handleGetLikedTweets: TwitterHandler<GetLikedTweetsArgs> = async (
             'tweet.fields': tweetFields?.join(',') || 'created_at,public_metrics,author_id'
         });
 
-        if (!likedTweets.data || likedTweets.data.length === 0) {
+        const tweets = Array.isArray(likedTweets.data) ? likedTweets.data : [];
+        if (tweets.length === 0) {
             return createResponse(`No liked tweets found for user: ${userId}`);
         }
 
-        return createResponse(`Liked tweets: ${JSON.stringify(likedTweets.data, null, 2)}`);
+        return createResponse(`Liked tweets: ${JSON.stringify(tweets, null, 2)}`);
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to get liked tweets: ${error.message}`);

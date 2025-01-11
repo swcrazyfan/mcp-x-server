@@ -31,11 +31,12 @@ export const handleSearchTweets: TwitterHandler<SearchTweetsArgs> = async (
             'user.fields': ['username']
         });
 
-        if (!searchResult.data || searchResult.data.length === 0) {
+        const tweets = Array.isArray(searchResult.data) ? searchResult.data : [];
+        if (tweets.length === 0) {
             return createResponse(`No tweets found for query: ${query}`);
         }
 
-        const formattedTweets = searchResult.data.map((tweet: TweetV2): TweetWithAuthor => ({
+        const formattedTweets = tweets.map((tweet: TweetV2): TweetWithAuthor => ({
             ...tweet,
             author: searchResult.includes?.users?.find(u => u.id === tweet.author_id)
         }));
@@ -62,8 +63,8 @@ export const handleHashtagAnalytics: TwitterHandler<HashtagAnalyticsArgs> = asyn
             end_time: endTime
         });
 
-        const tweets = searchResult.tweets;
-        if (!tweets || tweets.length === 0) {
+        const tweets = Array.isArray(searchResult.data) ? searchResult.data : [];
+        if (tweets.length === 0) {
             return createResponse(`No tweets found for hashtag: ${hashtag}`);
         }
 
