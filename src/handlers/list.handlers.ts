@@ -111,31 +111,37 @@ export const handleGetUserLists: TwitterHandler<GetUserListsArgs> = async (clien
             throw new Error(`User ${username} not found`);
         }
 
-        // Get lists owned by the user
+        // Get lists owned by the user with expanded fields
         const ownedLists = await client.v2.listsOwned(user.data.id, {
             max_results: maxResults,
-            "list.fields": ["created_at", "follower_count", "member_count", "private", "description"]
+            "list.fields": ["created_at", "follower_count", "member_count", "private", "description"],
+            "expansions": ["owner_id"],
+            "user.fields": ["username", "name", "verified"]
         });
 
-        // Get lists the user is a member of
+        // Get lists the user is a member of with expanded fields
         const memberLists = await client.v2.listMemberships(user.data.id, {
             max_results: maxResults,
-            "list.fields": ["created_at", "follower_count", "member_count", "private", "description"]
+            "list.fields": ["created_at", "follower_count", "member_count", "private", "description"],
+            "expansions": ["owner_id"],
+            "user.fields": ["username", "name", "verified"]
         });
 
-        // Format the response
+        // Format the response with detailed information
         const responseText = `Found ${ownedLists.meta?.result_count || 0} owned lists and ${memberLists.meta?.result_count || 0} list memberships for ${username}`;
         
         return createResponse(responseText, {
             owned: {
                 lists: ownedLists.data || [],
                 count: ownedLists.meta?.result_count || 0,
-                has_more: !!ownedLists.meta?.next_token
+                has_more: !!ownedLists.meta?.next_token,
+                includes: ownedLists.includes
             },
             member_of: {
                 lists: memberLists.data || [],
                 count: memberLists.meta?.result_count || 0,
-                has_more: !!memberLists.meta?.next_token
+                has_more: !!memberLists.meta?.next_token,
+                includes: memberLists.includes
             }
         });
     } catch (error: any) {
