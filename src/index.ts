@@ -25,6 +25,18 @@ import {
     handleRemoveUserFromList,
     handleGetListMembers
 } from './handlers/list.handlers.js';
+import {
+    TweetHandlerArgs,
+    MediaTweetHandlerArgs,
+    UserHandlerArgs,
+    ListHandlerArgs,
+    ListCreateArgs,
+    GetUserInfoArgs,
+    GetUserTimelineArgs,
+    TweetEngagementArgs,
+    ListMemberArgs,
+    GetListMembersArgs
+} from './types/handlers.js';
 
 const server = new Server({
     name: 'twitter-mcp-server',
@@ -47,46 +59,46 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     switch (request.params.name) {
         case 'postTweet':
-            return handlePostTweet(client, request.params.arguments);
+            return handlePostTweet(client, request.params.arguments as TweetHandlerArgs);
         
         case 'postTweetWithMedia':
-            return handlePostTweetWithMedia(client, request.params.arguments);
+            return handlePostTweetWithMedia(client, request.params.arguments as MediaTweetHandlerArgs);
         
         case 'getUserInfo':
-            return handleGetUserInfo(client, request.params.arguments);
+            return handleGetUserInfo(client, request.params.arguments as GetUserInfoArgs);
         
         case 'getUserTimeline':
-            return handleGetUserTimeline(client, request.params.arguments);
+            return handleGetUserTimeline(client, request.params.arguments as GetUserTimelineArgs);
         
         case 'followUser':
-            return handleFollowUser(client, request.params.arguments);
+            return handleFollowUser(client, request.params.arguments as UserHandlerArgs);
         
         case 'unfollowUser':
-            return handleUnfollowUser(client, request.params.arguments);
+            return handleUnfollowUser(client, request.params.arguments as UserHandlerArgs);
         
         case 'likeTweet':
-            return handleLikeTweet(client, request.params.arguments);
+            return handleLikeTweet(client, request.params.arguments as TweetEngagementArgs);
         
         case 'unlikeTweet':
-            return handleUnlikeTweet(client, request.params.arguments);
+            return handleUnlikeTweet(client, request.params.arguments as TweetEngagementArgs);
         
         case 'retweet':
-            return handleRetweet(client, request.params.arguments);
+            return handleRetweet(client, request.params.arguments as TweetEngagementArgs);
         
         case 'undoRetweet':
-            return handleUndoRetweet(client, request.params.arguments);
+            return handleUndoRetweet(client, request.params.arguments as TweetEngagementArgs);
         
         case 'createList':
-            return handleCreateList(client, request.params.arguments);
+            return handleCreateList(client, request.params.arguments as ListCreateArgs);
         
         case 'addUserToList':
-            return handleAddUserToList(client, request.params.arguments);
+            return handleAddUserToList(client, request.params.arguments as ListMemberArgs);
         
         case 'removeUserFromList':
-            return handleRemoveUserFromList(client, request.params.arguments);
+            return handleRemoveUserFromList(client, request.params.arguments as ListMemberArgs);
         
         case 'getListMembers':
-            return handleGetListMembers(client, request.params.arguments);
+            return handleGetListMembers(client, request.params.arguments as GetListMembersArgs);
         
         default:
             throw new Error(`Tool not found: ${request.params.name}`);
