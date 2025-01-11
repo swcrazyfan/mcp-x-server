@@ -1,5 +1,5 @@
 import { TwitterClient } from '../twitterClient.js';
-import { UserV2 } from 'twitter-api-v2';
+import { UserV2, TTweetv2UserField } from 'twitter-api-v2';
 import { 
     HandlerResponse, 
     TwitterHandler,
@@ -7,7 +7,7 @@ import {
 } from '../types/handlers.js';
 
 interface GetUserInfoArgs extends UserHandlerArgs {
-    fields?: string[];
+    fields?: TTweetv2UserField[];
 }
 
 interface GetUserTimelineArgs extends UserHandlerArgs {
@@ -22,7 +22,7 @@ export const handleGetUserInfo: TwitterHandler<GetUserInfoArgs> = async (
     const user = await client.v2.userByUsername(
         username,
         { 
-            'user.fields': fields || ['description', 'public_metrics', 'profile_image_url', 'verified']
+            'user.fields': fields || ['description', 'public_metrics', 'profile_image_url', 'verified'] as TTweetv2UserField[]
         }
     );
     
