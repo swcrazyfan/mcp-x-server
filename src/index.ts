@@ -56,49 +56,61 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
     const client = getTwitterClient();
+    const args = request.params.arguments || {};
 
     switch (request.params.name) {
-        case 'postTweet':
-            return handlePostTweet(client, request.params.arguments as TweetHandlerArgs);
+        case 'postTweet': {
+            const { text } = args as TweetHandlerArgs;
+            if (!text) throw new Error('Missing required parameter: text');
+            return handlePostTweet(client, { text });
+        }
         
-        case 'postTweetWithMedia':
-            return handlePostTweetWithMedia(client, request.params.arguments as MediaTweetHandlerArgs);
+        case 'postTweetWithMedia': {
+            const { text, mediaPath, mediaType, altText } = args as MediaTweetHandlerArgs;
+            if (!text) throw new Error('Missing required parameter: text');
+            if (!mediaPath) throw new Error('Missing required parameter: mediaPath');
+            if (!mediaType) throw new Error('Missing required parameter: mediaType');
+            return handlePostTweetWithMedia(client, { text, mediaPath, mediaType, altText });
+        }
         
-        case 'getUserInfo':
-            return handleGetUserInfo(client, request.params.arguments as GetUserInfoArgs);
+        case 'getUserInfo': {
+            const { username, fields } = args as GetUserInfoArgs;
+            if (!username) throw new Error('Missing required parameter: username');
+            return handleGetUserInfo(client, { username, fields });
+        }
         
         case 'getUserTimeline':
-            return handleGetUserTimeline(client, request.params.arguments as GetUserTimelineArgs);
+            return handleGetUserTimeline(client, args as GetUserTimelineArgs);
         
         case 'followUser':
-            return handleFollowUser(client, request.params.arguments as UserHandlerArgs);
+            return handleFollowUser(client, args as UserHandlerArgs);
         
         case 'unfollowUser':
-            return handleUnfollowUser(client, request.params.arguments as UserHandlerArgs);
+            return handleUnfollowUser(client, args as UserHandlerArgs);
         
         case 'likeTweet':
-            return handleLikeTweet(client, request.params.arguments as TweetEngagementArgs);
+            return handleLikeTweet(client, args as TweetEngagementArgs);
         
         case 'unlikeTweet':
-            return handleUnlikeTweet(client, request.params.arguments as TweetEngagementArgs);
+            return handleUnlikeTweet(client, args as TweetEngagementArgs);
         
         case 'retweet':
-            return handleRetweet(client, request.params.arguments as TweetEngagementArgs);
+            return handleRetweet(client, args as TweetEngagementArgs);
         
         case 'undoRetweet':
-            return handleUndoRetweet(client, request.params.arguments as TweetEngagementArgs);
+            return handleUndoRetweet(client, args as TweetEngagementArgs);
         
         case 'createList':
-            return handleCreateList(client, request.params.arguments as ListCreateArgs);
+            return handleCreateList(client, args as ListCreateArgs);
         
         case 'addUserToList':
-            return handleAddUserToList(client, request.params.arguments as ListMemberArgs);
+            return handleAddUserToList(client, args as ListMemberArgs);
         
         case 'removeUserFromList':
-            return handleRemoveUserFromList(client, request.params.arguments as ListMemberArgs);
+            return handleRemoveUserFromList(client, args as ListMemberArgs);
         
         case 'getListMembers':
-            return handleGetListMembers(client, request.params.arguments as GetListMembersArgs);
+            return handleGetListMembers(client, args as GetListMembersArgs);
         
         default:
             throw new Error(`Tool not found: ${request.params.name}`);
