@@ -1,20 +1,26 @@
 import { TwitterClient } from '../twitterClient.js';
 import { promises as fs } from 'fs';
+import { 
+    HandlerResponse, 
+    TwitterHandler,
+    TweetHandlerArgs,
+    MediaTweetHandlerArgs 
+} from '../types/handlers.js';
 
-export async function handlePostTweet(client: TwitterClient, text: string) {
+export const handlePostTweet: TwitterHandler<TweetHandlerArgs> = async (
+    client: TwitterClient,
+    { text }: TweetHandlerArgs
+): Promise<HandlerResponse> => {
     const tweet = await client.v2.tweet({ text });
     return {
         content: [{ type: 'text', text: `Tweet posted with id: ${tweet.data.id}` }],
     };
-}
+};
 
-export async function handlePostTweetWithMedia(
-    client: TwitterClient, 
-    text: string, 
-    mediaPath: string, 
-    mediaType: string, 
-    altText?: string
-) {
+export const handlePostTweetWithMedia: TwitterHandler<MediaTweetHandlerArgs> = async (
+    client: TwitterClient,
+    { text, mediaPath, mediaType, altText }: MediaTweetHandlerArgs
+): Promise<HandlerResponse> => {
     try {
         const mediaBuffer = await fs.readFile(mediaPath);
         const mediaId = await client.v1.uploadMedia(mediaBuffer, { mimeType: mediaType });
@@ -37,6 +43,6 @@ export async function handlePostTweetWithMedia(
         }
         throw error;
     }
-}
+};
 
 // Add other tweet-related handlers... 
