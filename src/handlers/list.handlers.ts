@@ -111,13 +111,23 @@ export const handleGetUserLists: TwitterHandler<GetUserListsArgs> = async (clien
             throw new Error(`User ${username} not found`);
         }
 
-        const lists = await client.v2.listsOwned(user.data.id, {
+        // Get lists owned by the user
+        const ownedLists = await client.v2.listsOwned(user.data.id, {
             max_results: maxResults,
             "list.fields": ["created_at", "follower_count", "member_count", "private", "description"]
         });
 
-        const responseText = `Here are the lists owned by ${username}:`;
-        return createResponse(responseText, { lists: lists.data || [] });
+        // Get lists the user is a member of
+        const memberLists = await client.v2.listMemberships(user.data.id, {
+            max_results: maxResults,
+            "list.fields": ["created_at", "follower_count", "member_count", "private", "description"]
+        });
+
+        const responseText = `Here are the lists for ${username}:`;
+        return createResponse(responseText, { 
+            owned: ownedLists.data || [],
+            member_of: memberLists.data || []
+        });
     } catch (error: any) {
         const errorMessage = error?.message || 'Unknown error occurred';
         throw new Error(`Failed to get user lists: ${errorMessage}`);
