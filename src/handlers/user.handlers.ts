@@ -5,6 +5,7 @@ import {
     TwitterHandler,
     UserHandlerArgs 
 } from '../types/handlers.js';
+import { createResponse } from '../utils/response.js';
 
 interface GetUserInfoArgs extends UserHandlerArgs {
     fields?: TTweetv2UserField[];
@@ -30,12 +31,7 @@ export const handleGetUserInfo: TwitterHandler<GetUserInfoArgs> = async (
         throw new Error(`User not found: ${username}`);
     }
 
-    return {
-        content: [{ 
-            type: 'text', 
-            text: `User info: ${JSON.stringify(user.data, null, 2)}` 
-        }],
-    };
+    return createResponse(`User info: ${JSON.stringify(user.data, null, 2)}`);
 };
 
 export const handleGetUserTimeline: TwitterHandler<GetUserTimelineArgs> = async (
@@ -52,12 +48,7 @@ export const handleGetUserTimeline: TwitterHandler<GetUserTimelineArgs> = async 
         'tweet.fields': tweetFields?.join(',')
     });
     
-    return {
-        content: [{ 
-            type: 'text', 
-            text: `User timeline: ${JSON.stringify(tweets.data, null, 2)}` 
-        }],
-    };
+    return createResponse(`User timeline: ${JSON.stringify(tweets.data, null, 2)}`);
 };
 
 export const handleFollowUser: TwitterHandler<UserHandlerArgs> = async (
@@ -73,9 +64,7 @@ export const handleFollowUser: TwitterHandler<UserHandlerArgs> = async (
         }
         
         await client.v2.follow(userId, targetUser.data.id);
-        return {
-            content: [{ type: 'text', text: `Successfully followed user: ${username}` }],
-        };
+        return createResponse(`Successfully followed user: ${username}`);
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to follow user: ${error.message}`);
@@ -97,9 +86,7 @@ export const handleUnfollowUser: TwitterHandler<UserHandlerArgs> = async (
         }
         
         await client.v2.unfollow(userId, targetUser.data.id);
-        return {
-            content: [{ type: 'text', text: `Successfully unfollowed user: ${username}` }],
-        };
+        return createResponse(`Successfully unfollowed user: ${username}`);
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to unfollow user: ${error.message}`);
