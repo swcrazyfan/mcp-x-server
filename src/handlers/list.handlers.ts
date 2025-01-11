@@ -1,7 +1,7 @@
 import { TwitterClient } from '../client/twitter.js';
 import { HandlerResponse } from '../types/handlers.js';
 import { createResponse } from '../utils/response.js';
-import { ListV2, UserV2 } from 'twitter-api-v2';
+import { ListV2, UserV2, ApiResponseError } from 'twitter-api-v2';
 
 export interface GetUserListsArgs {
     username: string;
@@ -127,9 +127,39 @@ export async function handleAddUserToList(
     args: AddUserToListArgs
 ): Promise<HandlerResponse> {
     try {
+        // First, verify the user exists and get their username for the response message
+        const user = await client.getUserById(args.userId);
+        if (!user.data) {
+            throw new Error(`User with ID ${args.userId} not found`);
+        }
+
+        // Then verify the list exists and get its name for the response message
+        const list = await client.getList(args.listId);
+        if (!list.data) {
+            throw new Error(`List with ID ${args.listId} not found`);
+        }
+
+        // Now try to add the user to the list
         await client.addListMember(args.listId, args.userId);
-        return createResponse(`Successfully added user to list ${args.listId}`);
+
+        return createResponse(
+            `Successfully added user @${user.data.username} to list "${list.data.name}"`
+        );
     } catch (error) {
+        if (error instanceof ApiResponseError) {
+            // Handle specific Twitter API errors
+            if (error.rateLimitError && error.rateLimit) {
+                const resetMinutes = Math.ceil(error.rateLimit.reset / 60);
+                throw new Error(`Rate limit exceeded. Please try again in ${resetMinutes} minutes.`);
+            }
+            if (error.code === 403) {
+                throw new Error('You do not have permission to add members to this list.');
+            }
+            if (error.code === 404) {
+                throw new Error('The specified user or list could not be found.');
+            }
+            throw new Error(`Twitter API Error: ${error.message}`);
+        }
         if (error instanceof Error) {
             throw new Error(`Failed to add user to list: ${error.message}`);
         }

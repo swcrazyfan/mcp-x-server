@@ -239,6 +239,9 @@ export class TwitterClient extends TwitterApi {
     }
 
     async addListMember(listId: string, userId: string) {
+        // Add a small delay before the operation to help prevent rate limits
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
         return this.withRateLimitRetry('addListMember', () => 
             this.v2.addListMember(listId, userId)
         );
@@ -247,6 +250,22 @@ export class TwitterClient extends TwitterApi {
     async removeListMember(listId: string, userId: string) {
         return this.withRateLimitRetry('removeListMember', () => 
             this.v2.removeListMember(listId, userId)
+        );
+    }
+
+    async getUserById(userId: string) {
+        return this.withRateLimitRetry('getUserById', () => 
+            this.v2.user(userId, {
+                'user.fields': ['username', 'name', 'verified']
+            })
+        );
+    }
+
+    async getList(listId: string) {
+        return this.withRateLimitRetry('getList', () => 
+            this.v2.list(listId, {
+                'list.fields': ['created_at', 'follower_count', 'member_count', 'private', 'description']
+            })
         );
     }
 } 
