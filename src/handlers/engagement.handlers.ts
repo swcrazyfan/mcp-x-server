@@ -77,4 +77,27 @@ export const handleUndoRetweet: TwitterHandler<TweetEngagementArgs> = async (
         }
         throw error;
     }
+};
+
+export const handleGetRetweets: TwitterHandler<GetRetweetsArgs> = async (
+    client: TwitterClient,
+    { tweetId, maxResults = 100, userFields }: GetRetweetsArgs
+): Promise<HandlerResponse> => {
+    try {
+        const retweets = await client.v2.tweetRetweetedBy(tweetId, {
+            max_results: maxResults,
+            'user.fields': userFields?.join(',') || 'description,profile_image_url,public_metrics,verified'
+        });
+
+        if (!retweets.data || retweets.data.length === 0) {
+            return createResponse(`No retweets found for tweet: ${tweetId}`);
+        }
+
+        return createResponse(`Users who retweeted: ${JSON.stringify(retweets.data, null, 2)}`);
+    } catch (error) {
+        if (error instanceof Error) {
+            throw new Error(`Failed to get retweets: ${error.message}`);
+        }
+        throw error;
+    }
 }; 

@@ -20,7 +20,8 @@ import {
     handleLikeTweet,
     handleUnlikeTweet,
     handleRetweet,
-    handleUndoRetweet
+    handleUndoRetweet,
+    handleGetRetweets
 } from './handlers/engagement.handlers.js';
 import {
     handleCreateList,
@@ -222,6 +223,15 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             if (!tweetId) throw new Error('Missing required parameter: tweetId');
             if (!text) throw new Error('Missing required parameter: text');
             return handleReplyToTweet(client, { tweetId, text });
+        }
+        
+        case 'getRetweets': {
+            const tweetId = args.tweetId as string;
+            const maxResults = args.maxResults as number | undefined;
+            const userFields = args.userFields as string[] | undefined;
+            
+            if (!tweetId) throw new Error('Missing required parameter: tweetId');
+            return handleGetRetweets(client, { tweetId, maxResults, userFields });
         }
         
         default:
