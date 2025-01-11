@@ -30,7 +30,8 @@ import {
     handleCreateList,
     handleAddUserToList,
     handleRemoveUserFromList,
-    handleGetListMembers
+    handleGetListMembers,
+    handleGetUserLists
 } from './handlers/list.handlers.js';
 import {
     handleSearchTweets,
@@ -46,7 +47,8 @@ import {
     GetUserTimelineArgs,
     TweetEngagementArgs,
     ListMemberArgs,
-    GetListMembersArgs
+    GetListMembersArgs,
+    GetUserListsArgs
 } from './types/handlers.js';
 import { TTweetv2UserField } from 'twitter-api-v2';
 
@@ -259,6 +261,11 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             const tweetId = args.tweetId as string;
             if (!tweetId) throw new Error('Missing required parameter: tweetId');
             return handleDeleteTweet(client, { tweetId });
+        }
+
+        case 'getUserLists': {
+            const { username, maxResults } = args as unknown as GetUserListsArgs;
+            return handleGetUserLists(client, { username, maxResults });
         }
         
         default:

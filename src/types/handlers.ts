@@ -67,4 +67,9 @@ export interface ListMemberArgs extends ListHandlerArgs {
 export interface GetListMembersArgs extends ListHandlerArgs {
     maxResults?: number;
     userFields?: string[];
+}
+
+export interface GetUserListsArgs {
+    username: string;
+    maxResults?: number;
 } 

@@ -5,7 +5,8 @@ import {
     ListHandlerArgs,
     ListCreateArgs,
     ListMemberArgs,
-    GetListMembersArgs 
+    GetListMembersArgs,
+    GetUserListsArgs 
 } from '../types/handlers.js';
 import { createResponse } from '../utils/response.js';
 
@@ -93,5 +94,27 @@ export const handleGetListMembers: TwitterHandler<GetListMembersArgs> = async (
             throw new Error(`Failed to get list members: ${error.message}`);
         }
         throw error;
+    }
+};
+
+export const handleGetUserLists: TwitterHandler<GetUserListsArgs> = async (client, args) => {
+    try {
+        const { username, maxResults = 100 } = args;
+        
+        const user = await client.v2.userByUsername(username);
+        if (!user.data) {
+            throw new Error(`User ${username} not found`);
+        }
+
+        const lists = await client.v2.listsOwned(user.data.id, {
+            max_results: maxResults,
+            "list.fields": ["created_at", "follower_count", "member_count", "private", "description"]
+        });
+
+        const responseText = `Here are the lists owned by ${username}:`;
+        return createResponse(responseText);
+    } catch (error: any) {
+        const errorMessage = error?.message || 'Unknown error occurred';
+        throw new Error(`Failed to get user lists: ${errorMessage}`);
     }
 }; 
