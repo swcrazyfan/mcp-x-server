@@ -1,6 +1,7 @@
 import { TwitterClient } from '../twitterClient.js';
 import { HandlerResponse, TwitterHandler } from '../types/handlers.js';
 import { createResponse } from '../utils/response.js';
+import { TweetV2, TwitterApiReadOnly } from 'twitter-api-v2';
 
 interface SearchTweetsArgs {
     query: string;
@@ -19,16 +20,17 @@ export const handleSearchTweets: TwitterHandler<SearchTweetsArgs> = async (
     { query, maxResults = 10, tweetFields }: SearchTweetsArgs
 ): Promise<HandlerResponse> => {
     try {
-        const tweets = await client.v2.search(query, {
+        const searchResult = await client.v2.search(query, {
             max_results: maxResults,
             'tweet.fields': tweetFields?.join(',') || 'created_at,public_metrics'
         });
 
-        if (!tweets.data) {
+        const tweets = searchResult.tweets;
+        if (!tweets || tweets.length === 0) {
             return createResponse(`No tweets found for query: ${query}`);
         }
 
-        return createResponse(`Search results: ${JSON.stringify(tweets.data, null, 2)}`);
+        return createResponse(`Search results: ${JSON.stringify(tweets, null, 2)}`);
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to search tweets: ${error.message}`);
@@ -43,22 +45,26 @@ export const handleHashtagAnalytics: TwitterHandler<HashtagAnalyticsArgs> = asyn
 ): Promise<HandlerResponse> => {
     try {
         const query = `#${hashtag.replace(/^#/, '')}`;
-        const tweets = await client.v2.search(query, {
+        const searchResult = await client.v2.search(query, {
             max_results: 100,
             'tweet.fields': 'public_metrics,created_at',
             start_time: startTime,
             end_time: endTime
         });
 
-        if (!tweets.data) {
+        const tweets = searchResult.tweets;
+        if (!tweets || tweets.length === 0) {
             return createResponse(`No tweets found for hashtag: ${hashtag}`);
         }
 
         const analytics = {
-            totalTweets: tweets.data.length,
-            totalLikes: tweets.data.reduce((sum, tweet) => sum + (tweet.public_metrics?.like_count || 0), 0),
-            totalRetweets: tweets.data.reduce((sum, tweet) => sum + (tweet.public_metrics?.retweet_count || 0), 0),
-            totalReplies: tweets.data.reduce((sum, tweet) => sum + (tweet.public_metrics?.reply_count || 0), 0)
+            totalTweets: tweets.length,
+            totalLikes: tweets.reduce((sum: number, tweet: TweetV2) => 
+                sum + (tweet.public_metrics?.like_count || 0), 0),
+            totalRetweets: tweets.reduce((sum: number, tweet: TweetV2) => 
+                sum + (tweet.public_metrics?.retweet_count || 0), 0),
+            totalReplies: tweets.reduce((sum: number, tweet: TweetV2) => 
+                sum + (tweet.public_metrics?.reply_count || 0), 0)
         };
 
         return createResponse(`Hashtag Analytics for ${hashtag}:\n${JSON.stringify(analytics, null, 2)}`);

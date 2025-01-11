@@ -1,3 +1,5 @@
+import { z } from 'zod';
+
 export const TOOLS = {
     postTweet: {
         description: 'Post a tweet to Twitter',
@@ -74,35 +76,45 @@ export const TOOLS = {
         },
     },
     searchTweets: {
-        description: 'Search for tweets on Twitter with advanced options',
+        description: 'Search for tweets using a query string',
         inputSchema: {
             type: 'object',
             properties: {
-                query: { type: 'string', description: 'The query to search for' },
-                since: { type: 'string', description: 'Start time for search (ISO 8601 format)' },
-                until: { type: 'string', description: 'End time for search (ISO 8601 format)' },
-                tweetFields: { 
-                    type: 'array', 
-                    items: { 
-                        type: 'string',
-                        enum: ['created_at', 'author_id', 'conversation_id', 'public_metrics', 'entities', 'context_annotations']
-                    },
-                    description: 'Additional tweet fields to include in the response'
+                query: {
+                    type: 'string',
+                    description: 'The search query'
                 },
+                maxResults: {
+                    type: 'number',
+                    description: 'Maximum number of results to return'
+                },
+                tweetFields: {
+                    type: 'array',
+                    items: {
+                        type: 'string'
+                    },
+                    description: 'Fields to include in the tweet objects'
+                }
             },
-            required: ['query'],
-        },
+            required: ['query']
+        }
     },
     replyToTweet: {
-        description: 'Reply to a tweet on Twitter',
+        description: 'Reply to a tweet',
         inputSchema: {
             type: 'object',
             properties: {
-                tweetId: { type: 'string', description: 'The ID of the tweet to reply to' },
-                text: { type: 'string', description: 'The text of the reply' },
+                tweetId: {
+                    type: 'string',
+                    description: 'The ID of the tweet to reply to'
+                },
+                text: {
+                    type: 'string',
+                    description: 'The text of the reply'
+                }
             },
-            required: ['tweetId', 'text'],
-        },
+            required: ['tweetId', 'text']
+        }
     },
     getUserTimeline: {
         description: 'Get recent tweets from a user timeline',
@@ -119,10 +131,20 @@ export const TOOLS = {
         inputSchema: {
             type: 'object',
             properties: {
-                tweetId: { type: 'string', description: 'The ID of the tweet' },
+                tweetId: {
+                    type: 'string',
+                    description: 'The ID of the tweet'
+                },
+                tweetFields: {
+                    type: 'array',
+                    items: {
+                        type: 'string'
+                    },
+                    description: 'Fields to include in the tweet object'
+                }
             },
-            required: ['tweetId'],
-        },
+            required: ['tweetId']
+        }
     },
     getUserInfo: {
         description: 'Get information about a Twitter user',
@@ -222,28 +244,28 @@ export const TOOLS = {
         },
     },
     getFollowers: {
-        description: 'Get a list of followers for a user',
+        description: 'Get followers of a user',
         inputSchema: {
             type: 'object',
             properties: {
-                username: { type: 'string', description: 'The username of the user whose followers to fetch' },
-                maxResults: { 
-                    type: 'number', 
-                    description: 'The maximum number of results to return (default: 100, max: 1000)',
-                    minimum: 1,
-                    maximum: 1000
+                username: {
+                    type: 'string',
+                    description: 'The username of the account'
                 },
-                userFields: { 
-                    type: 'array', 
-                    items: { 
-                        type: 'string',
-                        enum: ['description', 'profile_image_url', 'public_metrics', 'verified', 'location', 'url']
+                maxResults: {
+                    type: 'number',
+                    description: 'Maximum number of followers to return'
+                },
+                userFields: {
+                    type: 'array',
+                    items: {
+                        type: 'string'
                     },
-                    description: 'Additional user fields to include in the response'
-                },
+                    description: 'Fields to include in the user objects'
+                }
             },
-            required: ['username'],
-        },
+            required: ['username']
+        }
     },
     getFollowing: {
         description: 'Get a list of users that a user is following',
@@ -352,37 +374,24 @@ export const TOOLS = {
         },
     },
     getHashtagAnalytics: {
-        description: 'Get analytics for a hashtag using Twitter search',
+        description: 'Get analytics for a specific hashtag',
         inputSchema: {
             type: 'object',
             properties: {
-                hashtag: { 
-                    type: 'string', 
-                    description: 'The hashtag to analyze (without #)' 
+                hashtag: {
+                    type: 'string',
+                    description: 'The hashtag to analyze (with or without #)'
                 },
-                maxResults: { 
-                    type: 'number', 
-                    description: 'The maximum number of tweets to analyze (default: 100, max: 100)',
-                    minimum: 10,
-                    maximum: 100
+                startTime: {
+                    type: 'string',
+                    description: 'Start time for the analysis (ISO 8601)'
                 },
-                tweetFields: { 
-                    type: 'array', 
-                    items: { 
-                        type: 'string',
-                        enum: [
-                            'created_at',
-                            'author_id',
-                            'conversation_id',
-                            'public_metrics',
-                            'entities',
-                            'context_annotations'
-                        ]
-                    },
-                    description: 'Additional tweet fields to include in the response'
+                endTime: {
+                    type: 'string',
+                    description: 'End time for the analysis (ISO 8601)'
                 }
             },
-            required: ['hashtag'],
-        },
+            required: ['hashtag']
+        }
     },
 }; 
