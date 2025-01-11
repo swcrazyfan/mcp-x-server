@@ -1,11 +1,25 @@
 import { TwitterClient } from '../twitterClient.js';
 import { UserV2, UserV2Fields } from 'twitter-api-v2';
+import { 
+    HandlerResponse, 
+    TwitterHandler,
+    UserHandlerArgs 
+} from '../types/handlers.js';
 
-export async function handleGetUserInfo(
+// Add new interfaces for user handlers
+interface GetUserInfoArgs extends UserHandlerArgs {
+    fields?: UserV2Fields[];
+}
+
+interface GetUserTimelineArgs extends UserHandlerArgs {
+    maxResults?: number;
+    tweetFields?: string[];
+}
+
+export const handleGetUserInfo: TwitterHandler<GetUserInfoArgs> = async (
     client: TwitterClient,
-    username: string,
-    fields?: UserV2Fields[]
-) {
+    { username, fields }: GetUserInfoArgs
+): Promise<HandlerResponse> => {
     const user = await client.v2.userByUsername(
         username,
         { 
@@ -23,30 +37,34 @@ export async function handleGetUserInfo(
             text: `User info: ${JSON.stringify(user.data, null, 2)}` 
         }],
     };
-}
+};
 
-export async function handleGetUserTimeline(
+export const handleGetUserTimeline: TwitterHandler<GetUserTimelineArgs> = async (
     client: TwitterClient,
-    username: string
-) {
+    { username, maxResults, tweetFields }: GetUserTimelineArgs
+): Promise<HandlerResponse> => {
     const userResponse = await client.v2.userByUsername(username);
     if (!userResponse.data) {
         throw new Error(`User not found: ${username}`);
     }
     
-    const tweets = await client.v2.userTimeline(userResponse.data.id);
+    const tweets = await client.v2.userTimeline(userResponse.data.id, {
+        max_results: maxResults,
+        'tweet.fields': tweetFields?.join(',')
+    });
+    
     return {
         content: [{ 
             type: 'text', 
             text: `User timeline: ${JSON.stringify(tweets.data, null, 2)}` 
         }],
     };
-}
+};
 
-export async function handleFollowUser(
+export const handleFollowUser: TwitterHandler<UserHandlerArgs> = async (
     client: TwitterClient,
-    username: string
-) {
+    { username }: UserHandlerArgs
+): Promise<HandlerResponse> => {
     try {
         const userId = await client.v2.me().then(response => response.data.id);
         const targetUser = await client.v2.userByUsername(username);
@@ -65,12 +83,12 @@ export async function handleFollowUser(
         }
         throw error;
     }
-}
+};
 
-export async function handleUnfollowUser(
+export const handleUnfollowUser: TwitterHandler<UserHandlerArgs> = async (
     client: TwitterClient,
-    username: string
-) {
+    { username }: UserHandlerArgs
+): Promise<HandlerResponse> => {
     try {
         const userId = await client.v2.me().then(response => response.data.id);
         const targetUser = await client.v2.userByUsername(username);
@@ -89,4 +107,4 @@ export async function handleUnfollowUser(
         }
         throw error;
     }
-} 
+}; 
