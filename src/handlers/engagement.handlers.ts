@@ -15,6 +15,12 @@ interface GetRetweetsArgs extends TweetEngagementArgs {
     userFields?: string[];
 }
 
+interface GetLikedTweetsArgs {
+    userId: string;
+    maxResults?: number;
+    tweetFields?: string[];
+}
+
 export const handleLikeTweet: TwitterHandler<TweetEngagementArgs> = async (
     client: TwitterClient,
     { tweetId }: TweetEngagementArgs
@@ -97,6 +103,29 @@ export const handleGetRetweets: TwitterHandler<GetRetweetsArgs> = async (
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to get retweets: ${error.message}`);
+        }
+        throw error;
+    }
+};
+
+export const handleGetLikedTweets: TwitterHandler<GetLikedTweetsArgs> = async (
+    client: TwitterClient,
+    { userId, maxResults = 100, tweetFields }: GetLikedTweetsArgs
+): Promise<HandlerResponse> => {
+    try {
+        const likedTweets = await client.v2.userLikedTweets(userId, {
+            max_results: maxResults,
+            'tweet.fields': tweetFields?.join(',') || 'created_at,public_metrics,author_id'
+        });
+
+        if (!likedTweets.data || likedTweets.data.length === 0) {
+            return createResponse(`No liked tweets found for user: ${userId}`);
+        }
+
+        return createResponse(`Liked tweets: ${JSON.stringify(likedTweets.data, null, 2)}`);
+    } catch (error) {
+        if (error instanceof Error) {
+            throw new Error(`Failed to get liked tweets: ${error.message}`);
         }
         throw error;
     }

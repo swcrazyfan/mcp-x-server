@@ -11,7 +11,7 @@ import { createResponse } from '../utils/response.js';
 
 export const handleCreateList: TwitterHandler<ListCreateArgs> = async (
     client: TwitterClient,
-    { name, description, isPrivate }: ListCreateArgs
+    { name, description = '', isPrivate = false }: ListCreateArgs
 ): Promise<HandlerResponse> => {
     try {
         const list = await client.v2.createList({

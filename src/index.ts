@@ -14,14 +14,16 @@ import {
     handleGetUserTimeline,
     handleFollowUser,
     handleUnfollowUser,
-    handleGetFollowers
+    handleGetFollowers,
+    handleGetFollowing
 } from './handlers/user.handlers.js';
 import {
     handleLikeTweet,
     handleUnlikeTweet,
     handleRetweet,
     handleUndoRetweet,
-    handleGetRetweets
+    handleGetRetweets,
+    handleGetLikedTweets
 } from './handlers/engagement.handlers.js';
 import {
     handleCreateList,
@@ -232,6 +234,24 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             
             if (!tweetId) throw new Error('Missing required parameter: tweetId');
             return handleGetRetweets(client, { tweetId, maxResults, userFields });
+        }
+        
+        case 'getLikedTweets': {
+            const userId = args.userId as string;
+            const maxResults = args.maxResults as number | undefined;
+            const tweetFields = args.tweetFields as string[] | undefined;
+            
+            if (!userId) throw new Error('Missing required parameter: userId');
+            return handleGetLikedTweets(client, { userId, maxResults, tweetFields });
+        }
+
+        case 'getFollowing': {
+            const username = args.username as string;
+            const maxResults = args.maxResults as number | undefined;
+            const userFields = args.userFields as string[] | undefined;
+            
+            if (!username) throw new Error('Missing required parameter: username');
+            return handleGetFollowing(client, { username, maxResults, userFields });
         }
         
         default:

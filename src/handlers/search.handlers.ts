@@ -1,7 +1,7 @@
 import { TwitterClient } from '../twitterClient.js';
 import { HandlerResponse, TwitterHandler } from '../types/handlers.js';
 import { createResponse } from '../utils/response.js';
-import { TweetV2, TwitterApiReadOnly } from 'twitter-api-v2';
+import { TweetV2, TwitterApiReadOnly, UserV2, TweetSearchRecentV2Paginator } from 'twitter-api-v2';
 
 interface SearchTweetsArgs {
     query: string;
@@ -15,6 +15,10 @@ interface HashtagAnalyticsArgs {
     endTime?: string;
 }
 
+interface TweetWithAuthor extends TweetV2 {
+    author?: UserV2;
+}
+
 export const handleSearchTweets: TwitterHandler<SearchTweetsArgs> = async (
     client: TwitterClient,
     { query, maxResults = 10, tweetFields }: SearchTweetsArgs
@@ -22,15 +26,21 @@ export const handleSearchTweets: TwitterHandler<SearchTweetsArgs> = async (
     try {
         const searchResult = await client.v2.search(query, {
             max_results: maxResults,
-            'tweet.fields': tweetFields?.join(',') || 'created_at,public_metrics'
+            'tweet.fields': tweetFields?.join(',') || 'created_at,public_metrics',
+            expansions: ['author_id'],
+            'user.fields': ['username']
         });
 
-        const tweets = searchResult.tweets;
-        if (!tweets || tweets.length === 0) {
+        if (!searchResult.data || searchResult.data.length === 0) {
             return createResponse(`No tweets found for query: ${query}`);
         }
 
-        return createResponse(`Search results: ${JSON.stringify(tweets, null, 2)}`);
+        const formattedTweets = searchResult.data.map((tweet: TweetV2): TweetWithAuthor => ({
+            ...tweet,
+            author: searchResult.includes?.users?.find(u => u.id === tweet.author_id)
+        }));
+
+        return createResponse(`Search results: ${JSON.stringify(formattedTweets, null, 2)}`);
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to search tweets: ${error.message}`);

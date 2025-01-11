@@ -21,6 +21,11 @@ interface GetFollowersArgs extends UserHandlerArgs {
     userFields?: string[];
 }
 
+interface GetFollowingArgs extends UserHandlerArgs {
+    maxResults?: number;
+    userFields?: string[];
+}
+
 export const handleGetUserInfo: TwitterHandler<GetUserInfoArgs> = async (
     client: TwitterClient,
     { username, fields }: GetUserInfoArgs
@@ -123,6 +128,34 @@ export const handleGetFollowers: TwitterHandler<GetFollowersArgs> = async (
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to get followers: ${error.message}`);
+        }
+        throw error;
+    }
+};
+
+export const handleGetFollowing: TwitterHandler<GetFollowingArgs> = async (
+    client: TwitterClient,
+    { username, maxResults, userFields }: GetFollowingArgs
+): Promise<HandlerResponse> => {
+    try {
+        const user = await client.v2.userByUsername(username);
+        if (!user.data) {
+            throw new Error(`User not found: ${username}`);
+        }
+
+        const following = await client.v2.following(user.data.id, {
+            max_results: maxResults,
+            'user.fields': userFields?.join(',') || 'description,profile_image_url,public_metrics,verified'
+        });
+
+        if (!following.data || following.data.length === 0) {
+            return createResponse(`User ${username} is not following anyone`);
+        }
+
+        return createResponse(`Users followed by ${username}: ${JSON.stringify(following.data, null, 2)}`);
+    } catch (error) {
+        if (error instanceof Error) {
+            throw new Error(`Failed to get following: ${error.message}`);
         }
         throw error;
     }
