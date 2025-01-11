@@ -1,12 +1,19 @@
 import { TwitterClient } from '../twitterClient.js';
-import { objectOutputType } from '@modelcontextprotocol/sdk/types.js';
+import { z } from 'zod';
 
 export interface HandlerResponse {
     content: Array<{
         type: string;
         text: string;
     }>;
-    tools?: objectOutputType<any, any, any>[];
+    tools?: z.infer<typeof z.array(z.object({
+        name: z.string(),
+        description: z.string().optional(),
+        inputSchema: z.object({
+            type: z.literal('object'),
+            properties: z.record(z.any()).optional()
+        })
+    }))>;
 }
 
 export interface TwitterHandler<T> {
