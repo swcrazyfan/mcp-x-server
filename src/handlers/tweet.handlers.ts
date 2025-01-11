@@ -14,6 +14,7 @@ export const handlePostTweet: TwitterHandler<TweetHandlerArgs> = async (
     const tweet = await client.v2.tweet({ text });
     return {
         content: [{ type: 'text', text: `Tweet posted with id: ${tweet.data.id}` }],
+        tools: []
     };
 };
 
@@ -36,6 +37,7 @@ export const handlePostTweetWithMedia: TwitterHandler<MediaTweetHandlerArgs> = a
 
         return {
             content: [{ type: 'text', text: `Tweet posted with media, id: ${tweet.data.id}` }],
+            tools: []
         };
     } catch (error) {
         if (error instanceof Error) {
