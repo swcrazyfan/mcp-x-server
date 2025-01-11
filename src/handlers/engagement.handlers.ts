@@ -1,9 +1,22 @@
 import { TwitterClient } from '../twitterClient.js';
+import { 
+    HandlerResponse, 
+    TwitterHandler 
+} from '../types/handlers.js';
 
-export async function handleLikeTweet(
+interface TweetEngagementArgs {
+    tweetId: string;
+}
+
+interface GetRetweetsArgs extends TweetEngagementArgs {
+    maxResults?: number;
+    userFields?: string[];
+}
+
+export const handleLikeTweet: TwitterHandler<TweetEngagementArgs> = async (
     client: TwitterClient,
-    tweetId: string
-) {
+    { tweetId }: TweetEngagementArgs
+): Promise<HandlerResponse> => {
     try {
         const userId = await client.v2.me().then(response => response.data.id);
         await client.v2.like(userId, tweetId);
@@ -16,12 +29,12 @@ export async function handleLikeTweet(
         }
         throw error;
     }
-}
+};
 
-export async function handleUnlikeTweet(
+export const handleUnlikeTweet: TwitterHandler<TweetEngagementArgs> = async (
     client: TwitterClient,
-    tweetId: string
-) {
+    { tweetId }: TweetEngagementArgs
+): Promise<HandlerResponse> => {
     try {
         const userId = await client.v2.me().then(response => response.data.id);
         await client.v2.unlike(userId, tweetId);
@@ -34,12 +47,12 @@ export async function handleUnlikeTweet(
         }
         throw error;
     }
-}
+};
 
-export async function handleRetweet(
+export const handleRetweet: TwitterHandler<TweetEngagementArgs> = async (
     client: TwitterClient,
-    tweetId: string
-) {
+    { tweetId }: TweetEngagementArgs
+): Promise<HandlerResponse> => {
     try {
         const userId = await client.v2.me().then(response => response.data.id);
         await client.v2.retweet(userId, tweetId);
@@ -52,12 +65,12 @@ export async function handleRetweet(
         }
         throw error;
     }
-}
+};
 
-export async function handleUndoRetweet(
+export const handleUndoRetweet: TwitterHandler<TweetEngagementArgs> = async (
     client: TwitterClient,
-    tweetId: string
-) {
+    { tweetId }: TweetEngagementArgs
+): Promise<HandlerResponse> => {
     try {
         const userId = await client.v2.me().then(response => response.data.id);
         await client.v2.unretweet(userId, tweetId);
@@ -70,4 +83,4 @@ export async function handleUndoRetweet(
         }
         throw error;
     }
-} 
+}; 
