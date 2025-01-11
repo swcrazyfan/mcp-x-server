@@ -1,11 +1,24 @@
 import { TwitterClient } from '../twitterClient.js';
+import { 
+    HandlerResponse, 
+    TwitterHandler,
+    ListHandlerArgs,
+    ListCreateArgs 
+} from '../types/handlers.js';
 
-export async function handleCreateList(
+interface ListMemberArgs extends ListHandlerArgs {
+    username: string;
+}
+
+interface GetListMembersArgs extends ListHandlerArgs {
+    maxResults?: number;
+    userFields?: string[];
+}
+
+export const handleCreateList: TwitterHandler<ListCreateArgs> = async (
     client: TwitterClient,
-    name: string,
-    description: string,
-    isPrivate: boolean
-) {
+    { name, description, isPrivate }: ListCreateArgs
+): Promise<HandlerResponse> => {
     try {
         const list = await client.v2.createList({
             name,
@@ -21,13 +34,12 @@ export async function handleCreateList(
         }
         throw error;
     }
-}
+};
 
-export async function handleAddUserToList(
+export const handleAddUserToList: TwitterHandler<ListMemberArgs> = async (
     client: TwitterClient,
-    listId: string,
-    username: string
-) {
+    { listId, username }: ListMemberArgs
+): Promise<HandlerResponse> => {
     try {
         const targetUser = await client.v2.userByUsername(username);
         if (!targetUser.data) {
@@ -43,13 +55,12 @@ export async function handleAddUserToList(
         }
         throw error;
     }
-}
+};
 
-export async function handleRemoveUserFromList(
+export const handleRemoveUserFromList: TwitterHandler<ListMemberArgs> = async (
     client: TwitterClient,
-    listId: string,
-    username: string
-) {
+    { listId, username }: ListMemberArgs
+): Promise<HandlerResponse> => {
     try {
         const targetUser = await client.v2.userByUsername(username);
         if (!targetUser.data) {
@@ -65,14 +76,12 @@ export async function handleRemoveUserFromList(
         }
         throw error;
     }
-}
+};
 
-export async function handleGetListMembers(
+export const handleGetListMembers: TwitterHandler<GetListMembersArgs> = async (
     client: TwitterClient,
-    listId: string,
-    maxResults?: number,
-    userFields?: string[]
-) {
+    { listId, maxResults, userFields }: GetListMembersArgs
+): Promise<HandlerResponse> => {
     try {
         const options: any = {
             max_results: maxResults || 100
@@ -101,4 +110,4 @@ export async function handleGetListMembers(
         }
         throw error;
     }
-} 
+}; 
