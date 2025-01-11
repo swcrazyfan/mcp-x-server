@@ -1,4 +1,16 @@
-import { TwitterApi, ApiResponseError, ApiRequestError } from 'twitter-api-v2';
+import { 
+    TwitterApi, 
+    ApiResponseError, 
+    ApiRequestError, 
+    TwitterApiReadOnly, 
+    ListV2, 
+    UserV2,
+    UserOwnedListsV2Paginator,
+    UserListMembershipsV2Paginator,
+    UserListMembersV2Paginator,
+    ListTimelineV2Result,
+    UserV2TimelineResult
+} from 'twitter-api-v2';
 
 export interface TwitterCredentials {
     appKey: string;
@@ -7,8 +19,24 @@ export interface TwitterCredentials {
     accessSecret: string;
 }
 
+export interface PaginationOptions {
+    maxResults?: number;
+    pageLimit?: number;
+}
+
+export interface PaginatedResponse<T> {
+    data: T[];
+    meta: {
+        result_count: number;
+        total_retrieved: number;
+        next_token?: string;
+    };
+}
+
 const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes in milliseconds
 const MAX_RETRIES = 3;
+const DEFAULT_PAGE_LIMIT = 10;
+const MAX_RESULTS_PER_PAGE = 100;
 
 export class TwitterClient extends TwitterApi {
     private rateLimitRetryCount: Map<string, number>;
@@ -61,22 +89,143 @@ export class TwitterClient extends TwitterApi {
         }
     }
 
+    private async *paginateResults<T, P extends { data: { data: T[] }; meta: { next_token?: string }; next(): Promise<P> }>(
+        endpoint: string,
+        initialFetch: () => Promise<P>,
+        options: PaginationOptions = {}
+    ): AsyncGenerator<T[], void, unknown> {
+        const { maxResults, pageLimit = DEFAULT_PAGE_LIMIT } = options;
+        let currentPage = 0;
+        let totalResults = 0;
+        
+        try {
+            let paginator = await this.withRateLimitRetry(endpoint, initialFetch);
+            
+            while (
+                paginator.data?.data?.length > 0 && 
+                currentPage < pageLimit && 
+                (!maxResults || totalResults < maxResults)
+            ) {
+                const results = paginator.data.data;
+                totalResults += results.length;
+                yield results;
+                
+                if (!paginator.meta.next_token) {
+                    break;
+                }
+                
+                currentPage++;
+                paginator = await this.withRateLimitRetry(endpoint, () => paginator.next());
+            }
+        } catch (error) {
+            console.error(`Error during pagination for ${endpoint}:`, error);
+            throw error;
+        }
+    }
+
     async getUserByUsername(username: string) {
         return this.withRateLimitRetry('getUserByUsername', () => 
             this.v2.userByUsername(username)
         );
     }
 
-    async getOwnedLists(userId: string, options: any) {
-        return this.withRateLimitRetry('getOwnedLists', () => 
-            this.v2.listsOwned(userId, options)
+    async getOwnedLists(userId: string, options: any): Promise<PaginatedResponse<ListV2>> {
+        const paginationOptions: PaginationOptions = {
+            maxResults: options.max_results,
+            pageLimit: options.pageLimit
+        };
+
+        const allLists: ListV2[] = [];
+        const iterator = this.paginateResults<ListV2, UserOwnedListsV2Paginator>(
+            'getOwnedLists',
+            () => this.v2.listsOwned(userId, {
+                ...options,
+                max_results: Math.min(options.max_results || MAX_RESULTS_PER_PAGE, MAX_RESULTS_PER_PAGE)
+            }),
+            paginationOptions
         );
+
+        for await (const lists of iterator) {
+            allLists.push(...lists);
+            if (paginationOptions.maxResults && allLists.length >= paginationOptions.maxResults) {
+                allLists.length = paginationOptions.maxResults;
+                break;
+            }
+        }
+
+        return {
+            data: allLists,
+            meta: {
+                result_count: allLists.length,
+                total_retrieved: allLists.length
+            }
+        };
     }
 
-    async getListMemberships(userId: string, options: any) {
-        return this.withRateLimitRetry('getListMemberships', () => 
-            this.v2.listMemberships(userId, options)
+    async getListMemberships(userId: string, options: any): Promise<PaginatedResponse<ListV2>> {
+        const paginationOptions: PaginationOptions = {
+            maxResults: options.max_results,
+            pageLimit: options.pageLimit
+        };
+
+        const allMemberships: ListV2[] = [];
+        const iterator = this.paginateResults<ListV2, UserListMembershipsV2Paginator>(
+            'getListMemberships',
+            () => this.v2.listMemberships(userId, {
+                ...options,
+                max_results: Math.min(options.max_results || MAX_RESULTS_PER_PAGE, MAX_RESULTS_PER_PAGE)
+            }),
+            paginationOptions
         );
+
+        for await (const memberships of iterator) {
+            allMemberships.push(...memberships);
+            if (paginationOptions.maxResults && allMemberships.length >= paginationOptions.maxResults) {
+                allMemberships.length = paginationOptions.maxResults;
+                break;
+            }
+        }
+
+        return {
+            data: allMemberships,
+            meta: {
+                result_count: allMemberships.length,
+                total_retrieved: allMemberships.length
+            }
+        };
+    }
+
+    async getListMembers(listId: string, options: any): Promise<PaginatedResponse<UserV2>> {
+        const paginationOptions: PaginationOptions = {
+            maxResults: options.max_results,
+            pageLimit: options.pageLimit
+        };
+
+        const allMembers: UserV2[] = [];
+        const iterator = this.paginateResults<UserV2, UserListMembersV2Paginator>(
+            'getListMembers',
+            () => this.v2.listMembers(listId, {
+                ...options,
+                max_results: Math.min(options.max_results || MAX_RESULTS_PER_PAGE, MAX_RESULTS_PER_PAGE)
+            }),
+            paginationOptions
+        );
+
+        for await (const members of iterator) {
+            allMembers.push(...members);
+            if (paginationOptions.maxResults && allMembers.length >= paginationOptions.maxResults) {
+                allMembers.length = paginationOptions.maxResults;
+                break;
+            }
+        }
+
+        return {
+            data: allMembers,
+            meta: {
+                result_count: allMembers.length,
+                total_retrieved: allMembers.length
+            }
+        };
     }
 
     async createList(name: string, description: string = '', isPrivate: boolean = false) {
@@ -98,12 +247,6 @@ export class TwitterClient extends TwitterApi {
     async removeListMember(listId: string, userId: string) {
         return this.withRateLimitRetry('removeListMember', () => 
             this.v2.removeListMember(listId, userId)
-        );
-    }
-
-    async getListMembers(listId: string, options: any) {
-        return this.withRateLimitRetry('getListMembers', () => 
-            this.v2.listMembers(listId, options)
         );
     }
 } 

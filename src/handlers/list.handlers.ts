@@ -1,151 +1,190 @@
-import { TwitterClient } from '../twitterClient.js';
-import { 
-    HandlerResponse, 
-    TwitterHandler,
-    ListHandlerArgs,
-    ListCreateArgs,
-    ListMemberArgs,
-    GetListMembersArgs,
-    GetUserListsArgs 
-} from '../types/handlers.js';
+import { TwitterClient } from '../client/twitter.js';
+import { HandlerResponse } from '../types/handlers.js';
 import { createResponse } from '../utils/response.js';
+import { ListV2, UserV2 } from 'twitter-api-v2';
 
-export const handleCreateList: TwitterHandler<ListCreateArgs> = async (
+export interface GetUserListsArgs {
+    username: string;
+    maxResults?: number;
+    pageLimit?: number;
+}
+
+export interface CreateListArgs {
+    name: string;
+    description?: string;
+    isPrivate?: boolean;
+}
+
+export interface AddUserToListArgs {
+    listId: string;
+    userId: string;
+}
+
+export interface RemoveUserFromListArgs {
+    listId: string;
+    userId: string;
+}
+
+export interface GetListMembersArgs {
+    listId: string;
+    maxResults?: number;
+    pageLimit?: number;
+    userFields?: string[];
+}
+
+export async function handleGetUserLists(
     client: TwitterClient,
-    args: ListCreateArgs
-): Promise<HandlerResponse> => {
+    args: GetUserListsArgs
+): Promise<HandlerResponse> {
     try {
-        // Ensure we have all required parameters with defaults
-        const name = args.name;
-        const description = args.description || '';  // Default to empty string if not provided
-        const isPrivate = args.private ?? false;    // Default to public if not provided
+        const user = await client.getUserByUsername(args.username);
+        if (!user.data) {
+            throw new Error('User not found');
+        }
 
-        const list = await client.v2.createList({
-            name,
-            description,
-            private: isPrivate
-        });
+        const options = {
+            'list.fields': ['created_at', 'follower_count', 'member_count', 'private', 'description'],
+            expansions: ['owner_id'],
+            'user.fields': ['username', 'name', 'verified'],
+            max_results: args.maxResults,
+            pageLimit: args.pageLimit
+        };
 
+        const [ownedLists, memberLists] = await Promise.all([
+            client.getOwnedLists(user.data.id, options),
+            client.getListMemberships(user.data.id, options)
+        ]);
+
+        const ownedListsCount = ownedLists.meta.result_count || 0;
+        const memberListsCount = memberLists.meta.result_count || 0;
+
+        let responseText = `Found ${ownedListsCount} owned lists and ${memberListsCount} list memberships.\n\n`;
+
+        if (ownedLists.data && ownedLists.data.length > 0) {
+            responseText += 'Owned Lists:\n';
+            ownedLists.data.forEach((list) => {
+                responseText += formatListInfo(list);
+            });
+            responseText += '\n';
+        }
+
+        if (memberLists.data && memberLists.data.length > 0) {
+            responseText += 'Member of Lists:\n';
+            memberLists.data.forEach((list) => {
+                responseText += formatListInfo(list);
+            });
+        }
+
+        const totalRetrieved = (ownedLists.meta.total_retrieved || 0) + (memberLists.meta.total_retrieved || 0);
+        const totalRequested = args.maxResults ? args.maxResults * 2 : undefined;
+
+        if (totalRequested && totalRetrieved >= totalRequested) {
+            responseText += '\nNote: Maximum requested results reached. There might be more lists available.';
+        }
+
+        return createResponse(responseText);
+    } catch (error) {
+        if (error instanceof Error) {
+            throw new Error(`Failed to get user lists: ${error.message}`);
+        }
+        throw new Error('Failed to get user lists: Unknown error occurred');
+    }
+}
+
+function formatListInfo(list: ListV2): string {
+    const name = list.name.length > 50 ? `${list.name.substring(0, 47)}...` : list.name;
+    const description = list.description
+        ? list.description.length > 100
+            ? `${list.description.substring(0, 97)}...`
+            : list.description
+        : '';
+
+    return `- ${name} (${list.member_count} members${list.private ? ', private' : ''})${
+        description ? `: ${description}` : ''
+    }\n`;
+}
+
+export async function handleCreateList(
+    client: TwitterClient,
+    args: CreateListArgs
+): Promise<HandlerResponse> {
+    try {
+        const list = await client.createList(args.name, args.description, args.isPrivate);
         if (!list.data) {
             throw new Error('Failed to create list');
         }
-
-        return createResponse(`Successfully created list: ${list.data.id}`, { list: list.data });
+        return createResponse(`Successfully created list: ${list.data.name}`);
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to create list: ${error.message}`);
         }
-        throw error;
+        throw new Error('Failed to create list: Unknown error occurred');
     }
-};
+}
 
-export const handleAddUserToList: TwitterHandler<ListMemberArgs> = async (
+export async function handleAddUserToList(
     client: TwitterClient,
-    { listId, username }: ListMemberArgs
-): Promise<HandlerResponse> => {
+    args: AddUserToListArgs
+): Promise<HandlerResponse> {
     try {
-        const user = await client.v2.userByUsername(username);
-        if (!user.data) {
-            throw new Error(`User not found: ${username}`);
-        }
-
-        await client.v2.addListMember(listId, user.data.id);
-        return createResponse(`Successfully added user ${username} to list ${listId}`);
+        await client.addListMember(args.listId, args.userId);
+        return createResponse(`Successfully added user to list ${args.listId}`);
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to add user to list: ${error.message}`);
         }
-        throw error;
+        throw new Error('Failed to add user to list: Unknown error occurred');
     }
-};
+}
 
-export const handleRemoveUserFromList: TwitterHandler<ListMemberArgs> = async (
+export async function handleRemoveUserFromList(
     client: TwitterClient,
-    { listId, username }: ListMemberArgs
-): Promise<HandlerResponse> => {
+    args: RemoveUserFromListArgs
+): Promise<HandlerResponse> {
     try {
-        const user = await client.v2.userByUsername(username);
-        if (!user.data) {
-            throw new Error(`User not found: ${username}`);
-        }
-
-        await client.v2.removeListMember(listId, user.data.id);
-        return createResponse(`Successfully removed user ${username} from list ${listId}`);
+        await client.removeListMember(args.listId, args.userId);
+        return createResponse(`Successfully removed user from list ${args.listId}`);
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to remove user from list: ${error.message}`);
         }
-        throw error;
+        throw new Error('Failed to remove user from list: Unknown error occurred');
     }
-};
+}
 
-export const handleGetListMembers: TwitterHandler<GetListMembersArgs> = async (
+export async function handleGetListMembers(
     client: TwitterClient,
-    { listId, maxResults, userFields }: GetListMembersArgs
-): Promise<HandlerResponse> => {
+    args: GetListMembersArgs
+): Promise<HandlerResponse> {
     try {
-        const members = await client.v2.listMembers(listId, {
-            max_results: maxResults,
-            'user.fields': userFields?.join(',')
-        });
+        const options = {
+            max_results: args.maxResults,
+            pageLimit: args.pageLimit,
+            'user.fields': args.userFields
+        };
 
-        if (!members.data) {
-            return createResponse(`No members found for list ${listId}`);
+        const members = await client.getListMembers(args.listId, options);
+
+        if (!members.data || members.data.length === 0) {
+            return createResponse(`No members found for list ${args.listId}`);
         }
 
-        return createResponse(`List members: ${JSON.stringify(members.data, null, 2)}`);
+        const memberCount = members.meta.result_count || 0;
+        let responseText = `Found ${memberCount} members in list ${args.listId}:\n\n`;
+
+        members.data.forEach((member) => {
+            responseText += `- ${member.name} (@${member.username})\n`;
+        });
+
+        if (members.meta.total_retrieved === args.maxResults) {
+            responseText += '\nNote: Maximum requested results reached. There might be more members available.';
+        }
+
+        return createResponse(responseText);
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to get list members: ${error.message}`);
         }
-        throw error;
+        throw new Error('Failed to get list members: Unknown error occurred');
     }
-};
-
-export const handleGetUserLists: TwitterHandler<GetUserListsArgs> = async (client, args) => {
-    try {
-        const { username, maxResults = 100 } = args;
-        
-        const user = await client.v2.userByUsername(username);
-        if (!user.data) {
-            throw new Error(`User ${username} not found`);
-        }
-
-        // Get lists owned by the user with expanded fields
-        const ownedLists = await client.v2.listsOwned(user.data.id, {
-            max_results: maxResults,
-            "list.fields": ["created_at", "follower_count", "member_count", "private", "description"],
-            "expansions": ["owner_id"],
-            "user.fields": ["username", "name", "verified"]
-        });
-
-        // Get lists the user is a member of with expanded fields
-        const memberLists = await client.v2.listMemberships(user.data.id, {
-            max_results: maxResults,
-            "list.fields": ["created_at", "follower_count", "member_count", "private", "description"],
-            "expansions": ["owner_id"],
-            "user.fields": ["username", "name", "verified"]
-        });
-
-        // Format the response with detailed information
-        const responseText = `Found ${ownedLists.meta?.result_count || 0} owned lists and ${memberLists.meta?.result_count || 0} list memberships for ${username}`;
-        
-        return createResponse(responseText, {
-            owned: {
-                lists: ownedLists.data || [],
-                count: ownedLists.meta?.result_count || 0,
-                has_more: !!ownedLists.meta?.next_token,
-                includes: ownedLists.includes
-            },
-            member_of: {
-                lists: memberLists.data || [],
-                count: memberLists.meta?.result_count || 0,
-                has_more: !!memberLists.meta?.next_token,
-                includes: memberLists.includes
-            }
-        });
-    } catch (error: any) {
-        const errorMessage = error?.message || 'Unknown error occurred';
-        throw new Error(`Failed to get user lists: ${errorMessage}`);
-    }
-}; 
+} 
