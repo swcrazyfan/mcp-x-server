@@ -7,7 +7,8 @@ import {
     handlePostTweet,
     handlePostTweetWithMedia,
     handleGetTweetById,
-    handleReplyToTweet
+    handleReplyToTweet,
+    handleDeleteTweet
 } from './handlers/tweet.handlers.js';
 import {
     handleGetUserInfo,
@@ -252,6 +253,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             
             if (!username) throw new Error('Missing required parameter: username');
             return handleGetFollowing(client, { username, maxResults, userFields });
+        }
+
+        case 'deleteTweet': {
+            const tweetId = args.tweetId as string;
+            if (!tweetId) throw new Error('Missing required parameter: tweetId');
+            return handleDeleteTweet(client, { tweetId });
         }
         
         default:

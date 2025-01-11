@@ -394,4 +394,17 @@ export const TOOLS = {
             required: ['hashtag']
         }
     },
+    deleteTweet: {
+        description: 'Delete a tweet by its ID',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                tweetId: {
+                    type: 'string',
+                    description: 'The ID of the tweet to delete'
+                }
+            },
+            required: ['tweetId']
+        }
+    },
 }; 

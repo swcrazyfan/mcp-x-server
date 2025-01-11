@@ -52,6 +52,10 @@ interface ReplyTweetArgs {
     text: string;
 }
 
+interface DeleteTweetArgs {
+    tweetId: string;
+}
+
 export const handleGetTweetById: TwitterHandler<GetTweetArgs> = async (
     client: TwitterClient,
     { tweetId, tweetFields }: GetTweetArgs
@@ -84,6 +88,21 @@ export const handleReplyToTweet: TwitterHandler<ReplyTweetArgs> = async (
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to reply to tweet: ${error.message}`);
+        }
+        throw error;
+    }
+};
+
+export const handleDeleteTweet: TwitterHandler<DeleteTweetArgs> = async (
+    client: TwitterClient,
+    { tweetId }: DeleteTweetArgs
+): Promise<HandlerResponse> => {
+    try {
+        await client.v2.deleteTweet(tweetId);
+        return createResponse(`Successfully deleted tweet: ${tweetId}`);
+    } catch (error) {
+        if (error instanceof Error) {
+            throw new Error(`Failed to delete tweet: ${error.message}`);
         }
         throw error;
     }
