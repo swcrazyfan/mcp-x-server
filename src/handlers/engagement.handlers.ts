@@ -4,6 +4,7 @@ import {
     HandlerResponse, 
     TwitterHandler 
 } from '../types/handlers.js';
+import { createResponse } from '../utils/response.js';
 
 interface TweetEngagementArgs {
     tweetId: string;
@@ -21,9 +22,7 @@ export const handleLikeTweet: TwitterHandler<TweetEngagementArgs> = async (
     try {
         const { data: { id: userId } } = await client.v2.me();
         await client.v2.like(userId, tweetId);
-        return {
-            content: [{ type: 'text', text: `Successfully liked tweet: ${tweetId}` }],
-        };
+        return createResponse(`Successfully liked tweet: ${tweetId}`);
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to like tweet: ${error.message}`);
@@ -39,9 +38,7 @@ export const handleUnlikeTweet: TwitterHandler<TweetEngagementArgs> = async (
     try {
         const userId = await client.v2.me().then(response => response.data.id);
         await client.v2.unlike(userId, tweetId);
-        return {
-            content: [{ type: 'text', text: `Successfully unliked tweet: ${tweetId}` }],
-        };
+        return createResponse(`Successfully unliked tweet: ${tweetId}`);
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to unlike tweet: ${error.message}`);
@@ -57,9 +54,7 @@ export const handleRetweet: TwitterHandler<TweetEngagementArgs> = async (
     try {
         const userId = await client.v2.me().then(response => response.data.id);
         await client.v2.retweet(userId, tweetId);
-        return {
-            content: [{ type: 'text', text: `Successfully retweeted tweet: ${tweetId}` }],
-        };
+        return createResponse(`Successfully retweeted tweet: ${tweetId}`);
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to retweet: ${error.message}`);
@@ -75,9 +70,7 @@ export const handleUndoRetweet: TwitterHandler<TweetEngagementArgs> = async (
     try {
         const userId = await client.v2.me().then(response => response.data.id);
         await client.v2.unretweet(userId, tweetId);
-        return {
-            content: [{ type: 'text', text: `Successfully undid retweet: ${tweetId}` }],
-        };
+        return createResponse(`Successfully undid retweet: ${tweetId}`);
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to undo retweet: ${error.message}`);

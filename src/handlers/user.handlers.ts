@@ -16,6 +16,11 @@ interface GetUserTimelineArgs extends UserHandlerArgs {
     tweetFields?: string[];
 }
 
+interface GetFollowersArgs extends UserHandlerArgs {
+    maxResults?: number;
+    userFields?: string[];
+}
+
 export const handleGetUserInfo: TwitterHandler<GetUserInfoArgs> = async (
     client: TwitterClient,
     { username, fields }: GetUserInfoArgs
@@ -90,6 +95,34 @@ export const handleUnfollowUser: TwitterHandler<UserHandlerArgs> = async (
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to unfollow user: ${error.message}`);
+        }
+        throw error;
+    }
+};
+
+export const handleGetFollowers: TwitterHandler<GetFollowersArgs> = async (
+    client: TwitterClient,
+    { username, maxResults, userFields }: GetFollowersArgs
+): Promise<HandlerResponse> => {
+    try {
+        const user = await client.v2.userByUsername(username);
+        if (!user.data) {
+            throw new Error(`User not found: ${username}`);
+        }
+
+        const followers = await client.v2.followers(user.data.id, {
+            max_results: maxResults,
+            'user.fields': userFields?.join(',') || 'description,public_metrics'
+        });
+
+        if (!followers.data) {
+            return createResponse(`No followers found for user: ${username}`);
+        }
+
+        return createResponse(`Followers for ${username}: ${JSON.stringify(followers.data, null, 2)}`);
+    } catch (error) {
+        if (error instanceof Error) {
+            throw new Error(`Failed to get followers: ${error.message}`);
         }
         throw error;
     }
