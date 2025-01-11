@@ -112,7 +112,7 @@ export const handleGetUserLists: TwitterHandler<GetUserListsArgs> = async (clien
         });
 
         const responseText = `Here are the lists owned by ${username}:`;
-        return createResponse(responseText);
+        return createResponse(responseText, { lists: lists.data || [] });
     } catch (error: any) {
         const errorMessage = error?.message || 'Unknown error occurred';
         throw new Error(`Failed to get user lists: ${errorMessage}`);
