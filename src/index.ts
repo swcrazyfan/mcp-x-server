@@ -147,14 +147,16 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         
         case 'createList': {
             const name = args.name as string;
-            const description = args.description as string;
-            const isPrivate = args.isPrivate as boolean;
+            const description = args.description as string | undefined;
+            const isPrivate = args.private as boolean | undefined;
             
             if (!name) throw new Error('Missing required parameter: name');
-            if (!description) throw new Error('Missing required parameter: description');
-            if (typeof isPrivate !== 'boolean') throw new Error('Missing required parameter: isPrivate');
             
-            return handleCreateList(client, { name, description, isPrivate });
+            return handleCreateList(client, { 
+                name, 
+                description, 
+                private: isPrivate 
+            });
         }
         
         case 'addUserToList': {

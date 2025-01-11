@@ -12,9 +12,14 @@ import { createResponse } from '../utils/response.js';
 
 export const handleCreateList: TwitterHandler<ListCreateArgs> = async (
     client: TwitterClient,
-    { name, description = '', isPrivate = false }: ListCreateArgs
+    args: ListCreateArgs
 ): Promise<HandlerResponse> => {
     try {
+        // Ensure we have all required parameters with defaults
+        const name = args.name;
+        const description = args.description || '';  // Default to empty string if not provided
+        const isPrivate = args.private ?? false;    // Default to public if not provided
+
         const list = await client.v2.createList({
             name,
             description,
@@ -25,7 +30,7 @@ export const handleCreateList: TwitterHandler<ListCreateArgs> = async (
             throw new Error('Failed to create list');
         }
 
-        return createResponse(`Successfully created list: ${list.data.id}`);
+        return createResponse(`Successfully created list: ${list.data.id}`, { list: list.data });
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to create list: ${error.message}`);

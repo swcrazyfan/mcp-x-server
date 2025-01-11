@@ -56,8 +56,8 @@ export interface ListHandlerArgs {
 
 export interface ListCreateArgs {
     name: string;
-    description: string;
-    isPrivate: boolean;
+    description?: string;
+    private?: boolean;
 }
 
 export interface ListMemberArgs extends ListHandlerArgs {
