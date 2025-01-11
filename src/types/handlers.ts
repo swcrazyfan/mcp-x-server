@@ -1,70 +1,50 @@
-import { TwitterClient } from '../twitterClient.js';
-import { z } from 'zod';
+import { TwitterClient } from '../client/twitter.js';
 
 export interface HandlerResponse {
-    content: Array<{
-        type: string;
-        text: string;
-    }>;
-    tools: Array<{
-        name: string;
-        description?: string;
-        inputSchema: {
-            type: 'object';
-            properties?: Record<string, unknown>;
-        };
-    }>;
-    _meta?: {
-        [key: string]: unknown;
-    };
+    response: string;
+    tools?: Record<string, any>;
 }
 
-export interface TwitterHandler<T> {
-    (client: TwitterClient, args: T): Promise<HandlerResponse>;
+export interface MediaTweetHandlerArgs {
+    text: string;
+    mediaPath: string;
+    mediaType: string;
+    altText?: string;
 }
 
 export interface TweetHandlerArgs {
     text: string;
 }
 
-export interface MediaTweetHandlerArgs extends TweetHandlerArgs {
-    mediaPath: string;
-    mediaType: string;
-    altText?: string;
+export interface TweetEngagementArgs {
+    tweetId: string;
 }
 
 export interface UserHandlerArgs {
     username: string;
 }
 
-export interface GetUserInfoArgs extends UserHandlerArgs {
-    fields?: string[];
-}
-
-export interface GetUserTimelineArgs extends UserHandlerArgs {
-    maxResults?: number;
-    tweetFields?: string[];
-}
-
-export interface TweetEngagementArgs {
-    tweetId: string;
-}
-
-export interface ListHandlerArgs {
-    listId: string;
-}
-
-export interface ListCreateArgs {
-    name: string;
-    description?: string;
-    private?: boolean;
-}
-
-export interface ListMemberArgs extends ListHandlerArgs {
+export interface GetUserInfoArgs {
     username: string;
 }
 
-export interface GetListMembersArgs extends ListHandlerArgs {
+export interface GetUserTimelineArgs {
+    username: string;
+    maxResults?: number;
+}
+
+export interface AddUserToListArgs {
+    listId: string;
+    userId: string;
+}
+
+export interface RemoveUserFromListArgs {
+    listId: string;
+    userId: string;
+}
+
+export interface GetListMembersArgs {
+    listId: string;
     maxResults?: number;
     userFields?: string[];
 }
@@ -72,4 +52,17 @@ export interface GetListMembersArgs extends ListHandlerArgs {
 export interface GetUserListsArgs {
     username: string;
     maxResults?: number;
-} 
+}
+
+export interface SearchTweetsArgs {
+    query: string;
+    maxResults?: number;
+}
+
+export interface HashtagAnalyticsArgs {
+    hashtag: string;
+    startTime?: string;
+    endTime?: string;
+}
+
+export type TwitterHandler<T> = (client: TwitterClient, args: T) => Promise<HandlerResponse>; 

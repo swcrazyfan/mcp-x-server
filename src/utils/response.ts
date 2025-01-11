@@ -1,9 +1,8 @@
 import { HandlerResponse } from '../types/handlers.js';
 
-export function createResponse(text: string, meta?: Record<string, unknown>): HandlerResponse {
+export function createResponse(text: string, tools?: Record<string, any>): HandlerResponse {
     return {
-        content: [{ type: 'text', text }],
-        tools: [],
-        _meta: meta
+        response: text,
+        tools
     };
 } 
