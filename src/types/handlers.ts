@@ -1,11 +1,12 @@
 import { TwitterClient } from '../twitterClient.js';
+import { z } from 'zod';
 
 export interface HandlerResponse {
     content: Array<{
         type: string;
         text: string;
     }>;
-    tools?: Array<{
+    tools: Array<{
         name: string;
         description?: string;
         inputSchema: {
@@ -13,6 +14,9 @@ export interface HandlerResponse {
             properties?: Record<string, unknown>;
         };
     }>;
+    _meta?: {
+        [key: string]: unknown;
+    };
 }
 
 export interface TwitterHandler<T> {
