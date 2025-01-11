@@ -1,14 +1,13 @@
 import { TwitterClient } from '../twitterClient.js';
-import { UserV2, UserFields } from 'twitter-api-v2';
+import { UserV2 } from 'twitter-api-v2';
 import { 
     HandlerResponse, 
     TwitterHandler,
     UserHandlerArgs 
 } from '../types/handlers.js';
 
-// Add new interfaces for user handlers
 interface GetUserInfoArgs extends UserHandlerArgs {
-    fields?: UserFields[];
+    fields?: string[];
 }
 
 interface GetUserTimelineArgs extends UserHandlerArgs {

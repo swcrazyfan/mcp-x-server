@@ -1,10 +1,12 @@
 import { TwitterClient } from '../twitterClient.js';
+import { objectOutputType } from '@modelcontextprotocol/sdk/types.js';
 
 export interface HandlerResponse {
     content: Array<{
         type: string;
         text: string;
     }>;
+    tools?: objectOutputType<any, any, any>[];
 }
 
 export interface TwitterHandler<T> {

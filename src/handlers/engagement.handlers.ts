@@ -1,5 +1,5 @@
 import { TwitterClient } from '../twitterClient.js';
-import { TweetV2, UserV2 } from 'twitter-api-v2';
+import { UserV2 } from 'twitter-api-v2';
 import { 
     HandlerResponse, 
     TwitterHandler 
@@ -14,18 +14,12 @@ interface GetRetweetsArgs extends TweetEngagementArgs {
     userFields?: string[];
 }
 
-interface TwitterResponse {
-    data: {
-        id: string;
-    };
-}
-
 export const handleLikeTweet: TwitterHandler<TweetEngagementArgs> = async (
     client: TwitterClient,
     { tweetId }: TweetEngagementArgs
 ): Promise<HandlerResponse> => {
     try {
-        const userId = await client.v2.me().then((response: TwitterResponse) => response.data.id);
+        const { data: { id: userId } } = await client.v2.me();
         await client.v2.like(userId, tweetId);
         return {
             content: [{ type: 'text', text: `Successfully liked tweet: ${tweetId}` }],

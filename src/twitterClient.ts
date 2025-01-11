@@ -1,9 +1,9 @@
-import { Client } from 'twitter-api-v2';
+import { TwitterApi } from 'twitter-api-v2';
 
-export type TwitterClient = Client;
+export type TwitterClient = TwitterApi;
 
 export function getTwitterClient() {
-    const client = new Client({
+    const client = new TwitterApi({
         appKey: process.env.X_API_KEY || '',
         appSecret: process.env.X_API_SECRET || '',
         accessToken: process.env.X_ACCESS_TOKEN || '',
