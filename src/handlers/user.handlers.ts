@@ -44,23 +44,6 @@ export const handleGetUserInfo: TwitterHandler<GetUserInfoArgs> = async (
     return createResponse(`User info: ${JSON.stringify(user.data, null, 2)}`);
 };
 
-export const handleGetUserTimeline: TwitterHandler<GetUserTimelineArgs> = async (
-    client: TwitterClient,
-    { username, maxResults, tweetFields }: GetUserTimelineArgs
-): Promise<HandlerResponse> => {
-    const userResponse = await client.v2.userByUsername(username);
-    if (!userResponse.data) {
-        throw new Error(`User not found: ${username}`);
-    }
-    
-    const tweets = await client.v2.userTimeline(userResponse.data.id, {
-        max_results: maxResults,
-        'tweet.fields': tweetFields?.join(',')
-    });
-    
-    return createResponse(`User timeline: ${JSON.stringify(tweets.data, null, 2)}`);
-};
-
 export const handleFollowUser: TwitterHandler<UserHandlerArgs> = async (
     client: TwitterClient,
     { username }: UserHandlerArgs

@@ -1,4 +1,5 @@
 import { TwitterClient } from '../client/twitter.js';
+import { TTweetv2Expansion, TTweetv2UserField } from 'twitter-api-v2';
 
 export interface HandlerResponse {
     response: string;
@@ -29,8 +30,11 @@ export interface GetUserInfoArgs {
 }
 
 export interface GetUserTimelineArgs {
-    username: string;
+    userId: string;
     maxResults?: number;
+    tweetFields?: string[];
+    expansions?: TTweetv2Expansion[];
+    userFields?: TTweetv2UserField[];
 }
 
 export interface AddUserToListArgs {

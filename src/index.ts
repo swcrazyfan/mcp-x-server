@@ -9,7 +9,8 @@ import {
     handlePostTweetWithMedia,
     handleGetTweetById,
     handleReplyToTweet,
-    handleDeleteTweet
+    handleDeleteTweet,
+    handleGetUserTimeline
 } from './handlers/tweet.handlers.js';
 import {
     handleLikeTweet,
@@ -21,7 +22,6 @@ import {
 } from './handlers/engagement.handlers.js';
 import {
     handleGetUserInfo,
-    handleGetUserTimeline,
     handleFollowUser,
     handleUnfollowUser,
     handleGetFollowers,
@@ -38,6 +38,7 @@ import {
     handleSearchTweets,
     handleHashtagAnalytics
 } from './handlers/search.handlers.js';
+import { GetUserTimelineArgs } from './types/handlers.js';
 
 // Load environment variables
 config();
@@ -137,8 +138,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
                 break;
             }
             case 'getUserTimeline': {
-                const { username, maxResults } = request.params.arguments as { username: string; maxResults?: number };
-                response = await handleGetUserTimeline(client, { username, maxResults });
+                const args = request.params.arguments as unknown as GetUserTimelineArgs;
+                response = await handleGetUserTimeline(client, args);
                 break;
             }
             case 'followUser': {
@@ -212,12 +213,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
                 throw new Error(`Unknown tool: ${request.params.name}`);
         }
 
-        return {
+                return {
             content: [{ type: 'text', text: response.response }],
             tools: response.tools
-        };
-    } catch (error) {
-        if (error instanceof Error) {
+            };
+        } catch (error) {
+            if (error instanceof Error) {
             return {
                 content: [{ type: 'text', text: `Error: ${error.message}` }]
             };

@@ -9,7 +9,11 @@ import {
     UserListMembershipsV2Paginator,
     UserListMembersV2Paginator,
     ListTimelineV2Result,
-    UserV2TimelineResult
+    UserV2TimelineResult,
+    TweetV2,
+    TweetV2UserTimelineParams,
+    TTweetv2Expansion,
+    TTweetv2UserField
 } from 'twitter-api-v2';
 
 export interface TwitterCredentials {
@@ -267,5 +271,39 @@ export class TwitterClient extends TwitterApi {
                 'list.fields': ['created_at', 'follower_count', 'member_count', 'private', 'description']
             })
         );
+    }
+
+    async getUserTimeline(userId: string, options: {
+        max_results?: number;
+        'tweet.fields'?: string;
+        expansions?: TTweetv2Expansion[];
+        'user.fields'?: TTweetv2UserField[];
+    }): Promise<PaginatedResponse<TweetV2>> {
+        const paginationOptions: PaginationOptions = {
+            maxResults: options.max_results,
+            pageLimit: 10 // Default to 10 pages max
+        };
+
+        const allTweets: TweetV2[] = [];
+        const paginator = await this.v2.userTimeline(userId, {
+            ...options,
+            max_results: Math.min(options.max_results || MAX_RESULTS_PER_PAGE, MAX_RESULTS_PER_PAGE)
+        });
+
+        for await (const tweet of paginator) {
+            allTweets.push(tweet);
+            if (paginationOptions.maxResults && allTweets.length >= paginationOptions.maxResults) {
+                allTweets.length = paginationOptions.maxResults;
+                break;
+            }
+        }
+
+        return {
+            data: allTweets,
+            meta: {
+                result_count: allTweets.length,
+                total_retrieved: allTweets.length
+            }
+        };
     }
 } 

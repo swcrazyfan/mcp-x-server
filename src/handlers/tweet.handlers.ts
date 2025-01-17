@@ -1,6 +1,8 @@
 import { TwitterClient } from '../client/twitter.js';
 import { HandlerResponse } from '../types/handlers.js';
 import { createResponse } from '../utils/response.js';
+import { GetUserTimelineArgs } from '../types/handlers.js';
+import { TweetV2, TTweetv2Expansion, TTweetv2UserField } from 'twitter-api-v2';
 
 export interface MediaTweetHandlerArgs {
     text: string;
@@ -94,5 +96,30 @@ export async function handleDeleteTweet(
         throw new Error('Failed to delete tweet: Unknown error occurred');
     }
 }
+
+export const handleGetUserTimeline = async (
+    client: TwitterClient,
+    { userId, maxResults = 10, tweetFields = ['created_at', 'public_metrics', 'author_id'], expansions = ['author_id' as TTweetv2Expansion], userFields = ['username' as TTweetv2UserField] }: GetUserTimelineArgs
+): Promise<HandlerResponse> => {
+    try {
+        const timeline = await client.getUserTimeline(userId, {
+            max_results: maxResults,
+            'tweet.fields': tweetFields.join(','),
+            expansions,
+            'user.fields': userFields
+        });
+
+        if (!timeline.data || timeline.data.length === 0) {
+            return createResponse(`No tweets found in timeline for user: ${userId}`);
+        }
+
+        return createResponse(`Timeline tweets: ${JSON.stringify(timeline.data, null, 2)}`);
+    } catch (error) {
+        if (error instanceof Error) {
+            throw new Error(`Failed to get user timeline: ${error.message}`);
+        }
+        throw new Error('Failed to get user timeline: Unknown error occurred');
+    }
+};
 
 // Add other tweet-related handlers... 

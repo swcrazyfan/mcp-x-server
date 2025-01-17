@@ -121,10 +121,38 @@ export const TOOLS = {
         inputSchema: {
             type: 'object',
             properties: {
-                username: { type: 'string', description: 'The username of the user' },
+                userId: { type: 'string', description: 'The ID of the user' },
+                maxResults: {
+                    type: 'number',
+                    description: 'Maximum number of results to return'
+                },
+                tweetFields: {
+                    type: 'array',
+                    items: {
+                        type: 'string',
+                        enum: ['created_at', 'author_id', 'conversation_id', 'public_metrics', 'entities', 'context_annotations']
+                    },
+                    description: 'Fields to include in the tweet objects'
+                },
+                expansions: {
+                    type: 'array',
+                    items: {
+                        type: 'string',
+                        enum: ['author_id', 'referenced_tweets.id', 'in_reply_to_user_id', 'attachments.media_keys']
+                    },
+                    description: 'Additional fields to expand in the response'
+                },
+                userFields: {
+                    type: 'array',
+                    items: {
+                        type: 'string',
+                        enum: ['username', 'name', 'profile_image_url', 'verified']
+                    },
+                    description: 'User fields to include in the response'
+                }
             },
-            required: ['username'],
-        },
+            required: ['userId']
+        }
     },
     getTweetById: {
         description: 'Get a tweet by its ID',
