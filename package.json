@@ -1,7 +1,7 @@
 {
-  "name": "mcp-x-server",
+  "name": "mcp-twitter-server",
   "version": "0.1.1",
-  "description": "A Model Context Protocol server implementation for X (formerly Twitter) API integration",
+  "description": "A Model Context Protocol server implementation for Twitter API integration",
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
@@ -11,7 +11,6 @@
     "prepare": "npm run build"
   },
   "keywords": [
-    "x",
     "twitter",
     "mcp",
     "model-context-protocol",
@@ -23,16 +22,15 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/your-username/mcp-x-server.git"
+    "url": "git+https://github.com/crazyrabbitLTC/mcp-twitter-server.git"
   },
   "bugs": {
-    "url": "https://github.com/your-username/mcp-x-server/issues"
+    "url": "https://github.com/crazyrabbitLTC/mcp-twitter-server/issues"
   },
-  "homepage": "https://github.com/your-username/mcp-x-server#readme",
+  "homepage": "https://github.com/crazyrabbitLTC/mcp-twitter-server#readme",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.11.2",
+    "@modelcontextprotocol/sdk": "^0.0.2",
     "dotenv": "^16.3.1",
-    "task-master": "^2.3.0",
     "twitter-api-v2": "^1.15.2",
     "zod": "^3.22.4"
   },
