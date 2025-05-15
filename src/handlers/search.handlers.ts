@@ -1,5 +1,6 @@
-import { TwitterClient } from '../twitterClient.js';
-import { HandlerResponse, TwitterHandler } from '../types/handlers.js';
+import { TwitterClient as ApiV2Client } from '../client/twitter.js';
+import { TwikitBridgeClient } from '../client/twikitBridgeClient.js';
+import { HandlerResponse } from '../types/handlers.js';
 import { createResponse } from '../utils/response.js';
 import { TweetV2, TwitterApiReadOnly, UserV2, TweetSearchRecentV2Paginator } from 'twitter-api-v2';
 
@@ -19,70 +20,60 @@ interface TweetWithAuthor extends TweetV2 {
     author?: UserV2;
 }
 
-export const handleSearchTweets: TwitterHandler<SearchTweetsArgs> = async (
-    client: TwitterClient,
-    { query, maxResults = 10, tweetFields }: SearchTweetsArgs
-): Promise<HandlerResponse> => {
+// Type guard to check client type
+function isApiV2Client(client: ApiV2Client | TwikitBridgeClient): client is ApiV2Client {
+    return client instanceof ApiV2Client;
+}
+
+export async function handleSearchTweets(
+    client: ApiV2Client | TwikitBridgeClient,
+    { query, maxResults = 10 }: { query: string; maxResults?: number }
+): Promise<HandlerResponse> {
     try {
-        const searchResult = await client.v2.search(query, {
-            max_results: maxResults,
-            'tweet.fields': tweetFields?.join(',') || 'created_at,public_metrics',
-            expansions: ['author_id'],
-            'user.fields': ['username']
-        });
-
-        const tweets = Array.isArray(searchResult.data) ? searchResult.data : [];
-        if (tweets.length === 0) {
-            return createResponse(`No tweets found for query: ${query}`);
+        if (isApiV2Client(client)) {
+            const searchResults = await client.v2.search(query, {
+                'max_results': maxResults,
+                'tweet.fields': 'created_at,public_metrics,author_id',
+                'expansions': 'author_id',
+                'user.fields': 'username,name'
+            });
+            return createResponse(`Search results for "${query}": ${JSON.stringify(searchResults.data, null, 2)}`);
+        } else {
+            // Twikit search_tweet takes query, search_type ('Latest', 'Top', 'User', 'Image', 'Video'), count, cursor
+            // Defaulting to 'Latest' search_type for now.
+            const result = await client.searchTweet(query, 'Latest', maxResults);
+            return createResponse(`Search results for "${query}" (via Twikit): ${JSON.stringify(result, null, 2)}`);
         }
-
-        const formattedTweets = tweets.map((tweet: TweetV2): TweetWithAuthor => ({
-            ...tweet,
-            author: searchResult.includes?.users?.find(u => u.id === tweet.author_id)
-        }));
-
-        return createResponse(`Search results: ${JSON.stringify(formattedTweets, null, 2)}`);
     } catch (error) {
         if (error instanceof Error) {
-            throw new Error(`Failed to search tweets: ${error.message}`);
+            throw new Error(`Failed to search tweets for "${query}": ${error.message}`);
         }
-        throw error;
+        throw new Error('Failed to search tweets: Unknown error occurred');
     }
-};
+}
 
-export const handleHashtagAnalytics: TwitterHandler<HashtagAnalyticsArgs> = async (
-    client: TwitterClient,
-    { hashtag, startTime, endTime }: HashtagAnalyticsArgs
-): Promise<HandlerResponse> => {
+export async function handleHashtagAnalytics(
+    client: ApiV2Client | TwikitBridgeClient,
+    { hashtag, startTime, endTime }: { hashtag: string; startTime?: string; endTime?: string }
+): Promise<HandlerResponse> {
     try {
-        const query = `#${hashtag.replace(/^#/, '')}`;
-        const searchResult = await client.v2.search(query, {
-            max_results: 100,
-            'tweet.fields': 'public_metrics,created_at',
-            start_time: startTime,
-            end_time: endTime
-        });
-
-        const tweets = Array.isArray(searchResult.data) ? searchResult.data : [];
-        if (tweets.length === 0) {
-            return createResponse(`No tweets found for hashtag: ${hashtag}`);
+        if (isApiV2Client(client)) {
+            // Ensure hashtag doesn't start with # for the API call
+            const cleanHashtag = hashtag.startsWith('#') ? hashtag.substring(1) : hashtag;
+            const analytics = await client.v2.tweetCountRecent(cleanHashtag, { start_time: startTime, end_time: endTime });
+            return createResponse(`Hashtag analytics for #${cleanHashtag}: ${JSON.stringify(analytics.data, null, 2)}\nTotal tweets: ${analytics.meta?.total_tweet_count}`);
+        } else {
+            // Twikit does not have a direct equivalent for recent tweet counts for a hashtag.
+            // We could perform a search for the hashtag and count results, but it's not the same.
+            // For now, indicating limited support for this specific function with Twikit.
+            return createResponse(`Hashtag analytics for "${hashtag}" (via Twikit) is not directly supported. You can use general search. Searching for tweets with the hashtag...`);
+            // Optionally, perform a search: const result = await client.searchTweet(hashtag, 'Latest', 20);
+            // return createResponse(`Search for "${hashtag}" (via Twikit): ${JSON.stringify(result, null, 2)}`);
         }
-
-        const analytics = {
-            totalTweets: tweets.length,
-            totalLikes: tweets.reduce((sum: number, tweet: TweetV2) => 
-                sum + (tweet.public_metrics?.like_count || 0), 0),
-            totalRetweets: tweets.reduce((sum: number, tweet: TweetV2) => 
-                sum + (tweet.public_metrics?.retweet_count || 0), 0),
-            totalReplies: tweets.reduce((sum: number, tweet: TweetV2) => 
-                sum + (tweet.public_metrics?.reply_count || 0), 0)
-        };
-
-        return createResponse(`Hashtag Analytics for ${hashtag}:\n${JSON.stringify(analytics, null, 2)}`);
     } catch (error) {
         if (error instanceof Error) {
-            throw new Error(`Failed to get hashtag analytics: ${error.message}`);
+            throw new Error(`Failed to get hashtag analytics for "${hashtag}": ${error.message}`);
         }
-        throw error;
+        throw new Error('Failed to get hashtag analytics: Unknown error occurred');
     }
-}; 
+} 

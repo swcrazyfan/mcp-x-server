@@ -1,4 +1,5 @@
-import { TwitterClient } from '../client/twitter.js';
+import { TwitterClient as ApiV2Client } from '../client/twitter.js';
+import { TwikitBridgeClient } from '../client/twikitBridgeClient.js';
 import { HandlerResponse } from '../types/handlers.js';
 import { createResponse } from '../utils/response.js';
 import { ListV2, UserV2, ApiResponseError } from 'twitter-api-v2';
@@ -32,57 +33,28 @@ export interface GetListMembersArgs {
     userFields?: string[];
 }
 
+// Type guard to check client type
+function isApiV2Client(client: ApiV2Client | TwikitBridgeClient): client is ApiV2Client {
+    return client instanceof ApiV2Client;
+}
+
 export async function handleGetUserLists(
-    client: TwitterClient,
-    args: GetUserListsArgs
+    client: ApiV2Client | TwikitBridgeClient,
+    { username, maxResults = 20 }: { username: string; maxResults?: number; }
 ): Promise<HandlerResponse> {
     try {
-        const user = await client.getUserByUsername(args.username);
-        if (!user.data) {
-            throw new Error('User not found');
+        if (isApiV2Client(client)) {
+            const user = await client.v2.userByUsername(username);
+            if (!user.data) throw new Error(`User ${username} not found.`);
+            const lists = await client.v2.listsOwned(user.data.id, { 'max_results': maxResults });
+            return createResponse(`Lists for user ${username}: ${JSON.stringify(lists.data, null, 2)}`);
+        } else {
+            // Twikit needs user ID. Get it first.
+            const user = await client.getUserByScreenName(username);
+            if (!user || !user.id) throw new Error(`User ${username} not found via Twikit.`);
+            const result = await client.getUserLists(user.id, maxResults);
+            return createResponse(`Lists for user ${username} (via Twikit): ${JSON.stringify(result, null, 2)}`);
         }
-
-        const options = {
-            'list.fields': ['created_at', 'follower_count', 'member_count', 'private', 'description'],
-            expansions: ['owner_id'],
-            'user.fields': ['username', 'name', 'verified'],
-            max_results: args.maxResults,
-            pageLimit: args.pageLimit
-        };
-
-        const [ownedLists, memberLists] = await Promise.all([
-            client.getOwnedLists(user.data.id, options),
-            client.getListMemberships(user.data.id, options)
-        ]);
-
-        const ownedListsCount = ownedLists.meta.result_count || 0;
-        const memberListsCount = memberLists.meta.result_count || 0;
-
-        let responseText = `Found ${ownedListsCount} owned lists and ${memberListsCount} list memberships.\n\n`;
-
-        if (ownedLists.data && ownedLists.data.length > 0) {
-            responseText += 'Owned Lists:\n';
-            ownedLists.data.forEach((list) => {
-                responseText += formatListInfo(list);
-            });
-            responseText += '\n';
-        }
-
-        if (memberLists.data && memberLists.data.length > 0) {
-            responseText += 'Member of Lists:\n';
-            memberLists.data.forEach((list) => {
-                responseText += formatListInfo(list);
-            });
-        }
-
-        const totalRetrieved = (ownedLists.meta.total_retrieved || 0) + (memberLists.meta.total_retrieved || 0);
-        const totalRequested = args.maxResults ? args.maxResults * 2 : undefined;
-
-        if (totalRequested && totalRetrieved >= totalRequested) {
-            responseText += '\nNote: Maximum requested results reached. There might be more lists available.';
-        }
-
-        return createResponse(responseText);
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to get user lists: ${error.message}`);
@@ -105,15 +77,17 @@ function formatListInfo(list: ListV2): string {
 }
 
 export async function handleCreateList(
-    client: TwitterClient,
-    args: CreateListArgs
+    client: ApiV2Client | TwikitBridgeClient,
+    { name, description, isPrivate = false }: { name: string; description?: string; isPrivate?: boolean }
 ): Promise<HandlerResponse> {
     try {
-        const list = await client.createList(args.name, args.description, args.isPrivate);
-        if (!list.data) {
-            throw new Error('Failed to create list');
+        if (isApiV2Client(client)) {
+            const { data } = await client.v2.createList({ name, description, private: isPrivate });
+            return createResponse(`List created: ${data.id} - ${data.name}`);
+        } else {
+            const result = await client.createList(name, description, isPrivate);
+            return createResponse(`List created (via Twikit): ${result.id || JSON.stringify(result)}`);
         }
-        return createResponse(`Successfully created list: ${list.data.name}`);
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to create list: ${error.message}`);
@@ -123,43 +97,18 @@ export async function handleCreateList(
 }
 
 export async function handleAddUserToList(
-    client: TwitterClient,
-    args: AddUserToListArgs
+    client: ApiV2Client | TwikitBridgeClient,
+    { listId, userId }: { listId: string; userId: string }
 ): Promise<HandlerResponse> {
     try {
-        // First, verify the user exists and get their username for the response message
-        const user = await client.getUserById(args.userId);
-        if (!user.data) {
-            throw new Error(`User with ID ${args.userId} not found`);
+        if (isApiV2Client(client)) {
+            const { data } = await client.v2.addListMember(listId, userId);
+            return createResponse(`User ${userId} added to list ${listId}: ${data.is_member}`);
+        } else {
+            const result = await client.addUserToList(listId, userId);
+            return createResponse(`User ${userId} added to list ${listId} (via Twikit): ${result.is_member !== undefined ? result.is_member : JSON.stringify(result)}`);
         }
-
-        // Then verify the list exists and get its name for the response message
-        const list = await client.getList(args.listId);
-        if (!list.data) {
-            throw new Error(`List with ID ${args.listId} not found`);
-        }
-
-        // Now try to add the user to the list
-        await client.addListMember(args.listId, args.userId);
-
-        return createResponse(
-            `Successfully added user @${user.data.username} to list "${list.data.name}"`
-        );
     } catch (error) {
-        if (error instanceof ApiResponseError) {
-            // Handle specific Twitter API errors
-            if (error.rateLimitError && error.rateLimit) {
-                const resetMinutes = Math.ceil(error.rateLimit.reset / 60);
-                throw new Error(`Rate limit exceeded. Please try again in ${resetMinutes} minutes.`);
-            }
-            if (error.code === 403) {
-                throw new Error('You do not have permission to add members to this list.');
-            }
-            if (error.code === 404) {
-                throw new Error('The specified user or list could not be found.');
-            }
-            throw new Error(`Twitter API Error: ${error.message}`);
-        }
         if (error instanceof Error) {
             throw new Error(`Failed to add user to list: ${error.message}`);
         }
@@ -168,12 +117,17 @@ export async function handleAddUserToList(
 }
 
 export async function handleRemoveUserFromList(
-    client: TwitterClient,
-    args: RemoveUserFromListArgs
+    client: ApiV2Client | TwikitBridgeClient,
+    { listId, userId }: { listId: string; userId: string }
 ): Promise<HandlerResponse> {
     try {
-        await client.removeListMember(args.listId, args.userId);
-        return createResponse(`Successfully removed user from list ${args.listId}`);
+        if (isApiV2Client(client)) {
+            const { data } = await client.v2.removeListMember(listId, userId);
+            return createResponse(`User ${userId} removed from list ${listId}: ${data.is_member}`);
+        } else {
+            const result = await client.removeUserFromList(listId, userId);
+            return createResponse(`User ${userId} removed from list ${listId} (via Twikit): ${result.is_member !== undefined ? !result.is_member : JSON.stringify(result)}`);
+        }
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to remove user from list: ${error.message}`);
@@ -183,34 +137,17 @@ export async function handleRemoveUserFromList(
 }
 
 export async function handleGetListMembers(
-    client: TwitterClient,
-    args: GetListMembersArgs
+    client: ApiV2Client | TwikitBridgeClient,
+    { listId, maxResults = 20, userFields }: { listId: string; maxResults?: number; userFields?: string[] }
 ): Promise<HandlerResponse> {
     try {
-        const options = {
-            max_results: args.maxResults,
-            pageLimit: args.pageLimit,
-            'user.fields': args.userFields
-        };
-
-        const members = await client.getListMembers(args.listId, options);
-
-        if (!members.data || members.data.length === 0) {
-            return createResponse(`No members found for list ${args.listId}`);
+        if (isApiV2Client(client)) {
+            const users = await client.v2.listMembers(listId, { 'max_results': maxResults, 'user.fields': userFields as any });
+            return createResponse(`List members for ${listId}: ${JSON.stringify(users.data, null, 2)}`);
+        } else {
+            const result = await client.getListMembers(listId, maxResults);
+            return createResponse(`List members for ${listId} (via Twikit): ${JSON.stringify(result, null, 2)}`);
         }
-
-        const memberCount = members.meta.result_count || 0;
-        let responseText = `Found ${memberCount} members in list ${args.listId}:\n\n`;
-
-        members.data.forEach((member) => {
-            responseText += `- ${member.name} (@${member.username})\n`;
-        });
-
-        if (members.meta.total_retrieved === args.maxResults) {
-            responseText += '\nNote: Maximum requested results reached. There might be more members available.';
-        }
-
-        return createResponse(responseText);
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(`Failed to get list members: ${error.message}`);

@@ -1,4 +1,5 @@
-import { TwitterClient } from '../twitterClient.js';
+import { TwitterClient as ApiV2Client } from '../client/twitter.js';
+import { TwikitBridgeClient } from '../client/twikitBridgeClient.js';
 import { UserV2, TTweetv2UserField } from 'twitter-api-v2';
 import { 
     HandlerResponse, 
@@ -26,120 +27,124 @@ interface GetFollowingArgs extends UserHandlerArgs {
     userFields?: string[];
 }
 
-export const handleGetUserInfo: TwitterHandler<GetUserInfoArgs> = async (
-    client: TwitterClient,
-    { username, fields }: GetUserInfoArgs
-): Promise<HandlerResponse> => {
-    const user = await client.v2.userByUsername(
-        username,
-        { 
-            'user.fields': fields || ['description', 'public_metrics', 'profile_image_url', 'verified'] as TTweetv2UserField[]
-        }
-    );
-    
-    if (!user.data) {
-        throw new Error(`User not found: ${username}`);
-    }
+// Type guard to check client type
+function isApiV2Client(client: ApiV2Client | TwikitBridgeClient): client is ApiV2Client {
+    return client instanceof ApiV2Client;
+}
 
-    return createResponse(`User info: ${JSON.stringify(user.data, null, 2)}`);
-};
-
-export const handleFollowUser: TwitterHandler<UserHandlerArgs> = async (
-    client: TwitterClient,
-    { username }: UserHandlerArgs
-): Promise<HandlerResponse> => {
+export async function handleGetUserInfo(
+    client: ApiV2Client | TwikitBridgeClient,
+    { username }: { username: string }
+): Promise<HandlerResponse> {
     try {
-        const userId = await client.v2.me().then(response => response.data.id);
-        const targetUser = await client.v2.userByUsername(username);
-        
-        if (!targetUser.data) {
-            throw new Error(`User not found: ${username}`);
+        if (isApiV2Client(client)) {
+            const user = await client.v2.userByUsername(username, { 'user.fields': 'public_metrics,profile_image_url,description,verified,created_at' });
+            return createResponse(`User info for ${username}: ${JSON.stringify(user.data, null, 2)}`);
+        } else {
+            const result = await client.getUserByScreenName(username);
+            return createResponse(`User info for ${username} (via Twikit): ${JSON.stringify(result, null, 2)}`);
         }
-        
-        await client.v2.follow(userId, targetUser.data.id);
-        return createResponse(`Successfully followed user: ${username}`);
     } catch (error) {
         if (error instanceof Error) {
-            throw new Error(`Failed to follow user: ${error.message}`);
+            throw new Error(`Failed to get user info for ${username}: ${error.message}`);
         }
-        throw error;
+        throw new Error('Failed to get user info: Unknown error occurred');
     }
-};
+}
 
-export const handleUnfollowUser: TwitterHandler<UserHandlerArgs> = async (
-    client: TwitterClient,
-    { username }: UserHandlerArgs
-): Promise<HandlerResponse> => {
+export async function handleFollowUser(
+    client: ApiV2Client | TwikitBridgeClient,
+    { username }: { username: string }
+): Promise<HandlerResponse> {
     try {
-        const userId = await client.v2.me().then(response => response.data.id);
-        const targetUser = await client.v2.userByUsername(username);
-        
-        if (!targetUser.data) {
-            throw new Error(`User not found: ${username}`);
+        if (isApiV2Client(client)) {
+            const userToFollow = await client.v2.userByUsername(username);
+            if (!userToFollow.data) throw new Error(`User ${username} not found.`);
+            const { data } = await client.v2.follow(process.env.X_USER_ID!, userToFollow.data.id);
+            return createResponse(`Followed ${username}: ${data.following}`);
+        } else {
+            // Twikit follow method usually takes user_id. Need to get user_id from username first.
+            const user = await client.getUserByScreenName(username);
+            if (!user || !user.id) throw new Error(`User ${username} not found via Twikit.`);
+            const result = await client.followUser(user.id);
+            return createResponse(`Followed ${username} (via Twikit): ${result.following !== undefined ? result.following : JSON.stringify(result)}`);
         }
-        
-        await client.v2.unfollow(userId, targetUser.data.id);
-        return createResponse(`Successfully unfollowed user: ${username}`);
     } catch (error) {
         if (error instanceof Error) {
-            throw new Error(`Failed to unfollow user: ${error.message}`);
+            throw new Error(`Failed to follow user ${username}: ${error.message}`);
         }
-        throw error;
+        throw new Error('Failed to follow user: Unknown error occurred');
     }
-};
+}
 
-export const handleGetFollowers: TwitterHandler<GetFollowersArgs> = async (
-    client: TwitterClient,
-    { username, maxResults, userFields }: GetFollowersArgs
-): Promise<HandlerResponse> => {
+export async function handleUnfollowUser(
+    client: ApiV2Client | TwikitBridgeClient,
+    { username }: { username: string }
+): Promise<HandlerResponse> {
     try {
-        const user = await client.v2.userByUsername(username);
-        if (!user.data) {
-            throw new Error(`User not found: ${username}`);
+        if (isApiV2Client(client)) {
+            const userToUnfollow = await client.v2.userByUsername(username);
+            if (!userToUnfollow.data) throw new Error(`User ${username} not found.`);
+            const { data } = await client.v2.unfollow(process.env.X_USER_ID!, userToUnfollow.data.id);
+            return createResponse(`Unfollowed ${username}: ${data.following}`);
+        } else {
+            const user = await client.getUserByScreenName(username);
+            if (!user || !user.id) throw new Error(`User ${username} not found via Twikit.`);
+            const result = await client.unfollowUser(user.id);
+            return createResponse(`Unfollowed ${username} (via Twikit): ${result.following !== undefined ? !result.following : JSON.stringify(result)}`);
         }
-
-        const followers = await client.v2.followers(user.data.id, {
-            max_results: maxResults,
-            'user.fields': userFields?.join(',') || 'description,public_metrics'
-        });
-
-        if (!followers.data) {
-            return createResponse(`No followers found for user: ${username}`);
-        }
-
-        return createResponse(`Followers for ${username}: ${JSON.stringify(followers.data, null, 2)}`);
     } catch (error) {
         if (error instanceof Error) {
-            throw new Error(`Failed to get followers: ${error.message}`);
+            throw new Error(`Failed to unfollow user ${username}: ${error.message}`);
         }
-        throw error;
+        throw new Error('Failed to unfollow user: Unknown error occurred');
     }
-};
+}
 
-export const handleGetFollowing: TwitterHandler<GetFollowingArgs> = async (
-    client: TwitterClient,
-    { username, maxResults, userFields }: GetFollowingArgs
-): Promise<HandlerResponse> => {
+export async function handleGetFollowers(
+    client: ApiV2Client | TwikitBridgeClient,
+    { username, maxResults = 10 }: { username: string; maxResults?: number }
+): Promise<HandlerResponse> {
     try {
-        const user = await client.v2.userByUsername(username);
-        if (!user.data) {
-            throw new Error(`User not found: ${username}`);
+        if (isApiV2Client(client)) {
+            const user = await client.v2.userByUsername(username);
+            if (!user.data) throw new Error(`User ${username} not found.`);
+            const followers = await client.v2.followers(user.data.id, { 'max_results': maxResults, 'user.fields': 'username,public_metrics' });
+            return createResponse(`Followers for ${username}: ${JSON.stringify(followers.data, null, 2)}`);
+        } else {
+            const user = await client.getUserByScreenName(username);
+            if (!user || !user.id) throw new Error(`User ${username} not found via Twikit.`);
+            const result = await client.getUserFollowers(user.id, maxResults);
+            return createResponse(`Followers for ${username} (via Twikit): ${JSON.stringify(result, null, 2)}`);
         }
-
-        const following = await client.v2.following(user.data.id, {
-            max_results: maxResults,
-            'user.fields': userFields?.join(',') || 'description,profile_image_url,public_metrics,verified'
-        });
-
-        if (!following.data || following.data.length === 0) {
-            return createResponse(`User ${username} is not following anyone`);
-        }
-
-        return createResponse(`Users followed by ${username}: ${JSON.stringify(following.data, null, 2)}`);
     } catch (error) {
         if (error instanceof Error) {
-            throw new Error(`Failed to get following: ${error.message}`);
+            throw new Error(`Failed to get followers for ${username}: ${error.message}`);
         }
-        throw error;
+        throw new Error('Failed to get followers: Unknown error occurred');
     }
-}; 
+}
+
+export async function handleGetFollowing(
+    client: ApiV2Client | TwikitBridgeClient,
+    { username, maxResults = 10 }: { username: string; maxResults?: number }
+): Promise<HandlerResponse> {
+    try {
+        if (isApiV2Client(client)) {
+            const user = await client.v2.userByUsername(username);
+            if (!user.data) throw new Error(`User ${username} not found.`);
+            const following = await client.v2.following(user.data.id, { 'max_results': maxResults, 'user.fields': 'username,public_metrics' });
+            return createResponse(`Following for ${username}: ${JSON.stringify(following.data, null, 2)}`);
+        } else {
+            const user = await client.getUserByScreenName(username);
+            if (!user || !user.id) throw new Error(`User ${username} not found via Twikit.`);
+            const result = await client.getUserFollowing(user.id, maxResults);
+            return createResponse(`Following for ${username} (via Twikit): ${JSON.stringify(result, null, 2)}`);
+        }
+    } catch (error) {
+        if (error instanceof Error) {
+            throw new Error(`Failed to get following for ${username}: ${error.message}`);
+        }
+        throw new Error('Failed to get following: Unknown error occurred');
+    }
+} 

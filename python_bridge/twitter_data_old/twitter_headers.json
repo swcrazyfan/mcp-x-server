@@ -1,0 +1,1878 @@
+[
+  {
+    "url": "https://x.com/login",
+    "headers": {
+      "upgrade-insecure-requests": "1",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\""
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "GJ/uFDRxpsnNZlsiJo5+wqX8PLqzlTLs2Y3o7dYvEWKlzIARAUPgi4RXYXdgv5TRqY97zhsLgyuWJTD+lc2exl202RSCGw",
+      "x-guest-token": "1922967882452857119",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/hashflags.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "jAt6gKDlMl1Z8s+2shrqVjFoqC4nAaZ4TRl8eUK7hfYxWBSFldd0HxDD9eP0KwBFPRTvWo8iu18Cxv4rAB04E1Mulcw9jw",
+      "x-guest-token": "1922967882452857119",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+    }
+  },
+  {
+    "url": "https://api.x.com/graphql/w6A20UihZRiEDS4C0jFzsA/Viewer?variables=%7B%22withCommunitiesMemberships%22%3Atrue%7D&features=%7B%22subscriptions_upsells_api_enabled%22%3Atrue%2C%22profile_label_improvements_pcf_label_in_post_enabled%22%3Atrue%2C%22rweb_tipjar_consumption_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%7D&fieldToggles=%7B%22isDelegate%22%3Afalse%2C%22withAuxiliaryUserLabels%22%3Atrue%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "vDtKsJDVAm1pwv+GgiraZgFYmB4XMZZIfSlMSXKLtcYBaCS1pedELyDzxdPEGzB1DSTfar8ylSEG5zNjd6lbn2gInxoNvw",
+      "x-guest-token": "1922967882452857119",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "DIv6ACBlst3Zck82Mppq1rHoKK6ngSb4zZn8+cI7BXax2JQFFVf0n5BDdWN0q4DFvZRv2g8vC/bhpoUSaoZ4QmtyqZO7Dw",
+      "x-guest-token": "1922967882452857119",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "XdqrUXE044yIIx5nY8s7h+C5ef/20HepnMitqJNqVCfgicVURAalzsESJDIl+tGU7MQ+i14Lz2YvhqbaBFqJ2UEBjHEaXg",
+      "x-guest-token": "1922967882452857119",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/jot/error_log.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "lxBhm7v+KUZC6dStqQHxTSpzszU8Gr1jVgJnYlmgnu0qQw+ejsxvBAvY7vjvMBteJg70QZSzA+6NMSqpr1TUvJVzWUndlA",
+      "x-guest-token": "1922967882452857119",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/onboarding/task.json?flow_name=login",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "rSpboYHEE3x40+6XkzvLdxBJiQ8GIIdZbDhdWGOapNcQeTWktPZVPjHi1MLVCiFkHDbOe65pglWe2ZTWCe18LIMmZxLWrg",
+      "x-guest-token": "1922967882452857119",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://twitter.com/i/js_inst?c_name=ui_metrics",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://x.com/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "ev2MdlYTxKuvBDlAROwcoMeeXtjR91COu++Kj7RNcwDHruJzYyGC6eY1AxUC3fazy+YZrHlIAikbKNbDS5MNaein/PvleQ",
+      "x-guest-token": "1922967882452857119",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/onboarding/task.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "pSJTqYnMG3Rw2+afmzPDfxhBgQcOKI9RZDBVUGuSrN8YcT2svP5dNjnq3MrdAilsFDvGc6ba37sK7jS3HsvdO6Z6gbjDpg",
+      "x-guest-token": "1922967882452857119",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/onboarding/sso_init.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "pCNSqIjNGnVx2ueemjLCfhlAgAYPKY5QZTFUUWqTrd4ZcDytvf9cNzjr3cvcAyhtFQTHcqfGS5xKHID9kNmFgXFCfZS6pw",
+      "x-guest-token": "1922967882452857119",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "uzxNt5fSBWpuxfiBhS3dYQZfnxkQNpFPei5LTnWMssEGbyOyouBDKCf0wtTDHDdyChrYbbgympJvSkEdpIODPumoqnrWuA",
+      "x-guest-token": "1922967882452857119",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "a+ydZ0cC1bq+FShRVf0NsdaPT8nA5kGfqv6bnqVcYhHWv/NicjCT+PckEgQTzOei2sgIvWip91/yC8On80vbjFcEKQRiaA",
+      "x-guest-token": "1922967882452857119",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/onboarding/task.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "ig18hqbjNFtf9MmwtBzsUDdurighB6B+Sx96f0S9g/A3XhKDk9FyGRbF8+XyLQZDOynpXIn0aStiP3ExmToZutM9Gui3iQ",
+      "x-guest-token": "1922967882452857119",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/jot/ces/p2",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "01Ql3/+6bQIGrZDp7UW1CW4393F4XvknEkYjJh3k2qluB0vayogrQE+cqryrdF8aYnWwBdDeEnf1e1HLqOmdEOF7AM4y0A",
+      "x-guest-token": "1922967882452857119",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/twitter.web.thrift.json"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "62wd58eCVTo+lajR1X2NMVYPz0lAZsEfKn4bHiXc4pFWP3Pi8rATeHekkoSTTGciWk2IPeiWtqzFFJxJwjuo1bAPKD0o6A",
+      "x-guest-token": "1922967882452857119",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "QsW0Tm4r/JOXPAF4fNQkmP+mZuDpz2i2g9eyt4x1Szj/ltpLWxm60d4NOy065c6L8+UhlEGscr7xahReEbCjOlPWtZ40QQ",
+      "x-guest-token": "1922967882452857119",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/onboarding/task.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "0VYn3f24bwAEr5Lr70e3C2w19XN6XPslEEQhJB/m2KtsBUnYyIopQk2eqL6pdl0YYHayB9J0F9q0R/g7EPfJeaVGayT+0g",
+      "x-guest-token": "1922967882452857119",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/onboarding/task.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "hgFwiqrvOFdT+MW8uBDgXDtioiQtC6xyRxN2c0ixj/w7Uh6Pn91+FRrJ/+n+IQpPNy/lUIVWpkI0fCHWKwLjeD1W26vIhQ",
+      "x-guest-token": "1922967882452857119",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://api.x.com/graphql/w6A20UihZRiEDS4C0jFzsA/Viewer?variables=%7B%22withCommunitiesMemberships%22%3Atrue%7D&features=%7B%22subscriptions_upsells_api_enabled%22%3Atrue%2C%22profile_label_improvements_pcf_label_in_post_enabled%22%3Atrue%2C%22rweb_tipjar_consumption_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%7D&fieldToggles=%7B%22isDelegate%22%3Afalse%2C%22withAuxiliaryUserLabels%22%3Atrue%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "b06135c1c73b2e7332b0bf878cccbb38",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "nRprkbH0I0xI496nowv7RyB5uT82ELdpXAhtaFOqlOcgSQWUhMZlDgHS5PLlOhFULDf+S57aO2K8ITQ3xWqPlpYLxxzwng",
+      "x-guest-token": "1922967882452857119",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/home",
+    "headers": {
+      "referer": "https://x.com/i/flow/login",
+      "upgrade-insecure-requests": "1",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\""
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/help/settings.json?include_zero_rate=true&feature_set_token=e68a313fd6b2418c3349073c2de4708966b9a948&settings_version=94c69f11283e236872bb8a9b3283c365",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "tTJDuZncC2Rgy/aPiyPTbwhRkRceOJ9BdCBFQHuCvM8IYS28rO5NJin6zNrNEjl8BB/WY7aOnjNDNWgXkO9+yhz2+Y5ltg",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/aQ-b88K_Lp7dgHX53MqNQQ/GetUserClaims?variables=%7B%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/i/flow/login",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "6G8e5MSBVjk9lqvS1n6OMlUMzEpDZcIcKX0YHSbf4ZJVPHDh8bMQe3SnkYeQT2QhWUKLPuuBfLvyiRtwRfkAq36cnlEq6w",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/account/settings.json?include_ext_sharing_audiospaces_listening_data_with_followers=true&include_mention_filter=true&include_nsfw_user_flag=true&include_nsfw_admin_flag=true&include_ranked_timeline=true&include_alt_text_compose=true&ext=ssoConnections&include_country_code=true&include_ext_dm_nsfw_media_filter=true",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "VNOiWHg96oWBKhduasIyjumwcPb/2X6glcGkoZpjXS7pgMxdTQ+sx8gbLTss89id5f43glf9FpbGq532aU4QB7MZSEC5Vw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/xF6sXnKJfS2AOylzxRjf6A/DataSaverMode?variables=%7B%22device_id%22%3A%22Mac%2FChrome%22%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/i/flow/login",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "7Gsa4MCFUj05kq/W0nqKNlEIyE5HYcYYLXkcGSLb5ZZROHTl9bcUf3CjlYOUS2AlXUaPOu8H1BNjIepzAiwF0txAIDRO7w",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/onboarding/task.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "a+ydZ0cC1bq+FShRVf0NsdaPT8nA5kGfqv6bnqVcYhHWv/NicjCT+PckEgQTzOei2sEIvWg0c3oJZ+ryhoA6YzsWHBezaA",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/i/flow/login",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "bumYYkIH0L+7EC1UUPgItNOKSszF40Sar/uem6BZZxTTuvZndzWW/fIhFwEWyeKn38QNuG1mGIrfno3m1CdFDqi+Dl6ZbQ",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "exSUCbu4g+/3Aw7zae1xg4P110kBKgo6bSiFIbyvuVFB5JxwESc3IE8yLcJUdBsHZNAYrXgE01ZUme1WIQ7gxUvpeWBjeA",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/xF6sXnKJfS2AOylzxRjf6A/DataSaverMode?variables=%7B%22device_id%22%3A%22Mac%2FChrome%22%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "0b4+oxESKUVdqaRZw0fbKSlffeOrgKCQx4IvixYFE/vrTjbau42diuWYh2j+3rGtznqyB9KVjvW45NrT4CPrdHZ7LS4r0g",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/cKh1OzA_68mIHPMB0l4IEg/HomeTimeline?variables=%7B%22count%22%3A20%2C%22includePromotedContent%22%3Atrue%2C%22latestControlAvailable%22%3Atrue%2C%22requestContext%22%3A%22launch%22%2C%22withCommunity%22%3Atrue%7D&features=%7B%22rweb_video_screen_enabled%22%3Afalse%2C%22profile_label_improvements_pcf_label_in_post_enabled%22%3Atrue%2C%22rweb_tipjar_consumption_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Atrue%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22premium_content_api_read_enabled%22%3Afalse%2C%22communities_web_enable_tweet_community_results_fetch%22%3Atrue%2C%22c9s_tweet_anatomy_moderator_badge_enabled%22%3Atrue%2C%22responsive_web_grok_analyze_button_fetch_trends_enabled%22%3Afalse%2C%22responsive_web_grok_analyze_post_followups_enabled%22%3Atrue%2C%22responsive_web_jetfuel_frame%22%3Afalse%2C%22responsive_web_grok_share_attachment_enabled%22%3Atrue%2C%22articles_preview_enabled%22%3Atrue%2C%22responsive_web_edit_tweet_api_enabled%22%3Atrue%2C%22graphql_is_translatable_rweb_tweet_is_translatable_enabled%22%3Atrue%2C%22view_counts_everywhere_api_enabled%22%3Atrue%2C%22longform_notetweets_consumption_enabled%22%3Atrue%2C%22responsive_web_twitter_article_tweet_consumption_enabled%22%3Atrue%2C%22tweet_awards_web_tipping_enabled%22%3Afalse%2C%22responsive_web_grok_show_grok_translated_post%22%3Afalse%2C%22responsive_web_grok_analysis_button_from_backend%22%3Atrue%2C%22creator_subscriptions_quote_tweet_preview_enabled%22%3Afalse%2C%22freedom_of_speech_not_reach_fetch_enabled%22%3Atrue%2C%22standardized_nudges_misinfo%22%3Atrue%2C%22tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled%22%3Atrue%2C%22longform_notetweets_rich_text_read_enabled%22%3Atrue%2C%22longform_notetweets_inline_media_enabled%22%3Atrue%2C%22responsive_web_grok_image_annotation_enabled%22%3Atrue%2C%22responsive_web_enhance_cards_enabled%22%3Afalse%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "GnX1aNrZ4o6WYm+SCIwQ4uKUtihgS2tbDEnkQN3O2DAghf0RcEZWQS5TTKM1FXpmBbF5zBnXbFuNn+jn9bCllozHa8gHGQ",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/hashflags.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "WTa2K5maoc3VISzRS89ToaHX9WsjCCgYTwqnA56Nm3Njxr5SMwUVAm0QD+B2VjklRvU6j1rYcJvvjwyWMhqp893H13NZWg",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "OlXVSPr5wq62Qk+yKKwwwsK0lghAa0t7LGnEYP3u+BAApd0xUGZ2YQ5zbIMVNVpGJZZZ7DkHnuMkZtTViMbW8Pun7fRAOQ",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/account/settings.json?include_ext_sharing_audiospaces_listening_data_with_followers=true&include_mention_filter=true&include_nsfw_user_flag=true&include_nsfw_admin_flag=true&include_ranked_timeline=true&include_alt_text_compose=true&ext=ssoConnections&include_country_code=true&include_ext_dm_nsfw_media_filter=true",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "o8xM0WNgWzcv29YrsTWpW1stD5HZ8tLitfBd+WR3YYmZPESoyf/v+Jfq9RqMrMPfvA/AdaBqBD4B3fMsC4K/Se5rRfCMoA",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/strato/column/None/202371331,Mac%2FChrome,pushNotifications/clients/permissionsState",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "YA+PEqCjmPTsGBXocvZqmJjuzFIaMREhdjOeOqe0okpa/4drCjwsO1QpNtlPbwAcf8wDtmO6/YEZFcJzGI6beNWPBQMIYw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "17g4pRcUL0Nbr6JfxUHdLy9Ze+WthqaWwYQpjRADFf3tSDDcvYubjOOegW742LeryHu0AdTqcw7Jizk4ZSs7HRZKABmt1A",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://ads-api.x.com/12/measurement/dcm_local_id",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/I_tJ_DO6WLqG0em8EQsVVg/isEligibleForAnalyticsUpsellQuery?variables=%7B%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "85wcgTMwC2d/i4Z74WX5Cwt9X8GJooKy5aANqTQnMdnJbBT4ma+/qMe6pUrc/JOP7F+QJfDg1r3o9SRqMEU6oCNoha468A",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/keyregistry/register",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "x-client-uuid": "0fa537d0-cd91-4ac7-9fd1-e75d250f2259",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "2bY2qxkaIU1VoaxRy0/TISFXdeujiKiYz4ongx4NG/PjRj7Ss4WVgu2Qj2D21rmlxnW6D9pzB0ISOdN4P69XkJ5mqW1i2g",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/3ss7fWgVQgIbUvBkJ1mM2Q/PinnedTimelines?variables=%7B%7D&features=%7B%22profile_label_improvements_pcf_label_in_post_enabled%22%3Atrue%2C%22rweb_tipjar_consumption_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "tNtbxnR3TCA4zME8piK+TEw6GIbO5cX1oudK7nNgdp6OK1O/3uj474D94g2bu9TIqxjXYrflAXTkonTH+dLTLtaHmBCGtw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/dm/inbox_initial_state.json?nsfw_filtering_enabled=false&include_profile_interstitial_type=1&include_blocking=1&include_blocked_by=1&include_followed_by=1&include_want_retweets=1&include_mute_edge=1&include_can_dm=1&include_can_media_tag=1&include_ext_is_blue_verified=1&include_ext_verified_type=1&include_ext_profile_image_shape=1&skip_status=1&dm_secret_conversations_enabled=false&krs_registration_enabled=true&cards_platform=Web-12&include_cards=1&include_ext_alt_text=true&include_ext_limited_action_results=true&include_quote_count=true&include_reply_count=1&tweet_mode=extended&include_ext_views=true&dm_users=true&include_groups=true&include_inbox_timelines=true&include_ext_media_color=true&supports_reactions=true&supports_edit=true&include_ext_edit_control=true&include_ext_business_affiliations_label=true&include_ext_parody_commentary_fan_label=true&ext=mediaColor%2CaltText%2CmediaStats%2ChighlightedLabel%2CparodyCommentaryFanLabel%2CvoiceInfo%2CbirdwatchPivot%2CsuperFollowMetadata%2CunmentionInfo%2CeditControl%2Carticle",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "RSqqN4WGvdHJPTDNV9NPvb3L6Xc/FDQEUxa7H4KRh29/2qJOLxkJHnEME/xqSiU5Wugmk0ZfwXPgjYi99ZHtQzsQ3nz6Rg",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/2/badge_count/badge_count.json?supports_ntab_urt=1",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "9JsbhjQ3DGB4jIF85mL+DAx6WMaOpYW14qcKrjMgNt7OaxP/nqi4r8C9ok3b+5SI61mXIvfCy0Oph5FBHjpUU1YaHlhf9w",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "x-twitter-polling": "true"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/1rV_MeRwACVGJnK7XVt62w/SidebarUserRecommendations?variables=%7B%22profileUserId%22%3A%22202371331%22%7D&features=%7B%22profile_label_improvements_pcf_label_in_post_enabled%22%3Atrue%2C%22rweb_tipjar_consumption_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "QC+vMoCDuNTMODXIUtZKuLjO7HI6ETEBVhO+GoeUgmp636dLKhwMG3QJFvlvTyA8X+0jlkN4Yw3L4pDBDb7uUBi+8A96Qw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "PFPTTvz/xKiwREm0Lqo2xMSykA5GbU19Km/CZvvo/hYGo9s3VmBwZwh1aoUTM1xAI5Ff6j8J3LJWy/WSp8DNLkdMSCLzPw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/88Bu08U2ddaVVjKmmXjVYg/articleNudgeDomains?variables=%7B%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "AG/vcsDD+JSMeHWIEpYK+PiOrDJ6UXFBFlP+WsfUwio6n+cLalxMWzRJVrkvD2B8H61j1gN3aCqAr3gx2mlZcypfFbm8Aw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/fleets/v1/fleetline?only_spaces=true",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "1rk5pBYVLkJarqNexEDcLi5YeuSsh6eXwIUojBECFPzsSTHdvIqajeKfgG/52baqyXu1ANWJpW+xKd89AopNb6hHFr/H1Q",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/PFIxTk8owMoZgiMccP0r4g/getAltTextPromptPreference?variables=%7B%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "P1DQTf/8x6uzR0q3Lak1x8exkw1Fbk5+KWzBZfjr/RUFoNg0VWNzZAt2aYYQMF9DIJJc6TzlibLjAVSFLc5/KhvNQ+HCPA",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/s79_X0-lR3JrwzhBx6elHg/ExploreSidebar?variables=%7B%7D&features=%7B%22rweb_video_screen_enabled%22%3Afalse%2C%22profile_label_improvements_pcf_label_in_post_enabled%22%3Atrue%2C%22rweb_tipjar_consumption_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Atrue%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22premium_content_api_read_enabled%22%3Afalse%2C%22communities_web_enable_tweet_community_results_fetch%22%3Atrue%2C%22c9s_tweet_anatomy_moderator_badge_enabled%22%3Atrue%2C%22responsive_web_grok_analyze_button_fetch_trends_enabled%22%3Afalse%2C%22responsive_web_grok_analyze_post_followups_enabled%22%3Atrue%2C%22responsive_web_jetfuel_frame%22%3Afalse%2C%22responsive_web_grok_share_attachment_enabled%22%3Atrue%2C%22articles_preview_enabled%22%3Atrue%2C%22responsive_web_edit_tweet_api_enabled%22%3Atrue%2C%22graphql_is_translatable_rweb_tweet_is_translatable_enabled%22%3Atrue%2C%22view_counts_everywhere_api_enabled%22%3Atrue%2C%22longform_notetweets_consumption_enabled%22%3Atrue%2C%22responsive_web_twitter_article_tweet_consumption_enabled%22%3Atrue%2C%22tweet_awards_web_tipping_enabled%22%3Afalse%2C%22responsive_web_grok_show_grok_translated_post%22%3Afalse%2C%22responsive_web_grok_analysis_button_from_backend%22%3Atrue%2C%22creator_subscriptions_quote_tweet_preview_enabled%22%3Afalse%2C%22freedom_of_speech_not_reach_fetch_enabled%22%3Atrue%2C%22standardized_nudges_misinfo%22%3Atrue%2C%22tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled%22%3Atrue%2C%22longform_notetweets_rich_text_read_enabled%22%3Atrue%2C%22longform_notetweets_inline_media_enabled%22%3Atrue%2C%22responsive_web_grok_image_annotation_enabled%22%3Atrue%2C%22responsive_web_enhance_cards_enabled%22%3Afalse%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "awSEGauok//nEx7jef1hk5Plx1kROhoqfTiVMay/qUFR9IxgATcnMF8iPdJEZAsXdMYIvWj84xGBcM+d6cJLVuRg2ZOTaA",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://api.x.com/live_pipeline/events?topic=%2Flive_content%2F202371331",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "cache-control": "no-cache",
+      "referer": "https://x.com/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "accept": "text/event-stream",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "sec-ch-ua-mobile": "?0"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/Dla2N-bmdKY2goPxD1YwPA/useUpsellTrackingMutation",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "exSUCbu4g+/3Aw7zae1xg4P110kBKgo6bSiFIbyvuVFB5JxwESc3IE8yLcJUdBsHZNYYrXiJstAaK2Q3v81ca9Dlky+GeA",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "YA+PEqCjmPTsGBXocvZqmJjuzFIaMREhdjOeOqe0okpa/4drCjwsO1QpNtlPbwAcf88DtmOZNwMKDybaK1Ump2Ug8DygYw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "4I8PkiAjGHRsmJVo8nbqGBhuTNKasZGh9rMeuic0Israfwfrirysu9SptlnP74Cc/0+DNuMZt4OKj6Zaq9WmJ+WgcLwg4w",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "TSKiP42OtdnBNTjFX9tHtbXD4X83HDwMWx6zF4qZj2d30qpGJxEBFnkEG/RiQi0xUuIum060Gi4nIgv3BngLikgN3RGNTg",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/live_pipeline/update_subscriptions",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "livepipeline-session": "b0b9d124-df39-4cd1-8dae-2f57bd8a9ef2",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "Fnn5ZNbV7oKabmOeBIAc7u6YuiRsR2dXAEXoTNHC1DwsifEdfEpaTSJfQK85GXZqCaZ1wBWZZHHnYdlwyXF/637SYpzpFQ",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "nfJy711eZQkR5egVjwuXZWUTMa/nzOzci85jx1pJX7enAnqW98HRxqnUyySykv3hgi/+S55L65Y1fIBvlDUfwxrMzoGMng",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "fRKSD72+henxBQj1b+t3hYXz0U8HLAw8ay6DJ7qpv1dH4pp2FyExJkk0K8RSch0BYsoeq37cF5z/3V8X8LTZiv7yH7tDfg",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/M3MhofHIozfPwkEUyuieZg/CreateTweet",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "tNtbxnR3TCA4zME8piK+TEw6GIbO5cX1oudK7nNgdp6OK1O/3uj474D94g2bu9TIqwPXYrfuxVM0L8WLTL7/v/2j1a2Ntw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/live_pipeline/update_subscriptions",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "livepipeline-session": "b0b9d124-df39-4cd1-8dae-2f57bd8a9ef2",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "eRaWC7m6ge31AQzxa+9zgYH31UsDKAg4byqHI76tu1ND5p5yEyU1Ik0wL8BWdhkFZsEar3oBO0gNClaTXP0OeLGyJPMTeg",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "XDOzLpyfpMjQJCnUTspWpKTS8G4mDS0dSg+iBpuInnZmw7tXNgAQB2gVCuVzUzwgQ+Y/il/crp3SM8vxUQCv6lyy8LA8Xw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/ces/p2",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "GHf3atjb4IyUYG2QCo4S4OCWtCpiSWlZDkvmQt/M2jIih/8TckRUQyxRTqE3F3hkB6J7zhsKCsTn2xPWLV9yoFoLAqbKGw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/twitter.web.thrift.json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/VaenaVgh5q5ih7kvyVjgtg/DeleteTweet",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "7oEBnC4tFnpilptm/HjkFhZgQtyUv5+v+L0QtCk6LMTUcQnlhLKitdqnuFfB4Y6S8VWNOO32I0zAESAC/AcouEEWkvZI7Q",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/live_pipeline/update_subscriptions",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "livepipeline-session": "b0b9d124-df39-4cd1-8dae-2f57bd8a9ef2",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "bAODHqyvlPjgFBnkfvpmlJTiwF4WPR0tej+SNqu4rkZW84tnBjAgN1glOtVDYwwQc9APum+IV2jWBlIP87vi+u7YTG7ybw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/live_pipeline/update_subscriptions",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "livepipeline-session": "b0b9d124-df39-4cd1-8dae-2f57bd8a9ef2",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "FHv7ZtTX7ICYbGGcBoIe7OyauCZuRWVVAkfqTtPA1j4ui/MffkhYTyBdQq07G3RoC6l3whfWAeO3WXAdKVntkuDqwIbJFw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/vqu78dKcEkW-UAYLw5rriA/useFetchProfileSections_canViewExpandedProfileQuery?variables=%7B%22screenName%22%3A%22GithubProjects%22%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/GithubProjects",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "hulp9EZFfhIK/vMOlBCMfn4IKrT81/fHkNV43EFSRKy8GWGN7NrK3bLP0D+pieb6mTvlUIUPIv5XFiJwQ/3ec16U9LjHhQ",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/-0XdHI-mrHWBQd8-oLo1aA/ProfileSpotlightsQuery?variables=%7B%22screen_name%22%3A%22GithubProjects%22%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/GithubProjects",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "7IMDniwvFHhglJlk/nrmFBRiQN6WvZ2t+r8Stis4LsbWcwvnhrCgt9ilulXD44yQ81GPOu+s9aNSZWybI0bCQQvDU+8W7w",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/1rV_MeRwACVGJnK7XVt62w/SidebarUserRecommendations?variables=%7B%22profileUserId%22%3A%221315639147248246785%22%7D&features=%7B%22profile_label_improvements_pcf_label_in_post_enabled%22%3Atrue%2C%22rweb_tipjar_consumption_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/GithubProjects",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "exSUCbu4g+/3Aw7zae1xg4P110kBKgo6bSiFIbyvuVFB5JxwESc3IE8yLcJUdBsHZMYYrXgvTXpzD65gyLt79cPX646JeA",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/GithubProjects",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "lfp651VWbQEZ7eAdhwOfbW0bOafvxOTUg8Zrz1JBV7+vCnKe/8nZzqHcwyy6mvXpiij2Q5abkoqi5xl6fo0OyhypbrRrlg",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/ZjlQWXgZ5giUKiTsanfJXQ/UserByScreenName?variables=%7B%22screen_name%22%3A%22githubprojects%22%7D&features=%7B%22hidden_profile_subscriptions_enabled%22%3Atrue%2C%22profile_label_improvements_pcf_label_in_post_enabled%22%3Atrue%2C%22rweb_tipjar_consumption_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22subscriptions_verification_info_is_identity_verified_enabled%22%3Atrue%2C%22subscriptions_verification_info_verified_since_enabled%22%3Atrue%2C%22highlights_tweets_tab_ui_enabled%22%3Atrue%2C%22responsive_web_twitter_article_notes_tab_enabled%22%3Atrue%2C%22subscriptions_feature_can_gift_premium%22%3Atrue%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%7D&fieldToggles=%7B%22withAuxiliaryUserLabels%22%3Atrue%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/GithubProjects",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "JknJVObl3rKqXlOuNLAs3t6oihRcd1dnMHXYfOHy5AwcucEtTHpqfRJvcJ8JKUZaOZtF8CXE0aXJgQIrODj4WK3JAQZdJQ",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/fleets/v1/avatar_content?user_ids=1315639147248246785&only_spaces=true",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/GithubProjects",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "x6gotQcEP1NLv7JP1VHNPz9Ja/W9lraG0ZQ5nQATBe39WCDMrZuLnPOOkX7oyKe72HqkEcRIhIdjVN/JbQHWBuTxtt64xA",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/friends/following/list.json?include_profile_interstitial_type=1&include_blocking=1&include_blocked_by=1&include_followed_by=1&include_want_retweets=1&include_mute_edge=1&include_can_dm=1&include_can_media_tag=1&include_ext_is_blue_verified=1&include_ext_verified_type=1&include_ext_profile_image_shape=1&skip_status=1&cursor=-1&user_id=1315639147248246785&count=3&with_total_count=true",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/GithubProjects",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "TyCgPY+Mt9vDNzrHXdlFt7fB4301Hj4OWRyxFYibjWV10KhEJRMDFHsGGfZgQC8zUPIsmUyRiIPyK5zsup7hPeSulYaHTA",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/fleets/v1/fleetline?only_spaces=true",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/GithubProjects",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "kP9/4lBTaAQc6OUYggaaaGgePKLqweHRhsNuyldEUrqqD3eb+szcy6TZxim/n/Dsjy3zRpOaSenfQ0a1zhGvgz0D/Ahgkw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/gGVKZLTu1l6aaAnLs_cGDg/UserTweets?variables=%7B%22userId%22%3A%221315639147248246785%22%2C%22count%22%3A20%2C%22includePromotedContent%22%3Atrue%2C%22withQuickPromoteEligibilityTweetFields%22%3Atrue%2C%22withVoice%22%3Atrue%7D&features=%7B%22rweb_video_screen_enabled%22%3Afalse%2C%22profile_label_improvements_pcf_label_in_post_enabled%22%3Atrue%2C%22rweb_tipjar_consumption_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Atrue%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22premium_content_api_read_enabled%22%3Afalse%2C%22communities_web_enable_tweet_community_results_fetch%22%3Atrue%2C%22c9s_tweet_anatomy_moderator_badge_enabled%22%3Atrue%2C%22responsive_web_grok_analyze_button_fetch_trends_enabled%22%3Afalse%2C%22responsive_web_grok_analyze_post_followups_enabled%22%3Atrue%2C%22responsive_web_jetfuel_frame%22%3Afalse%2C%22responsive_web_grok_share_attachment_enabled%22%3Atrue%2C%22articles_preview_enabled%22%3Atrue%2C%22responsive_web_edit_tweet_api_enabled%22%3Atrue%2C%22graphql_is_translatable_rweb_tweet_is_translatable_enabled%22%3Atrue%2C%22view_counts_everywhere_api_enabled%22%3Atrue%2C%22longform_notetweets_consumption_enabled%22%3Atrue%2C%22responsive_web_twitter_article_tweet_consumption_enabled%22%3Atrue%2C%22tweet_awards_web_tipping_enabled%22%3Afalse%2C%22responsive_web_grok_show_grok_translated_post%22%3Afalse%2C%22responsive_web_grok_analysis_button_from_backend%22%3Atrue%2C%22creator_subscriptions_quote_tweet_preview_enabled%22%3Afalse%2C%22freedom_of_speech_not_reach_fetch_enabled%22%3Atrue%2C%22standardized_nudges_misinfo%22%3Atrue%2C%22tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled%22%3Atrue%2C%22longform_notetweets_rich_text_read_enabled%22%3Atrue%2C%22longform_notetweets_inline_media_enabled%22%3Atrue%2C%22responsive_web_grok_image_annotation_enabled%22%3Atrue%2C%22responsive_web_enhance_cards_enabled%22%3Afalse%7D&fieldToggles=%7B%22withArticlePlainText%22%3Afalse%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/GithubProjects",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "85wcgTMwC2d/i4Z74WX5Cwt9X8GJooKy5aANqTQnMdnJbBT4ma+/qMe6pUrc/JOP7E6QJfA0IJSUM53H673m0GUjGcJg8A",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/live_pipeline/update_subscriptions",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "livepipeline-session": "b0b9d124-df39-4cd1-8dae-2f57bd8a9ef2",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "kP9/4lBTaAQc6OUYggaaaGgePKLqweHRhsNuyldEUrqqD3eb+szcy6TZxim/n/Dsjy7zRpMXQXMt+kNpEYV7OUEpUjISkw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/live_pipeline/update_subscriptions",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "livepipeline-session": "b0b9d124-df39-4cd1-8dae-2f57bd8a9ef2",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "tNtbxnR3TCA4zME8piK+TEw6GIbO5cX1oudK7nNgdp6OK1O/3uj474D94g2bu9TIqwvXYrfRCv99cZMkjna2LgL35fw+tw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/i/grok",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "OFfXSvj7wKy0QE2wKq4ywMC2lApCaUl5LmvGYv/s+hICp98zUmR0YwxxboEXN1hEJ/hb7jusNa15xgColi2Z77lwB7ifOw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/i/grok",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "RSqqN4WGvdHJPTDNV9NPvb3L6Xc/FDQEUxa7H4KRh29/2qJOLxkJHnEME/xqSiU5WoYmk0bolljbrwOwQvBIWJHpZ+dQRg",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/i/grok",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "zaIivw0ONVlBtbhF31vHNTVDYf+3nLyM254zlwoZD+f3UirGp5GBlvmEm3Tiwq2x0g6uG85gHtBTJ4s4ynjA0Blh72/Yzg",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/IGHBZzBjkQ0I7TA4WKv32A/GrokHome?variables=%7B%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/i/grok",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "wa4uswECOVVNubRJ01fLOTlPbfO7kLCA15I/mwYVA+v7XibKq52NmvWIl3juzqG93gKiF8Ix6SBZsuOFcDHlT6KZAZdnwg",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/PCIQ2HSITHhfcNkuord9Fg/UserByRestId?variables=%7B%22userId%22%3A%221720665183188922368%22%7D&features=%7B%22hidden_profile_subscriptions_enabled%22%3Atrue%2C%22profile_label_improvements_pcf_label_in_post_enabled%22%3Atrue%2C%22rweb_tipjar_consumption_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22highlights_tweets_tab_ui_enabled%22%3Atrue%2C%22responsive_web_twitter_article_notes_tab_enabled%22%3Atrue%2C%22subscriptions_feature_can_gift_premium%22%3Atrue%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/i/grok",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "ieZm+0lKcR0F8fwBmx+DcXEHJbvz2PjIn9p3005dS6OzFm6C49XF0r3A3zCmhun1lk3qX4qd1oIjoVYh89hvN7PHrj/Sig",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/vqu78dKcEkW-UAYLw5rriA/useFetchProfileSections_canViewExpandedProfileQuery?variables=%7B%22screenName%22%3A%22JoshuaKaufmann%22%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/JoshuaKaufmann",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "L0DAXe/s17ujV1qnPbkl19ehgx1Vfl5uOXzRdej77QUVsMgkRXNjdBtmeZYAIE9TMOpM+SxosjxooWMYYGnXnZfTE+FfLA",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/-0XdHI-mrHWBQd8-oLo1aA/ProfileSpotlightsQuery?variables=%7B%22screen_name%22%3A%22JoshuaKaufmann%22%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/JoshuaKaufmann",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "yKcnuggLMFxEsL1A2l7CMDBGZPqymbmJ3ps2kg8cCuLyVy/DopSEk/yBnnHnx6i01w2rHstTXwCEgVqya+PlYhmmKLU1yw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/gGVKZLTu1l6aaAnLs_cGDg/UserTweets?variables=%7B%22userId%22%3A%22202371331%22%2C%22count%22%3A20%2C%22includePromotedContent%22%3Atrue%2C%22withQuickPromoteEligibilityTweetFields%22%3Atrue%2C%22withVoice%22%3Atrue%7D&features=%7B%22rweb_video_screen_enabled%22%3Afalse%2C%22profile_label_improvements_pcf_label_in_post_enabled%22%3Atrue%2C%22rweb_tipjar_consumption_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Atrue%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22premium_content_api_read_enabled%22%3Afalse%2C%22communities_web_enable_tweet_community_results_fetch%22%3Atrue%2C%22c9s_tweet_anatomy_moderator_badge_enabled%22%3Atrue%2C%22responsive_web_grok_analyze_button_fetch_trends_enabled%22%3Afalse%2C%22responsive_web_grok_analyze_post_followups_enabled%22%3Atrue%2C%22responsive_web_jetfuel_frame%22%3Afalse%2C%22responsive_web_grok_share_attachment_enabled%22%3Atrue%2C%22articles_preview_enabled%22%3Atrue%2C%22responsive_web_edit_tweet_api_enabled%22%3Atrue%2C%22graphql_is_translatable_rweb_tweet_is_translatable_enabled%22%3Atrue%2C%22view_counts_everywhere_api_enabled%22%3Atrue%2C%22longform_notetweets_consumption_enabled%22%3Atrue%2C%22responsive_web_twitter_article_tweet_consumption_enabled%22%3Atrue%2C%22tweet_awards_web_tipping_enabled%22%3Afalse%2C%22responsive_web_grok_show_grok_translated_post%22%3Afalse%2C%22responsive_web_grok_analysis_button_from_backend%22%3Atrue%2C%22creator_subscriptions_quote_tweet_preview_enabled%22%3Afalse%2C%22freedom_of_speech_not_reach_fetch_enabled%22%3Atrue%2C%22standardized_nudges_misinfo%22%3Atrue%2C%22tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled%22%3Atrue%2C%22longform_notetweets_rich_text_read_enabled%22%3Atrue%2C%22longform_notetweets_inline_media_enabled%22%3Atrue%2C%22responsive_web_grok_image_annotation_enabled%22%3Atrue%2C%22responsive_web_enhance_cards_enabled%22%3Afalse%7D&fieldToggles=%7B%22withArticlePlainText%22%3Afalse%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/JoshuaKaufmann",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "ch2dALKxiub+Cgf6YOR4ior83kAIIwMzZCGMKLWmsFhI7ZV5GC4+KUY7JMtdfRIObbcRpHEnzp8ZfOSjAPPA5QLzqpdfcQ",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/ZjlQWXgZ5giUKiTsanfJXQ/UserByScreenName?variables=%7B%22screen_name%22%3A%22joshuakaufmann%22%7D&features=%7B%22hidden_profile_subscriptions_enabled%22%3Atrue%2C%22profile_label_improvements_pcf_label_in_post_enabled%22%3Atrue%2C%22rweb_tipjar_consumption_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22subscriptions_verification_info_is_identity_verified_enabled%22%3Atrue%2C%22subscriptions_verification_info_verified_since_enabled%22%3Atrue%2C%22highlights_tweets_tab_ui_enabled%22%3Atrue%2C%22responsive_web_twitter_article_notes_tab_enabled%22%3Atrue%2C%22subscriptions_feature_can_gift_premium%22%3Atrue%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%7D&fieldToggles=%7B%22withAuxiliaryUserLabels%22%3Atrue%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/JoshuaKaufmann",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "4o0NkCIhGnZumpdq8HToGhpsTtCYs5Oj9LEcuCU2IMjYfQXpiL6uudartFvN7YKe/SeBNOFVRONmvyuxRm3GIr3jcFlx4Q",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/fleets/v1/avatar_content?user_ids=202371331&only_spaces=true",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/JoshuaKaufmann",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "QyysMYOAu9fPOzbLUdVJu7vN73E5EjICVRC9GYSXgWl53KRIKR8PGHcKFfpsTCM/XIYglUC1G09evJxQC8amTuN0TzWqQA",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/BuWF9hiwmUyFdGo3J4DqbA/isEligibleForVoButtonUpsellQuery?variables=%7B%22screenName%22%3A%22JoshuaKaufmann%22%2C%22promptPurpose%22%3A%22x_vo_business_promotion%22%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/JoshuaKaufmann",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "RyioNYeEv9PLPzLPVdFNv7/J63U9FjYGURS5HYCThW192KBMLRsLHHMOEf5oSCc7WIIkkUR9hWx0Qqjn4sxuF324D2KRRA",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/fleets/v1/fleetline?only_spaces=true",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/JoshuaKaufmann",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "i+Rk+UtIcx8H8/4DmR2Bc3MFJ7nx2vrKndh10UxfSaGxFGyA4dfH0L/C3TKkhOv3lE7oXYixfHxAJGDaFr8SgiTx2EGEiA",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/UFD9D7pipG78WFN0SJviDg/useTotalAdCampaignsForUserQuery?variables=%7B%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/JoshuaKaufmann",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "aAeHGqirkPzkEB3gev5ikJDmxFoSORkpfjuWMq+8qkJS949jAjQkM1whPtFHZwgUd60LvmsrLUdXYdcY+b6SFul6Jigkaw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/JoshuaKaufmann",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "3bIyrx0eJUlRpahVz0vXJSVTce+njKycy44jhxoJH/fnQjrWt4GRhumUi2Ty0r2hwhi+C97caPSeav8l+dEDKa7rDghG3g",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/ZjlQWXgZ5giUKiTsanfJXQ/UserByScreenName?variables=%7B%22screen_name%22%3A%22joshuakaufmann%22%7D&features=%7B%22hidden_profile_subscriptions_enabled%22%3Atrue%2C%22profile_label_improvements_pcf_label_in_post_enabled%22%3Atrue%2C%22rweb_tipjar_consumption_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22subscriptions_verification_info_is_identity_verified_enabled%22%3Atrue%2C%22subscriptions_verification_info_verified_since_enabled%22%3Atrue%2C%22highlights_tweets_tab_ui_enabled%22%3Atrue%2C%22responsive_web_twitter_article_notes_tab_enabled%22%3Atrue%2C%22subscriptions_feature_can_gift_premium%22%3Atrue%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%7D&fieldToggles=%7B%22withAuxiliaryUserLabels%22%3Atrue%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/JoshuaKaufmann",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "pMtL1mRnXDAo3NEstjKuXFwqCJbe9dXlsvda/mNwZo6eO0Ovzvjo/5Dt8h2Lq8TYu2HHcqcTAqUg+W33ACuAZPulNh83pw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/live_pipeline/update_subscriptions",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "livepipeline-session": "b0b9d124-df39-4cd1-8dae-2f57bd8a9ef2",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "gu1t8EJBehYO+vcKkBSIenoMLrD40/PDlNF82EVWQKi4HWWJ6N7O2bbL1DutjeL+nUThVIETjRYqMaiMHOXU3jLV/ejhgQ",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/JoshuaKaufmann",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "FHv7ZtTX7ICYbGGcBoIe7OyauCZuRWVVAkfqTtPA1j4ui/MffkhYTyBdQq07G3RoC9J3whc6eQeHm31JNmdFkej6bDntFw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/live_pipeline/update_subscriptions",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "livepipeline-session": "b0b9d124-df39-4cd1-8dae-2f57bd8a9ef2",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "CWbme8nK8Z2FcXyBG58D8fGHpTtzWHhIH1r3U87dyyMzlu4CY1VFUj1AX7AmBml1Fs5q3wokdD1J9LSWnutGK9oJGskCCg",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/live_pipeline/update_subscriptions",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "livepipeline-session": "b0b9d124-df39-4cd1-8dae-2f57bd8a9ef2",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "h+ho9UdEfxML//IPlRGNf38JK7X91vbGkdR53UBTRa29GGCM7dvL3LPO0T6oiOf7mE/kUYRlWGrhgNjghLUUGv/YVcSAhA",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/ZjlQWXgZ5giUKiTsanfJXQ/UserByScreenName?variables=%7B%22screen_name%22%3A%22githubprojects%22%7D&features=%7B%22hidden_profile_subscriptions_enabled%22%3Atrue%2C%22profile_label_improvements_pcf_label_in_post_enabled%22%3Atrue%2C%22rweb_tipjar_consumption_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22subscriptions_verification_info_is_identity_verified_enabled%22%3Atrue%2C%22subscriptions_verification_info_verified_since_enabled%22%3Atrue%2C%22highlights_tweets_tab_ui_enabled%22%3Atrue%2C%22responsive_web_twitter_article_notes_tab_enabled%22%3Atrue%2C%22subscriptions_feature_can_gift_premium%22%3Atrue%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%7D&fieldToggles=%7B%22withAuxiliaryUserLabels%22%3Atrue%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/GithubProjects",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "AG/vcsDD+JSMeHWIEpYK+PiOrDJ6UXFBFlP+WsfUwio6n+cLalxMWzRJVrkvD2B8H8lj1gOIENVahTqxQR0+WKp/JYGpAw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/GithubProjects",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "5YoKlyUmHXFpnZBt93PvHR1rSdeftJSk87YbvyIxJ8/fegLuj7mpvtGss1zK6oWZ+iyGM+aRVQlTHBtzCBhscaCclAlj5g",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/GithubProjects",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "44wMkSMgG3dvm5Zr8XXpGxttT9GZspKi9bAduSQ3IcnZfAToib+vuNeqtVrM7IOf/CqANeCXUw9VGh11Dh5qd6aakg9l4A",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/2/badge_count/badge_count.json?supports_ntab_urt=1",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/GithubProjects",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "bQKCH62ulfnhFRjlf/tnlZXjwV8XPBwsez6TN6q5r0dX8opmBzEhNlkkO9RCYg0RcqcOu26nWx5kRAaTd+XXXOB6rnffbg",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "x-twitter-polling": "true"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/live_pipeline/update_subscriptions",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "livepipeline-session": "b0b9d124-df39-4cd1-8dae-2f57bd8a9ef2",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "74AAnS8sF3tjl5pn/XnlFxdhQ92Vvp6u+bwRtSg7LcXVcAjkhbOjtNumuVbA4I+T8CWMOex7ynLGJdFfPueJ45D+PnLA7A",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/live_pipeline/update_subscriptions",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "livepipeline-session": "b0b9d124-df39-4cd1-8dae-2f57bd8a9ef2",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "hepq90VGfREJ/fANlxOPfX0LKbf/1PTEk9Z730JRR6+/GmKO79nJ3rHM0zyqiuX5mk7mU4bTIq+np7P7s4lT7yLUs+S2hg",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/GithubProjects",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "85wcgTMwC2d/i4Z74WX5Cwt9X8GJooKy5aANqTQnMdnJbBT4ma+/qMe6pUrc/JOP7D+QJfCYHHXZfJRP1ll3PjXC2P0G8A",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/GithubProjects",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "DGPjfszP9JiAdHmEHpoG9PSCoD52XX1NGl/yVsvYziY2k+sHZlBAVzhFWrUjA2xwE8Nv2g94RniXWLDbLkozhRhxG7kGDw",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/GithubProjects",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "64QEmSsoE39nk55j+X3hExNlR9mRupqq/bgVsSw/KcHRdAzggbensN+ivVLE5IuX9DuIPeiSlz+v3drJlV81Nii49Euw6A",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/live_pipeline/update_subscriptions",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "livepipeline-session": "b0b9d124-df39-4cd1-8dae-2f57bd8a9ef2",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "N1jYRff0z6O7T0K/JaE9z8+5mwVNZkZ2IWTJbfDj9R0NqNA8XWt7bAN+YY4YOFdLKOVU4TSQZ2ct9kzPtty1yPaAZxlgNA",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/GithubProjects",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "L0DAXe/s17ujV1qnPbkl19ehgx1Vfl5uOXzRdej77QUVsMgkRXNjdBtmeZYAIE9TMPxM+SxLE2Qs6dQDZaYDdOKPUVmOLA",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "15OW6eXY/4AfEfXnyLzVPVbUKGwbc60RWjLJqeWU5DGeokLUCaA8oEJ43Qr5Q9EfkAC0AdS+1/k5VeRFKEyZMmk9BmLa1A",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/xF6sXnKJfS2AOylzxRjf6A/DataSaverMode?variables=%7B%22device_id%22%3A%22Mac%2FChrome%22%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "RwMGeXVIbxCPgWV3WCxFrcZEuPyL4z2ByqJZOXUEdKEOMtJEmTCsMNLoTZpp00GPAJAkkUSxtHAJnx8RPmx1hmgLSC9RRA",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/cKh1OzA_68mIHPMB0l4IEg/HomeTimeline",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "A0dCPTEMK1TLxSEzHGgB6YIA/LjPp3nFjuYdfTFAMOVKdpYA3XTodJasCd4tlwXLRNRg1QBvBDxhPK/HHqc6FvLQUPPhAA",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/keyregistry/register",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "x-client-uuid": "783bf08c-165e-4d29-8804-34b5694df0eb",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "3Zmc4+/S9YoVG//twrbfN1zeImYReacbUDjDo++e7juUqEjeA6o2qkhy1wDzSdsVmgq+C94Mv/vkBq5X95oZG57mraOL3g",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/hashflags.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "3pqf4OzR9okWGPzuwbXcNF/dIWUSeqQYUzvAoOyd7TiXq0vdAKk1qUtx1APwStgWmQm9CN1tWdr+T+fC7oIVYnIBE5ZA3Q",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "YiYjXFBtSjWqpEBSfQlgiONhndmuxhik74d8HFAhUYQrF/dhvBWJFffNaL9M9mSqJbUBtGELYkyM4FHwnfksh9yIs9dvYQ",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  },
+  {
+    "url": "https://api.x.com/1.1/account/settings.json?include_ext_sharing_audiospaces_listening_data_with_followers=true&include_mention_filter=true&include_nsfw_user_flag=true&include_nsfw_admin_flag=true&include_ranked_timeline=true&include_alt_text_compose=true&ext=ssoConnections&include_country_code=true&include_ext_dm_nsfw_media_filter=true",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "7qqv0NzhxrkmKMze8YXsBG/tEVUiSpQoYwvwkNyt3Qinm3vtMJkFmXtB5DPAeugmqTmNOO3E2VJxUSrwAjScYa60r3DY7Q",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/graphql/I_tJ_DO6WLqG0em8EQsVVg/isEligibleForAnalyticsUpsellQuery?variables=%7B%7D",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "A0dCPTEMK1TLxSEzHGgB6YIA/LjPp3nFjuYdfTFAMOVKdpYA3XTodJasCd4tlwXLRNRg1QCCw4ghDqSrdw8i4YjaN1WPAA",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/json"
+    }
+  },
+  {
+    "url": "https://x.com/i/api/1.1/jot/client_event.json",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "x-csrf-token": "4296ac550dd6cc3de5c4cd5c837398af7f5b6747e66f66c761b8bf8df94142e32618c2cfc1565df47a72c55e31e44d6820134657dc4cfbf4d054491929689a73dd8b15ed9182898e092a8bb3d9b3db1f",
+      "referer": "https://x.com/home",
+      "sec-ch-ua": "\"Not.A/Brand\";v=\"99\", \"Chromium\";v=\"136\"",
+      "x-twitter-client-language": "en",
+      "sec-ch-ua-mobile": "?0",
+      "x-twitter-active-user": "yes",
+      "x-client-transaction-id": "ndnco6+StcpVW7+tgvafdxyeYiZROedbEHiD46/ernvU6AieQ+p26ggyl0CzCZtV2kr+S570nbNzH64PYgbTeCN3TCiQng",
+      "x-twitter-auth-type": "OAuth2Session",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  }
+]

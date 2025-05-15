@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/crazyrabbitLTC/mcp-twitter-server#readme",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.0.2",
+    "@modelcontextprotocol/sdk": "^1.11.2",
     "dotenv": "^16.3.1",
     "twitter-api-v2": "^1.15.2",
     "zod": "^3.22.4"
