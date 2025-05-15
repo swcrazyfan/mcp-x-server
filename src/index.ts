@@ -44,7 +44,7 @@ import { GetUserTimelineArgs } from './types/handlers.js';
 config();
 
 const server = new Server({
-    name: 'twitter-mcp-server',
+    name: 'x-mcp-server',
     version: '0.0.1',
 }, {
     capabilities: {

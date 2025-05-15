@@ -1,18 +1,18 @@
-# Twitter MCP Server
+# X MCP Server
 
-A Model Context Protocol server implementation for Twitter API integration.
+A Model Context Protocol server implementation for X (formerly Twitter) API integration.
 
 ## Setup
 
 1. Clone the repository
 2. Install dependencies: `npm install`
-3. Copy `.env.example` to `.env` and fill in your Twitter API credentials
+3. Copy `.env.example` to `.env` and fill in your X API credentials
 4. Build the project: `npm run build`
 5. Start the server: `npm start`
 
 ## Environment Variables
 
-Required Twitter API credentials in `.env`:
+Required X API credentials in `.env`:
 
 ```env
 X_API_KEY=your_api_key
@@ -210,7 +210,7 @@ X_ACCESS_TOKEN_SECRET=your_access_token_secret
 
 All tools return standardized error responses:
 - Missing parameters: `Missing required parameter: parameter_name`
-- API errors: Error message from Twitter API
+- API errors: Error message from X API
 - Not found errors: Appropriate "not found" message for the resource
 
 ## Response Format
@@ -233,7 +233,7 @@ All successful responses follow this format:
 - Start: `npm start`
 - Watch mode: `npm run dev`
 ```
-Here's a comprehensive status report of all Twitter tools:
+Here's a comprehensive status report of all X tools:
 
 ## Working Tools (✓)
 
@@ -334,7 +334,7 @@ Fix needed: Parameter validation
 1. Parameter Validation:
 ```typescript
 // Implement for getUserTimeline, searchTweets, getLikedTweets
-interface TwitterParamValidator {
+interface XParamValidator {
   validateTimelineParams(params: any): boolean;
   validateSearchParams(params: any): boolean;
   validateLikedTweetsParams(params: any): boolean;
@@ -344,7 +344,7 @@ interface TwitterParamValidator {
 2. Error Handling:
 ```typescript
 // Enhance error handling for 400 errors
-interface TwitterErrorHandler {
+interface XErrorHandler {
   handle400Error(endpoint: string, params: any): void;
   logErrorDetails(error: any): void;
   suggestParameterFixes(params: any): string[];
